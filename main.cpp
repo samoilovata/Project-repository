@@ -1,7 +1,7 @@
 #include <SFML/Window.hpp>
 
 int main() {
-    sf::Window window(sf::VideoMode(800, 600), "game");
+    sf::Window window(sf::VideoMode(800, 640), "game");
 
     while (window.isOpen()) {
         sf::Event event{};
