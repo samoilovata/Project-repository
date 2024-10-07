@@ -1,7 +1,19 @@
-#include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
+#include <filesystem>
+#include <iostream>
 
 int main() {
-    sf::Window window(sf::VideoMode(800, 640), "game");
+    sf::RenderWindow window(sf::VideoMode(800, 640), "game");
+    sf::Texture backgroundTexture;
+
+    if (!backgroundTexture.loadFromFile(std::filesystem::current_path().string() + "/../Assets/backgroundGrass.jpg")) {
+        std::cerr << "Failed to load background image!" << std::endl;
+    }
+
+    sf::Sprite backgroundGrass;
+    backgroundGrass.setTexture(backgroundTexture);
+
+    backgroundGrass.setPosition(sf::Vector2f(-100, -100));
 
     while (window.isOpen()) {
         sf::Event event{};
@@ -10,6 +22,12 @@ int main() {
             if (event.type == sf::Event::Closed)
                 window.close();
         }
+
+        window.clear();
+
+        window.draw(backgroundGrass);
+
+        window.display();
     }
 
     return 0;
