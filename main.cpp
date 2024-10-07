@@ -1,5 +1,6 @@
 #include <SFML/Window.hpp>
 #include "Player/Player.cpp"
+
 int main() {
     sf::Window window(sf::VideoMode(800, 640), "game");
 

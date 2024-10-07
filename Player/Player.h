@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+
 class Player {
     float x, y, w, h;
     int Direction;
