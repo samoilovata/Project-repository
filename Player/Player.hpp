@@ -8,7 +8,7 @@ public:
     }
 
     void setSprite ();
-    void movePlayer(float time);
+    void movePlayer(float time, sf::Time deltaTime);
     sf::Sprite getSprite();
 
 private:
