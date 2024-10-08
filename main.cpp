@@ -45,7 +45,7 @@ int main() {
 
         if (P1.getBounds().intersects(coin.getBounds())) {
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::F)) {
-                coin.setPosition(100, 100);
+                coin.setPosition(std::rand() % (700 - 100 + 1) + 100, std::rand() % (540 - 100 + 1) + 100);
             }
         }
 
