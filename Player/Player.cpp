@@ -17,6 +17,14 @@ sf::Sprite Player::getSprite() {
     return playerSprite;
 }
 
+void Player::setBounds() {
+    playerBounds = playerSprite.getGlobalBounds();
+}
+
+sf::FloatRect Player::getBounds() {
+    return playerBounds;
+}
+
 void Player::movePlayer(float time, sf::Time deltaTime) {
     float currentFrame = 0;
 
