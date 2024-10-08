@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include "Object/tempObject.hpp"
 #include <filesystem>
 #include <iostream>
 
@@ -15,6 +16,8 @@ int main() {
 
     backgroundGrass.setPosition(sf::Vector2f(-100, -100));
 
+    tempObject coin("");
+
     while (window.isOpen()) {
         sf::Event event{};
         while (window.pollEvent(event))
@@ -26,6 +29,7 @@ int main() {
         window.clear();
 
         window.draw(backgroundGrass);
+        window.draw(coin.getSprite());
 
         window.display();
     }
