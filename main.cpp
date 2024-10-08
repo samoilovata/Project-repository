@@ -2,6 +2,7 @@
 #include "Object/tempObject.hpp"
 #include <filesystem>
 #include <iostream>
+#include "Player/Player.cpp"
 
 int main() {
     sf::RenderWindow window(sf::VideoMode(800, 640), "game");
@@ -17,6 +18,7 @@ int main() {
     backgroundGrass.setPosition(sf::Vector2f(-100, -100));
 
     tempObject coin("");
+    Player P1("");
 
     while (window.isOpen()) {
         sf::Event event{};
@@ -30,6 +32,7 @@ int main() {
 
         window.draw(backgroundGrass);
         window.draw(coin.getSprite());
+        window.draw(P1.getSprite());
 
         window.display();
     }
