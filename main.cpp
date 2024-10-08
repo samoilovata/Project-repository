@@ -19,8 +19,14 @@ int main() {
 
     tempObject coin("");
     Player P1("");
+    sf::Clock clock;
 
     while (window.isOpen()) {
+
+        float time = clock.getElapsedTime().asMicroseconds();
+        clock.restart();
+        time = time / 100;
+
         sf::Event event{};
         while (window.pollEvent(event))
         {
@@ -33,6 +39,7 @@ int main() {
         window.draw(backgroundGrass);
         window.draw(coin.getSprite());
         window.draw(P1.getSprite());
+        P1.movePlayer(time);
 
         window.display();
     }

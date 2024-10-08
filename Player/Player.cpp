@@ -16,3 +16,36 @@ void Player::setSprite() {
 sf::Sprite Player::getSprite() {
     return playerSprite;
 }
+
+void Player::movePlayer(float time) {
+    float currentFrame = 0;
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+        currentFrame += 0.22 * time;
+        std::cout << currentFrame << std::endl;
+        if (currentFrame > 3) currentFrame -= 3;
+        playerSprite.setTextureRect(sf::IntRect (int(currentFrame) * 200, 980, 200, 320));
+        playerSprite.move(-0.03 * time, 0);
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+        currentFrame += 0.22 * time;
+        std::cout << currentFrame << std::endl;
+        if (currentFrame > 3) currentFrame -= 3;
+        playerSprite.setTextureRect(sf::IntRect (int(currentFrame) * 200, 660, 200, 320));
+        playerSprite.move(0.03 * time, 0);
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+        currentFrame += 0.22 * time;
+        std::cout << currentFrame << std::endl;
+        if (currentFrame > 3) currentFrame -= 3;
+        playerSprite.setTextureRect(sf::IntRect (int(currentFrame) * 200, 330, 200, 320));
+        playerSprite.move(0, -0.03 * time);
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+        currentFrame += 0.22 * time;
+        std::cout << currentFrame << std::endl;
+        if (currentFrame > 3) currentFrame -= 3;
+        playerSprite.setTextureRect(sf::IntRect (int(currentFrame) * 200, 0, 200, 320));
+        playerSprite.move(0, 0.03 * time);
+    }
+}
