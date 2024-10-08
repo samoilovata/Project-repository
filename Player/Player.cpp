@@ -9,7 +9,7 @@ void Player::setSprite() {
     }
 
     playerSprite.setTexture(playerTexture);
-    playerSprite.setTextureRect(sf::IntRect( 0, 0, 190, 310));
+    playerSprite.setTextureRect(sf::IntRect( 200, 0, 190, 310));
     playerSprite.setPosition(200, 200);
 }
 
@@ -17,35 +17,27 @@ sf::Sprite Player::getSprite() {
     return playerSprite;
 }
 
-void Player::movePlayer(float time) {
+void Player::movePlayer(float time, sf::Time deltaTime) {
     float currentFrame = 0;
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-        currentFrame += 0.22 * time;
-        std::cout << currentFrame << std::endl;
-        if (currentFrame > 3) currentFrame -= 3;
+        currentFrame = (int) (3 * time) % 3;
         playerSprite.setTextureRect(sf::IntRect (int(currentFrame) * 200, 980, 200, 320));
-        playerSprite.move(-0.03 * time, 0);
+        playerSprite.move(-0.0005 * deltaTime.asMicroseconds(), 0);
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-        currentFrame += 0.22 * time;
-        std::cout << currentFrame << std::endl;
-        if (currentFrame > 3) currentFrame -= 3;
+        currentFrame = (int) (3 * time) % 3;
         playerSprite.setTextureRect(sf::IntRect (int(currentFrame) * 200, 660, 200, 320));
-        playerSprite.move(0.03 * time, 0);
+        playerSprite.move(0.0005 * deltaTime.asMicroseconds(), 0);
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
-        currentFrame += 0.22 * time;
-        std::cout << currentFrame << std::endl;
-        if (currentFrame > 3) currentFrame -= 3;
+        currentFrame = (int) (3 * time) % 3;
         playerSprite.setTextureRect(sf::IntRect (int(currentFrame) * 200, 330, 200, 320));
-        playerSprite.move(0, -0.03 * time);
+        playerSprite.move(0, -0.0005 * deltaTime.asMicroseconds());
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-        currentFrame += 0.22 * time;
-        std::cout << currentFrame << std::endl;
-        if (currentFrame > 3) currentFrame -= 3;
+        currentFrame = (int) (3 * time) % 3;
         playerSprite.setTextureRect(sf::IntRect (int(currentFrame) * 200, 0, 200, 320));
-        playerSprite.move(0, 0.03 * time);
+        playerSprite.move(0, 0.0005 * deltaTime.asMicroseconds());
     }
 }
