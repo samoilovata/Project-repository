@@ -13,8 +13,10 @@ public:
 
     void setSprite();
     void setBounds();
+    void setPosition(float x, float y);
 
     sf::Sprite getSprite();
+    sf::FloatRect getBounds();
 
 private:
     sf::Texture tempObjectTexture;

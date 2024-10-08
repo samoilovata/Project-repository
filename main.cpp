@@ -41,6 +41,13 @@ int main() {
         window.draw(coin.getSprite());
         window.draw(P1.getSprite());
         P1.movePlayer(time, deltaTime);
+        P1.setBounds();
+
+        if (P1.getBounds().intersects(coin.getBounds())) {
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::F)) {
+                coin.setPosition(100, 100);
+            }
+        }
 
         window.display();
     }
