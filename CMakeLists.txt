@@ -4,7 +4,9 @@ project(project)
 set(CMAKE_CXX_STANDARD 23)
 
 add_executable(project main.cpp
-        Object/tempObject.cpp)
+        Object/tempObject.cpp
+        ECS/System.cpp
+        ECS/Entity.cpp)
 
 set(SFML_STATIC_LIBRARIES TRUE)
 set(SFML_DIR C:/Program Files/SFML/lib/cmake/SFML)
