@@ -1,8 +1,8 @@
 #pragma once
 #include <vector>
 #include <memory>
-#include "Entity.hpp"
 #include <SFML/Graphics.hpp>
+#include "Entity.hpp"
 
 class System {
 public:
