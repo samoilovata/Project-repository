@@ -5,20 +5,18 @@
 
 class InputComponent : public Component {
 public:
-    std::unordered_map<sf::Keyboard::Key, bool> KeyStat;
+    std::unordered_map<sf::Keyboard::Key, bool> keyStatus;
 
-    bool IsTheKeyPressed(sf::Keyboard::Key key) {
-        std::unordered_map<sf::Keyboard::Key, bool>::iterator it = KeyStat.find(key);
-        if (it != KeyStat.end()) {
+    bool keyPressed(sf::Keyboard::Key key) {
+        std::unordered_map<sf::Keyboard::Key, bool>::iterator it = keyStatus.find(key);
+        if (it != keyStatus.end()) {
             return it -> second;
         }
         else return false;
     }
 
-    void SetKey (sf::Keyboard::Key key, bool pressed) {
-        KeyStat[key] = pressed;
+    void setKey(sf::Keyboard::Key key, bool pressed) {
+        keyStatus[key] = pressed;
     }
 
 };
-
-
