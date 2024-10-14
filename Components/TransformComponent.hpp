@@ -4,8 +4,6 @@
 
 class TransformComponent : public Component {
 public:
-    sf::Vector2f position;
-
     TransformComponent(float x = 0, float y = 0);
 
     void setPosition(float x, float y);
@@ -13,4 +11,7 @@ public:
     void translate(float x, float y);
     void translate(const sf::Vector2f& offset);
     sf::Vector2f getPosition() const;
+
+private:
+    sf::Vector2f position;
 };
