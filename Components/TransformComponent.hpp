@@ -10,7 +10,7 @@ public:
     void setPosition(const sf::Vector2f& pos);
     void translate(float x, float y);
     void translate(const sf::Vector2f& offset);
-    sf::Vector2f getPosition() const;
+    sf::Vector2f getPosition();
 
 private:
     sf::Vector2f position;
