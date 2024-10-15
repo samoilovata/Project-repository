@@ -10,7 +10,6 @@ public:
     void setPosition(float x, float y);
     sf::Sprite& getSprite();
 
-private:
     sf::Sprite sprite;
     sf::Texture texture;
 };

@@ -13,7 +13,9 @@ add_executable(project main.cpp
         Components/TransformComponent.cpp
         Systems/CollisionSystem.cpp
         Systems/InputSystem.cpp
-        Systems/RenderSystem.cpp)
+        Systems/RenderSystem.cpp
+        Engine.cpp
+        Engine.hpp)
         
 
 set(SFML_STATIC_LIBRARIES TRUE)
