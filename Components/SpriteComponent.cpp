@@ -1,4 +1,4 @@
-#include "SpriteComponent.h"
+#include "SpriteComponent.hpp"
 
 SpriteComponent::SpriteComponent(const std::string& texturePath) {
     if (!texture.loadFromFile(texturePath)) {
