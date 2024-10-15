@@ -1,6 +1,6 @@
 #pragma once
 #include "../ECS/Component.hpp"
-#include "SFML/System/Vector2.hpp"
+#include <SFML/System.hpp>
 
 class TransformComponent : public Component {
 public:
