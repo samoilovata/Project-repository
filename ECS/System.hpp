@@ -11,6 +11,6 @@ public:
     void addEntity(std::shared_ptr<Entity> ptrEntity);
     virtual void update(sf::Time& deltaTime) = 0;
 
-private:
+protected:
     std::vector<std::shared_ptr<Entity>> vectorEntity;
 };
