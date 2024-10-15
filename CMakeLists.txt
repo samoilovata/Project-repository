@@ -8,9 +8,10 @@ add_executable(project main.cpp
         ECS/System.cpp
         ECS/Entity.cpp
         Components/BoundsComponent.cpp
+        Components/SpriteComponent.cpp
         Components/InputComponent.cpp
         Components/TransformComponent.cpp)
-
+        
 
 set(SFML_STATIC_LIBRARIES TRUE)
 set(SFML_DIR C:/Program Files/SFML/lib/cmake/SFML)
