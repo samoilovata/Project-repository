@@ -1,6 +1,6 @@
 #pragma once
 #include "../ECS/Component.hpp"
-#include "SFML/System/Vector2.hpp"
+#include <SFML/System.hpp>
 
 class TransformComponent : public Component {
 public:
@@ -10,7 +10,7 @@ public:
     void setPosition(const sf::Vector2f& pos);
     void translate(float x, float y);
     void translate(const sf::Vector2f& offset);
-    sf::Vector2f getPosition() const;
+    sf::Vector2f getPosition();
 
 private:
     sf::Vector2f position;

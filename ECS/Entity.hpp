@@ -6,7 +6,9 @@
 class Entity {
 public:
     void addComponent(std::shared_ptr<Component> ptrComponent);
-    std::shared_ptr<Component> getComponent(std::shared_ptr<Component> ptrComponent);
+
+    template<typename T>
+    std::shared_ptr<T> getComponent();
 
 private:
     std::vector<std::shared_ptr<Component>> vectorComponent;
