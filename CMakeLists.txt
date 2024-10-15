@@ -11,7 +11,7 @@ add_executable(project main.cpp
         Components/SpriteComponent.cpp
         Components/InputComponent.cpp
         Components/TransformComponent.cpp
-        System/CollisionSystem.cpp
+        Systems/CollisionSystem.cpp
         Systems/InputSystem.cpp
         Systems/RenderSystem.cpp)
         
