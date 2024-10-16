@@ -16,9 +16,10 @@ Engine::Engine() : window(sf::VideoMode(800, 640), "game") {
 
     player = std::make_shared<Entity>();
     auto transform = std::make_shared<TransformComponent>();
-    auto sprite = std::make_shared<SpriteComponent>(std::filesystem::current_path().string() + "/../Assets/spritePlayer.png");
+    auto sprite = std::make_shared<SpriteComponent>(std::filesystem::current_path().string() + "/../Assets/spritePlayer.png", 200, 0, 190, 310);
     auto bounds = std::make_shared<BoundsComponent>();
     auto inputComponent = std::make_shared<InputComponent>();
+    transform->setPosition(200, 200);
 
     inputComponent->setKey(sf::Keyboard::W, false);
     inputComponent->setKey(sf::Keyboard::S, false);
@@ -32,8 +33,9 @@ Engine::Engine() : window(sf::VideoMode(800, 640), "game") {
 
     coin = std::make_shared<Entity>();
     auto coinTransform = std::make_shared<TransformComponent>();
-    auto coinSprite = std::make_shared<SpriteComponent>(std::filesystem::current_path().string() + "/../Assets/coin.png");
+    auto coinSprite = std::make_shared<SpriteComponent>(std::filesystem::current_path().string() + "/../Assets/coin.png", 0, 0, 40, 40);
     auto coinBounds = std::make_shared<BoundsComponent>();
+    coinTransform->setPosition(600, 500);
 
     coin->addComponent(coinTransform);
     coin->addComponent(coinSprite);

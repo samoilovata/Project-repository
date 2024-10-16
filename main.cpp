@@ -4,6 +4,7 @@
 int main() {
     Engine game;
     game.run();
+
     return 0;
 //    sf::RenderWindow window(sf::VideoMode(800, 640), "game");
 //    sf::Texture backgroundTexture;
