@@ -14,8 +14,6 @@ public:
 
 private:
     sf::RenderWindow window;
-    sf::Texture backgroundTexture;
-    sf::Sprite backgroundSprite;
 
     std::shared_ptr<Entity> player;
     std::shared_ptr<Entity> coin;

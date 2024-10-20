@@ -7,12 +7,7 @@
 #include "Components/InputComponent.hpp"
 
 Engine::Engine() : window(sf::VideoMode(800, 640), "game") {
-    if (!backgroundTexture.loadFromFile(std::filesystem::current_path().string() + "/../Assets/backgroundGrass.jpg")) {
-        std::cerr << "Failed to load background image!" << std::endl;
-    }
-
-    backgroundSprite.setTexture(backgroundTexture);
-    backgroundSprite.setPosition(sf::Vector2f(-100, -100));
+    renderSystem.setBackground("/../Assets/backgroundGrass.jpg", sf::Vector2f(-100, -100));
 
     player = std::make_shared<Entity>();
     auto transform = std::make_shared<TransformComponent>();
@@ -102,8 +97,6 @@ void Engine::keyEvent(sf::Keyboard::Key key, bool isPressed) {
 
 void Engine::render() {
     window.clear();
-
-    window.draw(backgroundSprite);
 
     renderSystem.render(window);
     window.display();
