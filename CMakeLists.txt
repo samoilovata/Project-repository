@@ -14,6 +14,7 @@ add_executable(project main.cpp
         Systems/InputSystem.cpp
         Systems/RenderSystem.cpp
         Engine.cpp
+        SpawnEntity.cpp
 )
         
 
