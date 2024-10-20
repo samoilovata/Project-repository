@@ -1,7 +1,7 @@
 #pragma once
 #include <unordered_map>
-#include "../ECS/Component.hpp"
 #include <SFML/Window/Keyboard.hpp>
+#include "../ECS/Component.hpp"
 
 class InputComponent : public Component {
 public:

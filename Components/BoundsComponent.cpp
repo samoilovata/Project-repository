@@ -5,8 +5,8 @@ void BoundsComponent::setBounds(sf::Sprite &sprite) {
 }
 
 void BoundsComponent::setBounds(sf::Vector2f &position) {
-    bounds.left += position.x;
-    bounds.top += position.y;
+    bounds.left = position.x;
+    bounds.top = position.y;
 }
 
 sf::FloatRect BoundsComponent::getBounds() {
