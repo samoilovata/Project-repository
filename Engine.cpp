@@ -20,11 +20,13 @@ Engine::Engine() : window(sf::VideoMode(800, 640), "game") {
     auto bounds = std::make_shared<BoundsComponent>();
     auto inputComponent = std::make_shared<InputComponent>();
     transform->setPosition(200, 200);
+    bounds->setBounds(sprite->getSprite());
 
     inputComponent->setKey(sf::Keyboard::W, false);
     inputComponent->setKey(sf::Keyboard::S, false);
     inputComponent->setKey(sf::Keyboard::A, false);
     inputComponent->setKey(sf::Keyboard::D, false);
+    inputComponent->setKey(sf::Keyboard::F, false);
 
     player->addComponent(transform);
     player->addComponent(sprite);
@@ -36,6 +38,7 @@ Engine::Engine() : window(sf::VideoMode(800, 640), "game") {
     auto coinSprite = std::make_shared<SpriteComponent>(std::filesystem::current_path().string() + "/../Assets/coin.png", 0, 0, 40, 40);
     auto coinBounds = std::make_shared<BoundsComponent>();
     coinTransform->setPosition(600, 500);
+    coinBounds->setBounds(coinSprite->getSprite());
 
     coin->addComponent(coinTransform);
     coin->addComponent(coinSprite);
@@ -46,8 +49,8 @@ Engine::Engine() : window(sf::VideoMode(800, 640), "game") {
 
     inputSystem.addEntity(player);
 
-    collisionSystem.addEntity(coin);
     collisionSystem.addEntity(player);
+    collisionSystem.addEntity(coin);
 
 }
 
@@ -56,15 +59,13 @@ void Engine::run() {
     sf::Clock clock;
     sf::Time timeUpdate = sf::Time::Zero;
 
-    while (window.isOpen())
-    {
+    while (window.isOpen()) {
         sf::Time deltaTime = clock.restart();
         timeUpdate += deltaTime;
 
         event();
 
-        while (timeUpdate.asSeconds() > timePerFrame)
-        {
+        while (timeUpdate.asSeconds() > timePerFrame) {
             timeUpdate -= sf::seconds(timePerFrame);
             update(sf::seconds(timePerFrame));
         }
@@ -96,9 +97,7 @@ void Engine::update(sf::Time deltaTime) {
 
 void Engine::keyEvent(sf::Keyboard::Key key, bool isPressed) {
     auto inputComponent = player->getComponent<InputComponent>();
-    if (inputComponent) {
-        inputComponent->setKey(key, isPressed);
-    }
+    if (inputComponent) inputComponent->setKey(key, isPressed);
 }
 
 void Engine::render() {

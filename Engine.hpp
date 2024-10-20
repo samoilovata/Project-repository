@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "ECS/Entity.hpp"
 #include "Systems/RenderSystem.hpp"
-#include "Systems/MoveSystem.hpp"
+#include "Systems/InputSystem.hpp"
 #include "Systems/CollisionSystem.hpp"
 #include "Components/SpriteComponent.hpp"
 #include "Components/TransformComponent.hpp"
@@ -21,7 +21,7 @@ private:
     std::shared_ptr<Entity> coin;
 
     RenderSystem renderSystem;
-    MoveSystem inputSystem;
+    InputSystem inputSystem;
     CollisionSystem collisionSystem;
 
     void event();

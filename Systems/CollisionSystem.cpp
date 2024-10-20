@@ -1,10 +1,11 @@
+#include <iostream>
 #include "CollisionSystem.hpp"
 #include "../Components/BoundsComponent.hpp"
 #include "../Components/TransformComponent.hpp"
 #include "../Components/InputComponent.hpp"
 
 void CollisionSystem::update(sf::Time &deltaTime) {
-    for (size_t i = 0; i < vectorEntity.size(); i++) {
+    for (size_t i = 0; i < vectorEntity.size() - 1; i++) {
         auto entity1 = vectorEntity[i];
         auto entity1TransformComponent = entity1->getComponent<TransformComponent>();
         auto entity1BoundsComponent = entity1->getComponent<BoundsComponent>();
@@ -22,7 +23,7 @@ void CollisionSystem::update(sf::Time &deltaTime) {
                 if (entity2TransformComponent && entity2BoundsComponent) {
                     entity2BoundsComponent->setBounds(entity2Position);
 
-                    if (entity1BoundsComponent->getBounds().intersects(entity1BoundsComponent->getBounds())) {
+                    if (entity1BoundsComponent->getBounds().intersects(entity2BoundsComponent->getBounds())) {
                         handleCollision(entity1, entity2);
                     }
                 }

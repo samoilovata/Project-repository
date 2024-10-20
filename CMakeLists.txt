@@ -4,7 +4,6 @@ project(project)
 set(CMAKE_CXX_STANDARD 23)
 
 add_executable(project main.cpp
-        Object/tempObject.cpp
         ECS/System.cpp
         ECS/Entity.cpp
         Components/BoundsComponent.cpp
@@ -12,10 +11,10 @@ add_executable(project main.cpp
         Components/InputComponent.cpp
         Components/TransformComponent.cpp
         Systems/CollisionSystem.cpp
-        Systems/MoveSystem.cpp
+        Systems/InputSystem.cpp
         Systems/RenderSystem.cpp
         Engine.cpp
-        Engine.hpp)
+)
         
 
 set(SFML_STATIC_LIBRARIES TRUE)
