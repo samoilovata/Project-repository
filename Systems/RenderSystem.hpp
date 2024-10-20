@@ -1,6 +1,6 @@
 #pragma once
-#include "../ECS/System.hpp"
 #include <SFML/Graphics.hpp>
+#include "../ECS/System.hpp"
 
 class RenderSystem : public System {
 public:

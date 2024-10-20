@@ -1,10 +1,10 @@
-#include "InputSystem.hpp"
+#include <SFML/Window/Keyboard.hpp>
+#include "MoveSystem.hpp"
 #include "../Components/TransformComponent.hpp"
 #include "../Components/SpriteComponent.hpp"
 #include "../Components/InputComponent.hpp"
-#include <SFML/Window/Keyboard.hpp>
 
-void InputSystem::update(sf::Time& deltaTime) {
+void MoveSystem::update(sf::Time& deltaTime) {
     for (auto &entity : vectorEntity) {
         auto transformComponent = entity->getComponent<TransformComponent>();
         auto spriteComponent = entity->getComponent<SpriteComponent>();

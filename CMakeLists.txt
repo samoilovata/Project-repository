@@ -12,7 +12,7 @@ add_executable(project main.cpp
         Components/InputComponent.cpp
         Components/TransformComponent.cpp
         Systems/CollisionSystem.cpp
-        Systems/InputSystem.cpp
+        Systems/MoveSystem.cpp
         Systems/RenderSystem.cpp
         Engine.cpp
         Engine.hpp)

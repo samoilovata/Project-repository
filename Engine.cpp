@@ -1,10 +1,10 @@
+#include <iostream>
+#include <filesystem>
 #include "Engine.hpp"
 #include "Components/TransformComponent.hpp"
 #include "Components/SpriteComponent.hpp"
 #include "Components/BoundsComponent.hpp"
 #include "Components/InputComponent.hpp"
-#include <iostream>
-#include <filesystem>
 
 Engine::Engine() : window(sf::VideoMode(800, 640), "game") {
     if (!backgroundTexture.loadFromFile(std::filesystem::current_path().string() + "/../Assets/backgroundGrass.jpg")) {
