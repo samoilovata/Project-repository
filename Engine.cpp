@@ -97,7 +97,6 @@ void Engine::keyEvent(sf::Keyboard::Key key, bool isPressed) {
 
 void Engine::render() {
     window.clear();
-
     renderSystem.render(window);
     window.display();
 }
