@@ -11,11 +11,11 @@ Engine::Engine() : window(sf::VideoMode(800, 640), "game") {
     backgroundSprite.setTexture(backgroundTexture);
     backgroundSprite.setPosition(sf::Vector2f(-100, -100));
 
-    auto spawnPlayer = std::make_shared<SpawnEntity>( "/../Assets/spritePlayer.png", 100, 150, 200, 0, 190, 310);
-    auto player = spawnPlayer->getEntity();
+    std::shared_ptr<Entity> player = std::make_shared<Entity>();
+    std::shared_ptr<Entity> coin = std::make_shared<Entity>();
 
-    auto spawnCoin = std::make_shared<SpawnEntity>("/../Assets/coin.png", 600, 500, 0, 0, 40, 40);
-    auto coin = spawnCoin->getEntity();
+    SpawnEntity (player, "/../Assets/spritePlayer.png", 100, 150, 200, 0, 190, 310);
+    SpawnEntity(coin, "/../Assets/coin.png", 600, 500, 0, 0, 40, 40);
 //    player = std::make_shared<Entity>();
 //    auto transform = std::make_shared<TransformComponent>();
 //    auto sprite = std::make_shared<SpriteComponent>(std::filesystem::current_path().string() + "/../Assets/spritePlayer.png", 200, 0, 190, 310);

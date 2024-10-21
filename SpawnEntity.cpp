@@ -1,8 +1,7 @@
 #include "SpawnEntity.hpp"
 
-SpawnEntity::SpawnEntity(const std::string &spritePath, float posX, float posY, float spriteX, float spriteY,
+SpawnEntity::SpawnEntity(std::shared_ptr<Entity> entity, const std::string &spritePath, float posX, float posY, float spriteX, float spriteY,
                          float spriteWidth, float spriteHeight) {
-    auto entity = std::make_shared<Entity>();
 
     auto transform = std::make_shared<TransformComponent>();
     auto sprite = std::make_shared<SpriteComponent>(std::filesystem::current_path().string() + spritePath,
@@ -24,6 +23,3 @@ SpawnEntity::SpawnEntity(const std::string &spritePath, float posX, float posY, 
     entity->addComponent(inputComponent);
 }
 
-std::shared_ptr<Entity> SpawnEntity::getEntity() const {
-    return entity;
-}
