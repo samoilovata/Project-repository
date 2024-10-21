@@ -22,4 +22,3 @@ SpawnEntity::SpawnEntity(std::shared_ptr<Entity> entity, const std::string &spri
     entity->addComponent(bounds);
     entity->addComponent(inputComponent);
 }
-
