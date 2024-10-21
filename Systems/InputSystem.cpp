@@ -34,6 +34,10 @@ void InputSystem::update(sf::Time& deltaTime) {
                 transformComponent->translate(sf::Vector2f(4, 0));
             }
 
+            if (inputComponent->keyPressed(sf::Keyboard::E)) {
+                spriteComponent->getSprite().setTextureRect(sf::IntRect (int(currentFrame) * 200, 660, 200, 320));
+            }
+
             frame++;
             if (frame == 61) frame = 1;
         }

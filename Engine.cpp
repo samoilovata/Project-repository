@@ -8,9 +8,11 @@ Engine::Engine() : window(sf::VideoMode(800, 640), "game") {
 
     std::shared_ptr<Entity> player = std::make_shared<Entity>();
     std::shared_ptr<Entity> coin = std::make_shared<Entity>();
+    std::shared_ptr<Entity> inventory = std::make_shared<Entity>();
 
     SpawnEntity (player, "/../Assets/spritePlayer.png", 100, 150, 200, 0, 190, 310);
     SpawnEntity(coin, "/../Assets/coin.png", 600, 500, 0, 0, 40, 40);
+    SpawnEntity(coin, "/../Assets/inventory.png", 600, 500, 0, 0, 40, 40);
 //    player = std::make_shared<Entity>();
 //    auto transform = std::make_shared<TransformComponent>();
 //    auto sprite = std::make_shared<SpriteComponent>(std::filesystem::current_path().string() + "/../Assets/spritePlayer.png", 200, 0, 190, 310);
@@ -41,10 +43,12 @@ Engine::Engine() : window(sf::VideoMode(800, 640), "game") {
 //    coin->addComponent(coinSprite);
 //    coin->addComponent(coinBounds);
 
-    renderSystem.addEntity(coin);
     renderSystem.addEntity(player);
+    renderSystem.addEntity(coin);
+    renderSystem.addEntity(inventory);
 
     inputSystem.addEntity(player);
+    inputSystem.addEntity(inventory);
 
     collisionSystem.addEntity(player);
     collisionSystem.addEntity(coin);

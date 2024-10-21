@@ -16,6 +16,7 @@ SpawnEntity::SpawnEntity(std::shared_ptr<Entity> entity, const std::string &spri
     inputComponent->setKey(sf::Keyboard::A, false);
     inputComponent->setKey(sf::Keyboard::D, false);
     inputComponent->setKey(sf::Keyboard::F, false);
+    inputComponent->setKey(sf::Keyboard::E, false);
 
     entity->addComponent(transform);
     entity->addComponent(sprite);

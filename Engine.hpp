@@ -17,6 +17,7 @@ private:
 
     std::shared_ptr<Entity> player;
     std::shared_ptr<Entity> coin;
+    std::shared_ptr<Entity> inventory;
 
     RenderSystem renderSystem;
     InputSystem inputSystem;
