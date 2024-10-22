@@ -20,3 +20,12 @@ template std::shared_ptr<BoundsComponent> Entity::getComponent<BoundsComponent>(
 template std::shared_ptr<InputComponent> Entity::getComponent<InputComponent>();
 template std::shared_ptr<SpriteComponent> Entity::getComponent<SpriteComponent>();
 template std::shared_ptr<TransformComponent> Entity::getComponent<TransformComponent>();
+
+void Entity::changeValue() {
+    if (isRender) isRender = false;
+    else isRender = true;
+}
+
+bool Entity::getValue() {
+    return isRender;
+}

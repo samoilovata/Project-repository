@@ -10,6 +10,10 @@ public:
     template<typename T>
     std::shared_ptr<T> getComponent();
 
-private:
+    void changeValue();
+    bool getValue();
+
+protected:
     std::vector<std::shared_ptr<Component>> vectorComponent;
+    bool isRender = true;
 };

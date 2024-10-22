@@ -8,5 +8,6 @@ public:
     std::unordered_map<sf::Keyboard::Key, bool> keyStatus;
 
     bool keyPressed(sf::Keyboard::Key key);
+    void updateKey(sf::Keyboard::Key key, bool pressed);
     void setKey(sf::Keyboard::Key key, bool pressed);
 };

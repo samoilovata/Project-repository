@@ -20,7 +20,7 @@ void RenderSystem::render(sf::RenderWindow &window) {
         auto spriteComponent = entity->getComponent<SpriteComponent>();
         auto transformComponent = entity->getComponent<TransformComponent>();
 
-        if (spriteComponent && transformComponent) {
+        if (spriteComponent && transformComponent && entity->getValue()) {
             spriteComponent->getSprite().setPosition(transformComponent->getPosition());
             window.draw(spriteComponent->getSprite());
         }

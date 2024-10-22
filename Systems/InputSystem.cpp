@@ -35,12 +35,11 @@ void InputSystem::update(sf::Time& deltaTime) {
             }
 
             if (inputComponent->keyPressed(sf::Keyboard::E)) {
-                spriteComponent->getSprite().setTextureRect(sf::IntRect (int(currentFrame) * 200, 660, 200, 320));
+                entity->changeValue();
             }
 
             frame++;
             if (frame == 61) frame = 1;
         }
-        break;
     }
 }
