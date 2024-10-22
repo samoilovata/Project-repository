@@ -34,9 +34,12 @@ void InputSystem::update(sf::Time& deltaTime) {
                 transformComponent->translate(sf::Vector2f(4, 0));
             }
 
+            if (inputComponent->keyPressed(sf::Keyboard::E)) {
+                entity->changeValue();
+            }
+
             frame++;
             if (frame == 61) frame = 1;
         }
-        break;
     }
 }
