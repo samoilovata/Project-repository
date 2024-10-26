@@ -1,18 +1,17 @@
 #include <iostream>
 #include <filesystem>
 #include "Engine.hpp"
-#include "SpawnEntity.hpp"
 
 Engine::Engine() : window(sf::VideoMode(800, 640), "game") {
     renderSystem.setBackground("/../Assets/backgroundGrass.jpg", sf::Vector2f(-100, -100));
 
-    player = std::make_shared<Entity>();
-    coin = std::make_shared<Entity>();
-    inventory = std::make_shared<Entity>();
+    player = std::make_shared<PlayerEntity>();
+    inventory = std::make_shared<InventoryEntity>();
+    coin = std::make_shared<ObjectEntity>();
 
-    SpawnEntity (player, "/../Assets/spritePlayer.png", 100, 150, 200, 0, 190, 310);
-    SpawnEntity(coin, "/../Assets/coin.png", 600, 500, 0, 0, 40, 40);
-    SpawnEntityInventory(inventory, "/../Assets/inventory.png", 100, 100, 600, 300, 1000, 1000);
+    player->spawnPlayerEntity("/../Assets/spritePlayer.png", 100, 150, 200, 0, 190, 310);
+    inventory->spawnPlayerEntity("/../Assets/inventory.png", 100, 100, 600, 300, 1000, 1000);
+    coin->spawnObjectEntity("/../Assets/coin.png", 600, 500, 0, 0, 40, 40);
 
     renderSystem.addEntity(coin);
     renderSystem.addEntity(player);

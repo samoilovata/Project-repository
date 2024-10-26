@@ -1,6 +1,9 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "ECS/Entity.hpp"
+#include "Entities/PlayerEntity.hpp"
+#include "Entities/InventoryEntity.hpp"
+#include "Entities/ObjectEntity.hpp"
 #include "Systems/RenderSystem.hpp"
 #include "Systems/InputSystem.hpp"
 #include "Systems/CollisionSystem.hpp"
@@ -15,9 +18,9 @@ public:
 private:
     sf::RenderWindow window;
 
-    std::shared_ptr<Entity> player;
-    std::shared_ptr<Entity> coin;
-    std::shared_ptr<Entity> inventory;
+    std::shared_ptr<PlayerEntity> player;
+    std::shared_ptr<InventoryEntity> inventory;
+    std::shared_ptr<ObjectEntity> coin;
 
     RenderSystem renderSystem;
     InputSystem inputSystem;
