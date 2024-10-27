@@ -10,7 +10,7 @@ Engine::Engine() : window(sf::VideoMode(800, 640), "game") {
     coin = std::make_shared<ObjectEntity>();
 
     player->spawnPlayerEntity("/../Assets/spritePlayer.png", 100, 150, 200, 0, 190, 310);
-    inventory->spawnPlayerEntity("/../Assets/inventory.png", 100, 100, 600, 300, 1000, 1000);
+    inventory->spawnInventoryEntity("/../Assets/inventory.png", 100, 100, 600, 300, 1000, 1000);
     coin->spawnObjectEntity("/../Assets/coin.png", 600, 500, 0, 0, 40, 40);
 
     renderSystem.addEntity(coin);
