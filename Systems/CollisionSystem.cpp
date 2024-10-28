@@ -35,8 +35,9 @@ void CollisionSystem::update(sf::Time &deltaTime) {
 void CollisionSystem::handleCollision(std::shared_ptr<Entity> entity1, std::shared_ptr<Entity> entity2) {
     auto entity1InputComponent = entity1->getComponent<InputComponent>();
     if (entity1InputComponent) {
-        if (entity1InputComponent->keyPressed(sf::Keyboard::F)) {
-            entity2->getComponent<TransformComponent>()->setPosition(std::rand() % (700 - 100 + 1) + 100, std::rand() % (540 - 100 + 1) + 100);
+        if (entity1InputComponent->keyPressed(sf::Keyboard::F) && entity2->getValue()) {
+            inventory->addObjectInInventory(entity2);
+            entity2->changeValue();
         }
     }
 }
