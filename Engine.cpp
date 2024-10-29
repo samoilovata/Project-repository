@@ -10,19 +10,12 @@ Engine::Engine() : window(sf::VideoMode(800, 640), "game") {
     coin = std::make_shared<ObjectEntity>();
 
     player->spawnPlayerEntity("/../Assets/spritePlayer.png", 100, 150, 200, 0, 190, 310);
-    inventory->spawnInventoryEntity("/../Assets/inventory.png", 100, 100, 600, 300, 1000, 1000);
+    inventory->spawnInventoryEntity("/../Assets/inventory.png", 25, 75, 527, 1218, 7470, 5140);
     coin->spawnObjectEntity("/../Assets/coin.png", 600, 500, 0, 0, 40, 40);
 
-    renderSystem.addEntity(coin);
-    renderSystem.addEntity(player);
-    renderSystem.addEntity(inventory);
-
-    inputSystem.addEntity(player);
-    inputSystem.addEntity(inventory);
-
-    collisionSystem.addEntity(player);
-    collisionSystem.addEntity(coin);
-
+    entities.push_back(coin);
+    entities.push_back(player);
+    entities.push_back(inventory);
 }
 
 void Engine::run() {
@@ -61,9 +54,10 @@ void Engine::event() {
 }
 
 void Engine::update(sf::Time deltaTime) {
-    inputSystem.update(deltaTime);
-    renderSystem.update(deltaTime);
-    collisionSystem.update(deltaTime);
+    inputSystem.update(entities, deltaTime);
+    renderSystem.update(entities, deltaTime);
+    collisionSystem.update(entities, deltaTime);
+    inventorySystem.update(entities, deltaTime);
 }
 
 void Engine::keyEvent(sf::Keyboard::Key key, bool isPressed) {
@@ -75,6 +69,6 @@ void Engine::keyEvent(sf::Keyboard::Key key, bool isPressed) {
 
 void Engine::render() {
     window.clear();
-    renderSystem.render(window);
+    renderSystem.render(entities,window);
     window.display();
 }

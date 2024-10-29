@@ -12,6 +12,10 @@ void SpriteComponent::setPosition(float x, float y) {
     sprite.setPosition(x, y);
 }
 
+void SpriteComponent::setScale(float x, float y) {
+    sprite.setScale(800 / x, 640 / y);
+}
+
 sf::Sprite& SpriteComponent::getSprite() {
     return sprite;
 }

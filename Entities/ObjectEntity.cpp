@@ -15,3 +15,12 @@ void ObjectEntity::spawnObjectEntity(const std::string &spritePath, float posX, 
     addComponent(sprite);
     addComponent(bounds);
 }
+
+bool ObjectEntity::getInInventory() {
+    return inInventory;
+}
+
+void ObjectEntity::changeInInventory() {
+    if (inInventory == false) inInventory = true;
+    else inInventory = false;
+}

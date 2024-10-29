@@ -10,8 +10,13 @@ public:
     void spawnObjectEntity(const std::string& spritePath, float posX, float posY,
                            int spriteX, int spriteY, int spriteWidth, int spriteHeight);
 
+    void changeInInventory();
+    bool getInInventory();
+
 private:
     std::shared_ptr<BoundsComponent> bounds;
     std::shared_ptr<SpriteComponent> sprite;
     std::shared_ptr<TransformComponent> transform;
+
+    bool inInventory = false;
 };

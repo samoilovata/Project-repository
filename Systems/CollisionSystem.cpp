@@ -1,12 +1,14 @@
 #include <iostream>
 #include "CollisionSystem.hpp"
+#include "InventorySystem.hpp"
 #include "../Components/BoundsComponent.hpp"
 #include "../Components/TransformComponent.hpp"
 #include "../Components/InputComponent.hpp"
+#include "../Entities/PlayerEntity.hpp"
 
-void CollisionSystem::update(sf::Time &deltaTime) {
-    for (size_t i = 0; i < vectorEntity.size() - 1; i++) {
-        auto entity1 = vectorEntity[i];
+void CollisionSystem::update(std::vector<std::shared_ptr<Entity>>& entities, sf::Time &deltaTime) {
+    for (size_t i = 0; i < entities.size() - 1; i++) {
+        auto entity1 = entities[i];
         auto entity1TransformComponent = entity1->getComponent<TransformComponent>();
         auto entity1BoundsComponent = entity1->getComponent<BoundsComponent>();
         auto entity1Position = entity1TransformComponent->getPosition();
@@ -14,8 +16,8 @@ void CollisionSystem::update(sf::Time &deltaTime) {
         if (entity1TransformComponent && entity1BoundsComponent) {
             entity1BoundsComponent->setBounds(entity1Position);
 
-            for (size_t j = i + 1; j < vectorEntity.size(); j++) {
-                auto entity2 = vectorEntity[j];
+            for (size_t j = i + 1; j < entities.size(); j++) {
+                auto entity2 = entities[j];
                 auto entity2TransformComponent = entity2->getComponent<TransformComponent>();
                 auto entity2BoundsComponent = entity2->getComponent<BoundsComponent>();
                 auto entity2Position = entity2TransformComponent->getPosition();
@@ -32,11 +34,32 @@ void CollisionSystem::update(sf::Time &deltaTime) {
     }
 }
 
+
+
 void CollisionSystem::handleCollision(std::shared_ptr<Entity> entity1, std::shared_ptr<Entity> entity2) {
-    auto entity1InputComponent = entity1->getComponent<InputComponent>();
-    if (entity1InputComponent) {
-        if (entity1InputComponent->keyPressed(sf::Keyboard::F)) {
-            entity2->getComponent<TransformComponent>()->setPosition(std::rand() % (700 - 100 + 1) + 100, std::rand() % (540 - 100 + 1) + 100);
+    std::shared_ptr<PlayerEntity> en1 = std::dynamic_pointer_cast<PlayerEntity>(entity1);
+    std::shared_ptr<PlayerEntity> en2 = std::dynamic_pointer_cast<PlayerEntity>(entity2);
+    std::shared_ptr<ObjectEntity> en3;
+
+    if (en1 != nullptr) {
+        en3 = std::dynamic_pointer_cast<ObjectEntity>(entity2);
+
+        if (entity1->getComponent<InputComponent>()->keyPressed(sf::Keyboard::F) && entity2->getValue()) {
+            if (en3 != nullptr) {
+                en3->changeValue();
+                en3->changeInInventory();
+                en3->getComponent<TransformComponent>()->setPosition(265, 220);
+            }
+        }
+    } else if (en2 != nullptr) {
+        en3 = std::dynamic_pointer_cast<ObjectEntity>(entity1);
+
+        if (entity2->getComponent<InputComponent>()->keyPressed(sf::Keyboard::F) && entity1->getValue()) {
+            if (en3 != nullptr) {
+                en3->changeValue();
+                en3->changeInInventory();
+                en3->getComponent<TransformComponent>()->setPosition(265, 220);
+            }
         }
     }
 }
