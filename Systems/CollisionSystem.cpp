@@ -1,5 +1,6 @@
 #include <iostream>
 #include "CollisionSystem.hpp"
+#include "InventorySystem.hpp"
 #include "../Components/BoundsComponent.hpp"
 #include "../Components/TransformComponent.hpp"
 #include "../Components/InputComponent.hpp"
@@ -36,8 +37,9 @@ void CollisionSystem::handleCollision(std::shared_ptr<Entity> entity1, std::shar
     auto entity1InputComponent = entity1->getComponent<InputComponent>();
     if (entity1InputComponent) {
         if (entity1InputComponent->keyPressed(sf::Keyboard::F) && entity2->getValue()) {
-            inventory->addObjectInInventory(entity2);
             entity2->changeValue();
+
+            entity2->getComponent<TransformComponent>()->setPosition(265, 220);
         }
     }
 }

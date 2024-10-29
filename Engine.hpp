@@ -4,6 +4,7 @@
 #include "Entities/PlayerEntity.hpp"
 #include "Entities/InventoryEntity.hpp"
 #include "Entities/ObjectEntity.hpp"
+#include "Systems/InventorySystem.hpp"
 #include "Systems/RenderSystem.hpp"
 #include "Systems/InputSystem.hpp"
 #include "Systems/CollisionSystem.hpp"
@@ -22,6 +23,7 @@ private:
     std::shared_ptr<InventoryEntity> inventory;
     std::shared_ptr<ObjectEntity> coin;
 
+    InventorySystem inventorySystem;
     RenderSystem renderSystem;
     InputSystem inputSystem;
     CollisionSystem collisionSystem;
