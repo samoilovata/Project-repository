@@ -14,6 +14,7 @@ add_executable(project main.cpp
         Systems/CollisionSystem.cpp
         Systems/InputSystem.cpp
         Systems/RenderSystem.cpp
+        Systems/InventorySystem.cpp
         Entities/PlayerEntity.cpp
         Entities/InventoryEntity.cpp
         Entities/ObjectEntity.cpp

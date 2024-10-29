@@ -6,9 +6,7 @@
 
 class CollisionSystem : public System {
 public:
-    void update(sf::Time &deltaTime) override;
-
-    std::shared_ptr<InventoryEntity> inventory;
+    void update(std::vector<std::shared_ptr<Entity>>& entities, sf::Time &deltaTime) override;
 
 private:
     void handleCollision(std::shared_ptr<Entity> entity1, std::shared_ptr<Entity> entity2);

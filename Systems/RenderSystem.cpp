@@ -12,10 +12,10 @@ void RenderSystem::setBackground(std::string fileName, sf::Vector2f position) {
     backgroundSprite.setPosition(position);
 }
 
-void RenderSystem::render(sf::RenderWindow &window) {
+void RenderSystem::render(std::vector<std::shared_ptr<Entity>>& entities, sf::RenderWindow &window) {
     window.draw(backgroundSprite);
 
-    for (auto &entity : vectorEntity) {
+    for (auto &entity : entities) {
 
         auto spriteComponent = entity->getComponent<SpriteComponent>();
         auto transformComponent = entity->getComponent<TransformComponent>();
@@ -27,6 +27,6 @@ void RenderSystem::render(sf::RenderWindow &window) {
     }
 }
 
-void RenderSystem::update(sf::Time& deltaTime) {
+void RenderSystem::update(std::vector<std::shared_ptr<Entity>>& entities, sf::Time& deltaTime) {
 
 }

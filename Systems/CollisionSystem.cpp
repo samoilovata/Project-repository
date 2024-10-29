@@ -5,9 +5,9 @@
 #include "../Components/TransformComponent.hpp"
 #include "../Components/InputComponent.hpp"
 
-void CollisionSystem::update(sf::Time &deltaTime) {
-    for (size_t i = 0; i < vectorEntity.size() - 1; i++) {
-        auto entity1 = vectorEntity[i];
+void CollisionSystem::update(std::vector<std::shared_ptr<Entity>>& entities, sf::Time &deltaTime) {
+    for (size_t i = 0; i < entities.size() - 1; i++) {
+        auto entity1 = entities[i];
         auto entity1TransformComponent = entity1->getComponent<TransformComponent>();
         auto entity1BoundsComponent = entity1->getComponent<BoundsComponent>();
         auto entity1Position = entity1TransformComponent->getPosition();
@@ -15,8 +15,8 @@ void CollisionSystem::update(sf::Time &deltaTime) {
         if (entity1TransformComponent && entity1BoundsComponent) {
             entity1BoundsComponent->setBounds(entity1Position);
 
-            for (size_t j = i + 1; j < vectorEntity.size(); j++) {
-                auto entity2 = vectorEntity[j];
+            for (size_t j = i + 1; j < entities.size(); j++) {
+                auto entity2 = entities[j];
                 auto entity2TransformComponent = entity2->getComponent<TransformComponent>();
                 auto entity2BoundsComponent = entity2->getComponent<BoundsComponent>();
                 auto entity2Position = entity2TransformComponent->getPosition();

@@ -4,8 +4,8 @@
 #include "../Components/SpriteComponent.hpp"
 #include "../Components/InputComponent.hpp"
 
-void InputSystem::update(sf::Time& deltaTime) {
-    for (auto &entity : vectorEntity) {
+void InputSystem::update(std::vector<std::shared_ptr<Entity>>& entities, sf::Time& deltaTime) {
+    for (auto &entity : entities) {
         auto transformComponent = entity->getComponent<TransformComponent>();
         auto spriteComponent = entity->getComponent<SpriteComponent>();
         auto inputComponent = entity->getComponent<InputComponent>();

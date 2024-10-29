@@ -11,3 +11,7 @@ void InventorySystem::removeObjectsFromInventory(std::shared_ptr<Entity> object)
 void InventorySystem::swapObjectsInInventory(std::shared_ptr<Entity> object) {
     std::swap(*inventory.begin(), *std::find(inventory.begin(), inventory.end(),object));
 }
+
+void InventorySystem::update(std::vector<std::shared_ptr<Entity>>& entities, sf::Time& deltaTime) {
+
+}
