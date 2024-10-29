@@ -57,6 +57,7 @@ void Engine::update(sf::Time deltaTime) {
     inputSystem.update(entities, deltaTime);
     renderSystem.update(entities, deltaTime);
     collisionSystem.update(entities, deltaTime);
+    inventorySystem.update(entities, deltaTime);
 }
 
 void Engine::keyEvent(sf::Keyboard::Key key, bool isPressed) {

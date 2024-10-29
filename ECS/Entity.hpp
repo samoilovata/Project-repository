@@ -5,6 +5,8 @@
 
 class Entity {
 public:
+    virtual ~Entity() = default;
+
     void addComponent(std::shared_ptr<Component> ptrComponent);
 
     template<typename T>

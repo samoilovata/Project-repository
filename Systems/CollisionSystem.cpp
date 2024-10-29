@@ -4,6 +4,7 @@
 #include "../Components/BoundsComponent.hpp"
 #include "../Components/TransformComponent.hpp"
 #include "../Components/InputComponent.hpp"
+#include "../Entities/PlayerEntity.hpp"
 
 void CollisionSystem::update(std::vector<std::shared_ptr<Entity>>& entities, sf::Time &deltaTime) {
     for (size_t i = 0; i < entities.size() - 1; i++) {
@@ -33,13 +34,32 @@ void CollisionSystem::update(std::vector<std::shared_ptr<Entity>>& entities, sf:
     }
 }
 
-void CollisionSystem::handleCollision(std::shared_ptr<Entity> entity1, std::shared_ptr<Entity> entity2) {
-    auto entity1InputComponent = entity1->getComponent<InputComponent>();
-    if (entity1InputComponent) {
-        if (entity1InputComponent->keyPressed(sf::Keyboard::F) && entity2->getValue()) {
-            entity2->changeValue();
 
-            entity2->getComponent<TransformComponent>()->setPosition(265, 220);
+
+void CollisionSystem::handleCollision(std::shared_ptr<Entity> entity1, std::shared_ptr<Entity> entity2) {
+    std::shared_ptr<PlayerEntity> en1 = std::dynamic_pointer_cast<PlayerEntity>(entity1);
+    std::shared_ptr<PlayerEntity> en2 = std::dynamic_pointer_cast<PlayerEntity>(entity2);
+    std::shared_ptr<ObjectEntity> en3;
+
+    if (en1 != nullptr) {
+        en3 = std::dynamic_pointer_cast<ObjectEntity>(entity2);
+
+        if (entity1->getComponent<InputComponent>()->keyPressed(sf::Keyboard::F) && entity2->getValue()) {
+            if (en3 != nullptr) {
+                en3->changeValue();
+                en3->changeInInventory();
+                en3->getComponent<TransformComponent>()->setPosition(265, 220);
+            }
+        }
+    } else if (en2 != nullptr) {
+        en3 = std::dynamic_pointer_cast<ObjectEntity>(entity1);
+
+        if (entity2->getComponent<InputComponent>()->keyPressed(sf::Keyboard::F) && entity1->getValue()) {
+            if (en3 != nullptr) {
+                en3->changeValue();
+                en3->changeInInventory();
+                en3->getComponent<TransformComponent>()->setPosition(265, 220);
+            }
         }
     }
 }

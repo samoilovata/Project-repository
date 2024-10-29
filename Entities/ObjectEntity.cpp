@@ -19,3 +19,8 @@ void ObjectEntity::spawnObjectEntity(const std::string &spritePath, float posX, 
 bool ObjectEntity::getInInventory() {
     return inInventory;
 }
+
+void ObjectEntity::changeInInventory() {
+    if (inInventory == false) inInventory = true;
+    else inInventory = false;
+}
