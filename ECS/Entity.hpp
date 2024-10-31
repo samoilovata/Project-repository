@@ -14,8 +14,10 @@ public:
 
     void changeValue();
     bool getValue();
+    int getID();
 
 protected:
     std::vector<std::shared_ptr<Component>> vectorComponent;
     bool isRender = true;
+    int ID;
 };

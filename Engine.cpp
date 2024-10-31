@@ -1,4 +1,3 @@
-#include <iostream>
 #include <filesystem>
 #include "Engine.hpp"
 
@@ -12,6 +11,10 @@ Engine::Engine() : window(sf::VideoMode(800, 640), "game") {
     player->spawnPlayerEntity("/../Assets/spritePlayer.png", 100, 150, 200, 0, 190, 310);
     inventory->spawnInventoryEntity("/../Assets/inventory.png", 25, 75, 527, 1218, 7470, 5140);
     coin->spawnObjectEntity("/../Assets/coin.png", 600, 500, 0, 0, 40, 40);
+
+    entity_id.insert({player->getID(), player});
+    entity_id.insert({inventory->getID(), inventory});
+    entity_id.insert({coin->getID(), coin});
 
     entities.push_back(coin);
     entities.push_back(player);
