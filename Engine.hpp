@@ -28,6 +28,7 @@ private:
     InputSystem inputSystem;
     CollisionSystem collisionSystem;
 
+    std::map<int, std::shared_ptr<Entity>> entity_id;
     std::vector<std::shared_ptr<Entity>> entities;
 
     void event();
