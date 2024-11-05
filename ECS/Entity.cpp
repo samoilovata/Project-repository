@@ -31,3 +31,7 @@ void Entity::changeValue() {
 bool Entity::getValue() {
     return isRender;
 }
+
+int Entity::getID() {
+    return ID;
+}
