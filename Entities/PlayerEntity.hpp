@@ -5,6 +5,7 @@
 #include "../Components/InputComponent.hpp"
 #include "../Components/SpriteComponent.hpp"
 #include "../Components/TransformComponent.hpp"
+#include "../Components/CollisionComponent.hpp"
 
 class PlayerEntity : public Entity {
 public:
@@ -16,4 +17,5 @@ private:
     std::shared_ptr<InputComponent> input;
     std::shared_ptr<SpriteComponent> sprite;
     std::shared_ptr<TransformComponent> transform;
+    std::shared_ptr<CollisionComponent> collision;
 };

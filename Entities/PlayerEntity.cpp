@@ -5,6 +5,7 @@ void PlayerEntity::spawnPlayerEntity(const std::string &spritePath, float posX, 
                            int spriteHeight) {
     ID = 0;
 
+    collision = std::make_shared<CollisionComponent>();
     transform = std::make_shared<TransformComponent>();
     sprite = std::make_shared<SpriteComponent>(std::filesystem::current_path().string() + spritePath,
                                                     spriteX, spriteY, spriteWidth, spriteHeight);
@@ -24,4 +25,5 @@ void PlayerEntity::spawnPlayerEntity(const std::string &spritePath, float posX, 
     addComponent(sprite);
     addComponent(bounds);
     addComponent(input);
+    addComponent(collision);
 }
