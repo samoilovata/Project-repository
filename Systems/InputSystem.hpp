@@ -4,9 +4,8 @@
 
 class InputSystem : public System {
 public:
-    void update(sf::Time& deltaTime) override;
+    void update(float time, sf::Time& deltaTime) override;
 
 private:
-    int frame = 1;
     float currentFrame = 0;
 };

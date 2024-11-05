@@ -4,7 +4,7 @@
 #include "../Components/TransformComponent.hpp"
 #include "../Components/InputComponent.hpp"
 
-void CollisionSystem::update(sf::Time &deltaTime) {
+void CollisionSystem::update(float time, sf::Time &deltaTime) {
     for (size_t i = 0; i < vectorEntity.size() - 1; i++) {
         auto entity1 = vectorEntity[i];
         auto entity1TransformComponent = entity1->getComponent<TransformComponent>();

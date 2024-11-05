@@ -27,7 +27,7 @@ private:
     CollisionSystem collisionSystem;
 
     void event();
-    void update(sf::Time deltaTime);
+    void update(float time, sf::Time deltaTime);
     void keyEvent(sf::Keyboard::Key key, bool isPressed);
     void render();
 };

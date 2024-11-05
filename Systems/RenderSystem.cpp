@@ -27,6 +27,6 @@ void RenderSystem::render(sf::RenderWindow &window) {
     }
 }
 
-void RenderSystem::update(sf::Time& deltaTime) {
+void RenderSystem::update(float time, sf::Time& deltaTime) {
 
 }

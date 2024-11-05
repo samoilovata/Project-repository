@@ -7,7 +7,7 @@ class RenderSystem : public System {
 public:
     void setBackground(std::string fileName, sf::Vector2f position);
     void render(sf::RenderWindow& window);
-    void update(sf::Time& deltaTime) override;
+    void update(float time, sf::Time& deltaTime) override;
 
 private:
     sf::Texture backgroundTexture;

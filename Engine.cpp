@@ -33,11 +33,12 @@ void Engine::run() {
 
         sf::Time deltaTime = clock.restart();
         elapsedTime += deltaTime;
+        float time = elapsedTime.asSeconds();
 
         event();
 
         if (elapsedTime > sf::milliseconds(20)) {
-            update(deltaTime);
+            update(time, deltaTime);
             elapsedTime = sf::milliseconds(0);
         }
 
@@ -60,10 +61,10 @@ void Engine::event() {
     }
 }
 
-void Engine::update(sf::Time deltaTime) {
-    inputSystem.update(deltaTime);
-    renderSystem.update(deltaTime);
-    collisionSystem.update(deltaTime);
+void Engine::update(float time, sf::Time deltaTime) {
+    inputSystem.update(time, deltaTime);
+    renderSystem.update(time, deltaTime);
+    collisionSystem.update(time, deltaTime);
 }
 
 void Engine::keyEvent(sf::Keyboard::Key key, bool isPressed) {
