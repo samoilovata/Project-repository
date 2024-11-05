@@ -20,4 +20,9 @@ protected:
     std::vector<std::shared_ptr<Component>> vectorComponent;
     bool isRender = true;
     int ID;
+    enum typeEntity {
+        object,
+        player,
+        inventory
+    };
 };

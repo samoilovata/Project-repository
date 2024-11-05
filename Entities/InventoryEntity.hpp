@@ -10,6 +10,8 @@
 
 class InventoryEntity : public Entity {
 public:
+    typeEntity flag;
+
     void spawnInventoryEntity(const std::string& spritePath, float posX, float posY,
                               int spriteX, int spriteY, int spriteWidth, int spriteHeight);
 private:

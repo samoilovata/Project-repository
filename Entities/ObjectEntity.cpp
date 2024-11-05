@@ -4,6 +4,7 @@
 void ObjectEntity::spawnObjectEntity(const std::string &spritePath, float posX, float posY, int spriteX, int spriteY,
                                      int spriteWidth, int spriteHeight) {
     ID = 2;
+    flag = object;
 
     collision = std::make_shared<CollisionComponent>();
     transform = std::make_shared<TransformComponent>();
