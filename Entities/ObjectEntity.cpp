@@ -3,6 +3,7 @@
 
 void ObjectEntity::spawnObjectEntity(const std::string &spritePath, float posX, float posY, int spriteX, int spriteY,
                                      int spriteWidth, int spriteHeight) {
+    collision = std::make_shared<CollisionComponent>();
     transform = std::make_shared<TransformComponent>();
     sprite = std::make_shared<SpriteComponent>(std::filesystem::current_path().string() + spritePath,
                                                spriteX, spriteY, spriteWidth, spriteHeight);
@@ -14,6 +15,7 @@ void ObjectEntity::spawnObjectEntity(const std::string &spritePath, float posX, 
     addComponent(transform);
     addComponent(sprite);
     addComponent(bounds);
+    addComponent(collision);
 }
 
 bool ObjectEntity::getInInventory() {
@@ -21,6 +23,6 @@ bool ObjectEntity::getInInventory() {
 }
 
 void ObjectEntity::changeInInventory() {
-    if (inInventory == false) inInventory = true;
+    if (!inInventory) inInventory = true;
     else inInventory = false;
 }
