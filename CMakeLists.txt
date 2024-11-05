@@ -16,7 +16,6 @@ add_executable(project main.cpp
         Systems/InputSystem.cpp
         Systems/RenderSystem.cpp
         Systems/InventorySystem.cpp
-        Entities/InventoryEntity.cpp
         Entities/ObjectEntity.cpp
 )
         
