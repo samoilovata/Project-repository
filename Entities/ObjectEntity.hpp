@@ -1,5 +1,6 @@
 #pragma once
 #include <memory>
+#include "../EntityManager.hpp"
 #include "../ECS/Entity.hpp"
 #include "../Components/BoundsComponent.hpp"
 #include "../Components/SpriteComponent.hpp"
@@ -7,9 +8,6 @@
 
 class ObjectEntity : public Entity {
 public:
-    void spawnObjectEntity(const std::string& spritePath, float posX, float posY,
-                           int spriteX, int spriteY, int spriteWidth, int spriteHeight);
-
     void changeInInventory();
     bool getInInventory();
 
@@ -19,4 +17,6 @@ private:
     std::shared_ptr<TransformComponent> transform;
 
     bool inInventory = false;
+
+    friend class EntityManager;
 };
