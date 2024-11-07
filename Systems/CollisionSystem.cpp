@@ -6,7 +6,7 @@
 #include "../Components/InputComponent.hpp"
 #include "../Entities/PlayerEntity.hpp"
 
-void CollisionSystem::update(std::vector<std::shared_ptr<Entity>>& entities, sf::Time &deltaTime) {
+void CollisionSystem::update(float time, std::vector<std::shared_ptr<Entity>>& entities, sf::Time &deltaTime) {
     for (size_t i = 0; i < entities.size() - 1; i++) {
         auto entity1 = entities[i];
         auto entity1TransformComponent = entity1->getComponent<TransformComponent>();

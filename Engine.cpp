@@ -22,19 +22,20 @@ Engine::Engine() : window(sf::VideoMode(800, 640), "game") {
 }
 
 void Engine::run() {
-    const float timePerFrame = 1.0f / 60.0f;
     sf::Clock clock;
-    sf::Time timeUpdate = sf::Time::Zero;
+    sf::Time elapsedTime;
 
     while (window.isOpen()) {
+
         sf::Time deltaTime = clock.restart();
-        timeUpdate += deltaTime;
+        elapsedTime += deltaTime;
+        float time = elapsedTime.asSeconds();
 
         event();
 
-        while (timeUpdate.asSeconds() > timePerFrame) {
-            timeUpdate -= sf::seconds(timePerFrame);
-            update(sf::seconds(timePerFrame));
+        if (elapsedTime > sf::milliseconds(20)) {
+            update(time, deltaTime);
+            elapsedTime = sf::milliseconds(0);
         }
 
         render();
@@ -56,11 +57,11 @@ void Engine::event() {
     }
 }
 
-void Engine::update(sf::Time deltaTime) {
-    inputSystem.update(entities, deltaTime);
-    renderSystem.update(entities, deltaTime);
-    collisionSystem.update(entities, deltaTime);
-    inventorySystem.update(entities, deltaTime);
+void Engine::update(float time, sf::Time deltaTime) {
+    inputSystem.update(time,entities, deltaTime);
+    renderSystem.update(time, entities, deltaTime);
+    collisionSystem.update(time,entities, deltaTime);
+    inventorySystem.update(time, entities, deltaTime);
 }
 
 void Engine::keyEvent(sf::Keyboard::Key key, bool isPressed) {

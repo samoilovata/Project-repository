@@ -27,6 +27,6 @@ void RenderSystem::render(std::vector<std::shared_ptr<Entity>>& entities, sf::Re
     }
 }
 
-void RenderSystem::update(std::vector<std::shared_ptr<Entity>>& entities, sf::Time& deltaTime) {
+void RenderSystem::update(float time, std::vector<std::shared_ptr<Entity>>& entities, sf::Time& deltaTime) {
 
 }

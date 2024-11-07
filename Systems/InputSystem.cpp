@@ -4,16 +4,14 @@
 #include "../Components/SpriteComponent.hpp"
 #include "../Components/InputComponent.hpp"
 
-void InputSystem::update(std::vector<std::shared_ptr<Entity>>& entities, sf::Time& deltaTime) {
+void InputSystem::update(float time, std::vector<std::shared_ptr<Entity>>& entities, sf::Time& deltaTime) {
     for (auto &entity : entities) {
         auto transformComponent = entity->getComponent<TransformComponent>();
         auto spriteComponent = entity->getComponent<SpriteComponent>();
         auto inputComponent = entity->getComponent<InputComponent>();
 
         if (transformComponent && inputComponent) {
-            if (frame % 20 == 0) currentFrame++;
-            if (currentFrame == 4) currentFrame -= 4;
-
+            currentFrame = (int) (3 * time) % 3;
             if (inputComponent->keyPressed(sf::Keyboard::W)) {
                 spriteComponent->getSprite().setTextureRect(sf::IntRect (int(currentFrame) * 200, 330, 200, 320));
                 transformComponent->translate(sf::Vector2f(0, -4));
@@ -41,9 +39,6 @@ void InputSystem::update(std::vector<std::shared_ptr<Entity>>& entities, sf::Tim
                 entity->changeValue();
                 inputComponent->updateKey(sf::Keyboard::E, false);
             }
-
-            frame++;
-            if (frame == 61) frame = 1;
         }
     }
 }
