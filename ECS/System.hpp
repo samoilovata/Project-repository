@@ -7,5 +7,5 @@
 class System {
 public:
     virtual ~System() = default;
-    virtual void update(std::vector<std::shared_ptr<Entity>>& entities, sf::Time& deltaTime) = 0;
+    virtual void update(float time, std::vector<std::shared_ptr<Entity>>& entities, sf::Time& deltaTime) = 0;
 };

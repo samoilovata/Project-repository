@@ -4,9 +4,8 @@
 
 class InputSystem : public System {
 public:
-    void update(std::vector<std::shared_ptr<Entity>>& entities, sf::Time& deltaTime) override;
+    void update(float time, std::vector<std::shared_ptr<Entity>>& entities, sf::Time& deltaTime) override;
 
 private:
-    int frame = 1;
     float currentFrame = 0;
 };
