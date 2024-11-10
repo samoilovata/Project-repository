@@ -5,6 +5,7 @@ set(CMAKE_CXX_STANDARD 23)
 
 add_executable(project main.cpp
         Engine.cpp
+        EntityManager.cpp
         ECS/System.cpp
         ECS/Entity.cpp
         Components/BoundsComponent.cpp

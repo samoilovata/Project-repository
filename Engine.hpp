@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "EntityManager.hpp"
 #include "ECS/Entity.hpp"
 #include "Entities/PlayerEntity.hpp"
 #include "Entities/InventoryEntity.hpp"
@@ -18,6 +19,8 @@ public:
 
 private:
     sf::RenderWindow window;
+
+    EntityManager entityManager;
 
     std::shared_ptr<PlayerEntity> player;
     std::shared_ptr<InventoryEntity> inventory;
