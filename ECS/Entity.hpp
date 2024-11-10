@@ -3,6 +3,12 @@
 #include <memory>
 #include "Component.hpp"
 
+enum typeEntity {
+    object,
+    player,
+    inventory
+};
+
 class Entity {
 public:
     virtual ~Entity() = default;
@@ -14,15 +20,17 @@ public:
 
     void changeValue();
     bool getValue();
+
+    virtual void changeInInventory();
+    virtual bool getInInventory();
+
     int getID();
+
+    typeEntity flag;
 
 protected:
     std::vector<std::shared_ptr<Component>> vectorComponent;
+
     bool isRender = true;
     int ID;
-    enum typeEntity {
-        object,
-        player,
-        inventory
-    };
 };

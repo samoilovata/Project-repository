@@ -9,8 +9,6 @@
 
 class PlayerEntity : public Entity {
 public:
-    typeEntity flag;
-
     void spawnPlayerEntity(const std::string& spritePath, float posX, float posY,
                  int spriteX, int spriteY, int spriteWidth, int spriteHeight);
 

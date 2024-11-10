@@ -8,13 +8,11 @@
 
 class ObjectEntity : public Entity {
 public:
-    typeEntity flag;
-
     void spawnObjectEntity(const std::string& spritePath, float posX, float posY,
                            int spriteX, int spriteY, int spriteWidth, int spriteHeight);
 
-    void changeInInventory();
-    bool getInInventory();
+    void changeInInventory() override;
+    bool getInInventory() override;
 
 private:
     std::shared_ptr<BoundsComponent> bounds;
