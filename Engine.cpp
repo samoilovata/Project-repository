@@ -57,10 +57,10 @@ void Engine::event() {
 }
 
 void Engine::update(sf::Time deltaTime) {
-    inputSystem.update(entities, deltaTime);
-    renderSystem.update(entities, deltaTime);
-    collisionSystem.update(entities, deltaTime);
-    inventorySystem.update(entities, deltaTime);
+    inputSystem.update(objects,entities, deltaTime);
+    renderSystem.update(objects,entities, deltaTime);
+    collisionSystem.update(objects,entities, deltaTime);
+    inventorySystem.update(objects,entities, deltaTime);
 }
 
 void Engine::keyEvent(sf::Keyboard::Key key, bool isPressed) {
@@ -72,6 +72,6 @@ void Engine::keyEvent(sf::Keyboard::Key key, bool isPressed) {
 
 void Engine::render() {
     window.clear();
-    renderSystem.render(entities,window);
+    renderSystem.render(objects,entities, window);
     window.display();
 }

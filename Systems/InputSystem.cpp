@@ -5,7 +5,7 @@
 #include "../Components/InputComponent.hpp"
 #include "../Components/CollisionComponent.hpp"
 
-void InputSystem::update(std::vector<std::shared_ptr<Entity>>& entities, sf::Time& deltaTime) {
+void InputSystem::update(std::vector<std::shared_ptr<Entity>> &objects, std::vector<std::shared_ptr<Entity>>& entities, sf::Time& deltaTime) {
     for (auto &entity : entities) {
         auto transformComponent = entity->getComponent<TransformComponent>();
         auto spriteComponent = entity->getComponent<SpriteComponent>();
@@ -52,6 +52,7 @@ void InputSystem::update(std::vector<std::shared_ptr<Entity>>& entities, sf::Tim
                         IDManager::changeIsRender(objectEntity->ID);
                         IDManager::changeInInventory(objectEntity->ID);
                         objectEntity->getComponent<TransformComponent>()->setPosition(265, 220);
+//                        objectEntity->getComponent<SpriteComponent>()->setPosition(что-то, что-то);
                     }
                 }
             }

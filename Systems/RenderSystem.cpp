@@ -12,7 +12,7 @@ void RenderSystem::setBackground(std::string fileName, sf::Vector2f position) {
     backgroundSprite.setPosition(position);
 }
 
-void RenderSystem::render(std::vector<std::shared_ptr<Entity>>& entities, sf::RenderWindow &window) {
+void RenderSystem::render(std::vector<std::shared_ptr<Entity>> &objects, std::vector<std::shared_ptr<Entity>>& entities, sf::RenderWindow &window) {
     window.draw(backgroundSprite);
 
     for (auto &entity : entities) {
@@ -21,12 +21,30 @@ void RenderSystem::render(std::vector<std::shared_ptr<Entity>>& entities, sf::Re
         auto transformComponent = entity->getComponent<TransformComponent>();
 
         if (spriteComponent && transformComponent && IDManager::getIsRender(entity->ID)) {
-            spriteComponent->getSprite().setPosition(transformComponent->getPosition());
-            window.draw(spriteComponent->getSprite());
+            if (entity->flag == INVENTORY) {
+
+                spriteComponent->getSprite().setPosition(transformComponent->getPosition());
+                window.draw(spriteComponent->getSprite());
+
+                for (auto &object : objects) {
+
+                    auto spriteComponent1 = object->getComponent<SpriteComponent>();
+                    auto transformComponent1 = object->getComponent<TransformComponent>();
+
+                    spriteComponent1->getSprite().setPosition(transformComponent1->getPosition());
+                    window.draw(spriteComponent1->getSprite());
+                }
+
+            } else {
+
+                spriteComponent->getSprite().setPosition(transformComponent->getPosition());
+                window.draw(spriteComponent->getSprite());
+
+            }
         }
     }
 }
 
-void RenderSystem::update(std::vector<std::shared_ptr<Entity>>& entities, sf::Time& deltaTime) {
+void RenderSystem::update(std::vector<std::shared_ptr<Entity>> &objects, std::vector<std::shared_ptr<Entity>>& entities, sf::Time& deltaTime) {
 
 }
