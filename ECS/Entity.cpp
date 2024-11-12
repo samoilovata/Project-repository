@@ -22,16 +22,3 @@ template std::shared_ptr<InputComponent> Entity::getComponent<InputComponent>();
 template std::shared_ptr<SpriteComponent> Entity::getComponent<SpriteComponent>();
 template std::shared_ptr<TransformComponent> Entity::getComponent<TransformComponent>();
 template std::shared_ptr<CollisionComponent> Entity::getComponent<CollisionComponent>();
-
-void Entity::changeValue() {
-    if (isRender) isRender = false;
-    else isRender = true;
-}
-
-bool Entity::getValue() {
-    return isRender;
-}
-
-int Entity::getID() {
-    return ID;
-}

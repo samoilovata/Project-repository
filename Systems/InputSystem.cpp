@@ -3,6 +3,7 @@
 #include "../Components/TransformComponent.hpp"
 #include "../Components/SpriteComponent.hpp"
 #include "../Components/InputComponent.hpp"
+#include "../Components/CollisionComponent.hpp"
 
 void InputSystem::update(std::vector<std::shared_ptr<Entity>>& entities, sf::Time& deltaTime) {
     for (auto &entity : entities) {
@@ -34,16 +35,26 @@ void InputSystem::update(std::vector<std::shared_ptr<Entity>>& entities, sf::Tim
                 transformComponent->translate(sf::Vector2f(4, 0));
             }
 
-            if (inputComponent->keyPressed(sf::Keyboard::E) && !entity->getValue()) {
-                entity->changeValue();
+            frame++;
+            if (frame == 61) frame = 1;
+
+            if (inputComponent->keyPressed(sf::Keyboard::E) && !IDManager::getIsRender(entity->ID)) {
+                IDManager::changeIsRender(entity->ID);
                 inputComponent->updateKey(sf::Keyboard::E, false);
-            } else if (inputComponent->keyPressed(sf::Keyboard::E) && entity->getValue()) {
-                entity->changeValue();
+            } else if (inputComponent->keyPressed(sf::Keyboard::E) && IDManager::getIsRender(entity->ID)) {
+                IDManager::changeIsRender(entity->ID);
                 inputComponent->updateKey(sf::Keyboard::E, false);
             }
 
-            frame++;
-            if (frame == 61) frame = 1;
+            if (inputComponent->keyPressed(sf::Keyboard::F)) {
+                for (auto &objectEntity : entities) {
+                    if (objectEntity->flag == OBJECT && objectEntity->getComponent<CollisionComponent>()->getCollision()) {
+                        IDManager::changeIsRender(objectEntity->ID);
+                        IDManager::changeInInventory(objectEntity->ID);
+                        objectEntity->getComponent<TransformComponent>()->setPosition(265, 220);
+                    }
+                }
+            }
         }
     }
 }

@@ -4,9 +4,9 @@
 #include "Component.hpp"
 
 enum typeEntity {
-    object,
-    player,
-    inventory
+    OBJECT,
+    PLAYER,
+    INVENTORY
 };
 
 class Entity {
@@ -18,19 +18,9 @@ public:
     template<typename T>
     std::shared_ptr<T> getComponent();
 
-    void changeValue();
-    bool getValue();
-
-    virtual void changeInInventory();
-    virtual bool getInInventory();
-
-    int getID();
-
     typeEntity flag;
+    int ID;
 
 protected:
     std::vector<std::shared_ptr<Component>> vectorComponent;
-
-    bool isRender = true;
-    int ID;
 };
