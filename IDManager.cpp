@@ -5,8 +5,8 @@ bool IDManager::getIsRender(int& ID) {
 }
 
 void IDManager::changeIsRender (int& ID) {
-    if (getIsRender(ID)) (ID & ~1);
-    else (ID | 1);
+    if (getIsRender(ID)) ID = (ID & ~1);
+    else ID = (ID | 1);
 }
 
 bool IDManager::getInInventory(int& ID) {
@@ -14,6 +14,6 @@ bool IDManager::getInInventory(int& ID) {
 }
 
 void IDManager::changeInInventory (int& ID) {
-    if (getIsRender(ID)) (ID & ~(1 << 1));
-    else (ID | (1 << 1));
+    if (getIsRender(ID)) ID = (ID & ~(1 << 1));
+    else ID = (ID | (1 << 1));
 }

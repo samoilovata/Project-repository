@@ -4,6 +4,7 @@
 #include "Components/InputComponent.hpp"
 #include "Components/SpriteComponent.hpp"
 #include "Components/TransformComponent.hpp"
+#include "Components/CollisionComponent.hpp"
 
 void EntityManager::spawnPlayerEntity(const std::shared_ptr<PlayerEntity>& player, const std::string &spritePath,
                                       float posX, float posY, int spriteX, int spriteY, int spriteWidth,
@@ -13,6 +14,7 @@ void EntityManager::spawnPlayerEntity(const std::shared_ptr<PlayerEntity>& playe
                                                        spriteX, spriteY, spriteWidth, spriteHeight);
     player->bounds = std::make_shared<BoundsComponent>();
     player->input = std::make_shared<InputComponent>();
+    player->collision = std::make_shared<CollisionComponent>();
 
     player->transform->setPosition(posX, posY);
     player->bounds->setBounds(player->sprite->getSprite());
@@ -27,8 +29,10 @@ void EntityManager::spawnPlayerEntity(const std::shared_ptr<PlayerEntity>& playe
     player->addComponent(player->sprite);
     player->addComponent(player->bounds);
     player->addComponent(player->input);
+    player->addComponent(player->collision);
 
     player->ID = 1;
+    player->flag = PLAYER;
 }
 
 void EntityManager::spawnInventoryEntity(const std::shared_ptr<InventoryEntity>& inventory, const std::string &spritePath,
@@ -49,6 +53,7 @@ void EntityManager::spawnInventoryEntity(const std::shared_ptr<InventoryEntity>&
     inventory->addComponent(inventory->input);
 
     inventory->ID = 0;
+    inventory->flag = INVENTORY;
 }
 
 void EntityManager::spawnObjectEntity(const std::shared_ptr<ObjectEntity>& object, const std::string &spritePath, float posX,
@@ -57,6 +62,7 @@ void EntityManager::spawnObjectEntity(const std::shared_ptr<ObjectEntity>& objec
     object->sprite = std::make_shared<SpriteComponent>(std::filesystem::current_path().string() + spritePath,
                                                        spriteX, spriteY, spriteWidth, spriteHeight);
     object->bounds = std::make_shared<BoundsComponent>();
+    object->collision = std::make_shared<CollisionComponent>();
 
     object->transform->setPosition(posX, posY);
     object->bounds->setBounds(object->sprite->getSprite());
@@ -64,6 +70,8 @@ void EntityManager::spawnObjectEntity(const std::shared_ptr<ObjectEntity>& objec
     object->addComponent(object->transform);
     object->addComponent(object->sprite);
     object->addComponent(object->bounds);
+    object->addComponent(object->collision);
 
     object->ID = 1;
+    object->flag = OBJECT;
 }

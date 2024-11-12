@@ -16,7 +16,7 @@ void InventorySystem::swapObjectsInInventory(std::shared_ptr<Entity> object) {
 
 void InventorySystem::update(std::vector<std::shared_ptr<Entity>>& entities, sf::Time& deltaTime) {
     for (auto &entity : entities) {
-        if (entity->flag == object && IDManager::getInInventory(entity->ID) &&
+        if (entity->flag == OBJECT && IDManager::getInInventory(entity->ID) &&
         std::find(inventory.begin(), inventory.end(), entity) == inventory.end()) {
             addObjectInInventory(entity);
         }

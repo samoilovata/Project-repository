@@ -4,9 +4,9 @@
 #include "Component.hpp"
 
 enum typeEntity {
-    object,
-    player,
-    inventory
+    OBJECT,
+    PLAYER,
+    INVENTORY
 };
 
 class Entity {
