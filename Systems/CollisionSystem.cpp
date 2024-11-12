@@ -52,20 +52,20 @@ void CollisionSystem::handleCollision(std::shared_ptr<Entity> entity1, std::shar
     if (en1 != nullptr) {
         en3 = std::dynamic_pointer_cast<ObjectEntity>(entity2);
 
-        if (entity1->getComponent<InputComponent>()->keyPressed(sf::Keyboard::F) && entity2->getValue()) {
+        if (entity1->getComponent<InputComponent>()->keyPressed(sf::Keyboard::F) && IDManager::getIsRender(entity2->ID)) {
             if (en3 != nullptr) {
-                en3->changeValue();
-                en3->changeInInventory();
+                IDManager::changeIsRender(en3->ID);
+                IDManager::changeInInventory(en3->ID);
                 en3->getComponent<TransformComponent>()->setPosition(265, 220);
             }
         }
     } else if (en2 != nullptr) {
         en3 = std::dynamic_pointer_cast<ObjectEntity>(entity1);
 
-        if (entity2->getComponent<InputComponent>()->keyPressed(sf::Keyboard::F) && entity1->getValue()) {
+        if (entity2->getComponent<InputComponent>()->keyPressed(sf::Keyboard::F) && IDManager::getIsRender(entity1->ID)) {
             if (en3 != nullptr) {
-                en3->changeValue();
-                en3->changeInInventory();
+                IDManager::changeIsRender(en3->ID);
+                IDManager::changeInInventory(en3->ID);
                 en3->getComponent<TransformComponent>()->setPosition(265, 220);
             }
         }

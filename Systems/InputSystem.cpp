@@ -34,11 +34,11 @@ void InputSystem::update(std::vector<std::shared_ptr<Entity>>& entities, sf::Tim
                 transformComponent->translate(sf::Vector2f(4, 0));
             }
 
-            if (inputComponent->keyPressed(sf::Keyboard::E) && !entity->getValue()) {
-                entity->changeValue();
+            if (inputComponent->keyPressed(sf::Keyboard::E) && !IDManager::getIsRender(entity->ID)) {
+                IDManager::changeIsRender(entity->ID);
                 inputComponent->updateKey(sf::Keyboard::E, false);
-            } else if (inputComponent->keyPressed(sf::Keyboard::E) && entity->getValue()) {
-                entity->changeValue();
+            } else if (inputComponent->keyPressed(sf::Keyboard::E) && IDManager::getIsRender(entity->ID)) {
+                IDManager::changeIsRender(entity->ID);
                 inputComponent->updateKey(sf::Keyboard::E, false);
             }
 

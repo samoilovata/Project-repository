@@ -27,6 +27,8 @@ void EntityManager::spawnPlayerEntity(const std::shared_ptr<PlayerEntity>& playe
     player->addComponent(player->sprite);
     player->addComponent(player->bounds);
     player->addComponent(player->input);
+
+    player->ID = 1;
 }
 
 void EntityManager::spawnInventoryEntity(const std::shared_ptr<InventoryEntity>& inventory, const std::string &spritePath,
@@ -46,7 +48,7 @@ void EntityManager::spawnInventoryEntity(const std::shared_ptr<InventoryEntity>&
     inventory->addComponent(inventory->sprite);
     inventory->addComponent(inventory->input);
 
-    inventory->changeValue();
+    inventory->ID = 0;
 }
 
 void EntityManager::spawnObjectEntity(const std::shared_ptr<ObjectEntity>& object, const std::string &spritePath, float posX,
@@ -62,4 +64,6 @@ void EntityManager::spawnObjectEntity(const std::shared_ptr<ObjectEntity>& objec
     object->addComponent(object->transform);
     object->addComponent(object->sprite);
     object->addComponent(object->bounds);
+
+    object->ID = 1;
 }

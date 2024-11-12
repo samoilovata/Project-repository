@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <SFML/Graphics.hpp>
+#include "../IDManager.hpp"
 #include "../ECS/System.hpp"
 
 class RenderSystem : public System {

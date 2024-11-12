@@ -1,4 +1,5 @@
 #pragma once
+#include "../IDManager.hpp"
 #include "../ECS/System.hpp"
 
 class InventorySystem : public System {

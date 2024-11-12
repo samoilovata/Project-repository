@@ -1,6 +1,7 @@
 #pragma once
 #include <memory>
 #include <SFML/System.hpp>
+#include "../IDManager.hpp"
 #include "../Entities/InventoryEntity.hpp"
 #include "../ECS/System.hpp"
 

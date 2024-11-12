@@ -20,7 +20,7 @@ void RenderSystem::render(std::vector<std::shared_ptr<Entity>>& entities, sf::Re
         auto spriteComponent = entity->getComponent<SpriteComponent>();
         auto transformComponent = entity->getComponent<TransformComponent>();
 
-        if (spriteComponent && transformComponent && entity->getValue()) {
+        if (spriteComponent && transformComponent && IDManager::getIsRender(entity->ID)) {
             spriteComponent->getSprite().setPosition(transformComponent->getPosition());
             window.draw(spriteComponent->getSprite());
         }

@@ -1,9 +1,10 @@
 #pragma once
 
 class IDManager {
-    bool getIsRender(int& ID);
-    void changeIsRender(int& ID);
+public:
+    static bool getIsRender(int& ID);
+    static void changeIsRender(int& ID);
 
-    bool getInInventory(int& ID);
-    void changeInInventory(int& ID);
+    static bool getInInventory(int& ID);
+    static void changeInInventory(int& ID);
 };

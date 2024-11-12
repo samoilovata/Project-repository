@@ -12,9 +12,9 @@ Engine::Engine() : window(sf::VideoMode(800, 640), "game") {
     entityManager.spawnInventoryEntity(inventory, "/../Assets/inventory.png", 25, 75, 527, 1218, 7470, 5140);
     entityManager.spawnObjectEntity(coin, "/../Assets/coin.png", 600, 500, 0, 0, 40, 40);
 
-    entity_id.insert({player->getID(), player});
-    entity_id.insert({inventory->getID(), inventory});
-    entity_id.insert({coin->getID(), coin});
+    entity_id.insert({player->ID, player});
+    entity_id.insert({inventory->ID, inventory});
+    entity_id.insert({coin->ID, coin});
 
     entities.push_back(coin);
     entities.push_back(player);
