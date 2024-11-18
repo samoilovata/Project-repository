@@ -16,9 +16,11 @@ Engine::Engine() : window(sf::VideoMode(800, 640), "game") {
     entity_id.insert({inventory->ID, inventory});
     entity_id.insert({coin->ID, coin});
 
-    entities.push_back(coin);
-    entities.push_back(player);
-    entities.push_back(inventory);
+    entityManager.entities.push_back(coin);
+    entityManager.entities.push_back(player);
+    entityManager.entities.push_back(inventory);
+
+
 }
 
 void Engine::run() {
@@ -57,10 +59,10 @@ void Engine::event() {
 }
 
 void Engine::update(sf::Time deltaTime) {
-    inputSystem.update(objects,entities, deltaTime);
-    renderSystem.update(objects,entities, deltaTime);
-    collisionSystem.update(objects,entities, deltaTime);
-    inventorySystem.update(objects,entities, deltaTime);
+    inputSystem.update(entityManager, deltaTime);
+    renderSystem.update(entityManager, deltaTime);
+    collisionSystem.update(entityManager, deltaTime);
+    inventorySystem.update(entityManager, deltaTime);
 }
 
 void Engine::keyEvent(sf::Keyboard::Key key, bool isPressed) {
@@ -72,6 +74,6 @@ void Engine::keyEvent(sf::Keyboard::Key key, bool isPressed) {
 
 void Engine::render() {
     window.clear();
-    renderSystem.render(objects,entities, window);
+    renderSystem.render(entityManager, window);
     window.display();
 }

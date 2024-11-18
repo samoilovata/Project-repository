@@ -12,10 +12,10 @@ void RenderSystem::setBackground(std::string fileName, sf::Vector2f position) {
     backgroundSprite.setPosition(position);
 }
 
-void RenderSystem::render(std::vector<std::shared_ptr<Entity>> &objects, std::vector<std::shared_ptr<Entity>>& entities, sf::RenderWindow &window) {
+void RenderSystem::render(EntityManager entityManager, sf::RenderWindow &window) {
     window.draw(backgroundSprite);
 
-    for (auto &entity : entities) {
+    for (auto &entity : entityManager.entities) {
 
         auto spriteComponent = entity->getComponent<SpriteComponent>();
         auto transformComponent = entity->getComponent<TransformComponent>();
@@ -26,7 +26,7 @@ void RenderSystem::render(std::vector<std::shared_ptr<Entity>> &objects, std::ve
                 spriteComponent->getSprite().setPosition(transformComponent->getPosition());
                 window.draw(spriteComponent->getSprite());
 
-                for (auto &object : objects) {
+                for (auto &object : entityManager.objects) {
 
                     auto spriteComponent1 = object->getComponent<SpriteComponent>();
                     auto transformComponent1 = object->getComponent<TransformComponent>();
@@ -45,6 +45,6 @@ void RenderSystem::render(std::vector<std::shared_ptr<Entity>> &objects, std::ve
     }
 }
 
-void RenderSystem::update(std::vector<std::shared_ptr<Entity>> &objects, std::vector<std::shared_ptr<Entity>>& entities, sf::Time& deltaTime) {
+void RenderSystem::update(EntityManager entityManager, sf::Time& deltaTime) {
 
 }
