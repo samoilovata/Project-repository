@@ -4,6 +4,11 @@
 Engine::Engine() : window(sf::VideoMode(800, 640), "game") {
     renderSystem.setBackground("/../Assets/backgroundGrass.jpg", sf::Vector2f(-100, -100));
 
+    if (!entityManager.descriptionTexture.loadFromFile(std::filesystem::current_path().string() + fileName)) {
+        std::cerr << "Failed to load background image!" << std::endl;
+    }
+
+
     player = std::make_shared<PlayerEntity>();
     inventory = std::make_shared<InventoryEntity>();
     coin = std::make_shared<ObjectEntity>();

@@ -2,6 +2,7 @@
 #include "RenderSystem.hpp"
 #include "../Components/TransformComponent.hpp"
 #include "../Components/SpriteComponent.hpp"
+#include "../Components/CollisionComponent.hpp"
 
 void RenderSystem::setBackground(std::string fileName, sf::Vector2f position) {
     if (!backgroundTexture.loadFromFile(std::filesystem::current_path().string() + fileName)) {
@@ -23,6 +24,10 @@ void RenderSystem::render(std::vector<std::shared_ptr<Entity>>& entities, sf::Re
         if (spriteComponent && transformComponent && IDManager::getIsRender(entity->ID)) {
             spriteComponent->getSprite().setPosition(transformComponent->getPosition());
             window.draw(spriteComponent->getSprite());
+
+            if (entity->flag == OBJECT && entity->getComponent<CollisionComponent>()->getCollision())
+                window.draw(descriptionTexture);
+            }
         }
     }
 }

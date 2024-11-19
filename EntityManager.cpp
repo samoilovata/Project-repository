@@ -5,6 +5,7 @@
 #include "Components/SpriteComponent.hpp"
 #include "Components/TransformComponent.hpp"
 #include "Components/CollisionComponent.hpp"
+#include "Components/DescriptionComponent.hpp"
 
 void EntityManager::spawnPlayerEntity(const std::shared_ptr<PlayerEntity>& player, const std::string &spritePath,
                                       float posX, float posY, int spriteX, int spriteY, int spriteWidth,
@@ -63,6 +64,7 @@ void EntityManager::spawnObjectEntity(const std::shared_ptr<ObjectEntity>& objec
                                                        spriteX, spriteY, spriteWidth, spriteHeight);
     object->bounds = std::make_shared<BoundsComponent>();
     object->collision = std::make_shared<CollisionComponent>();
+    object->description = std::make_shared<DescriptionComponent>();
 
     object->transform->setPosition(posX, posY);
     object->bounds->setBounds(object->sprite->getSprite());
@@ -71,6 +73,7 @@ void EntityManager::spawnObjectEntity(const std::shared_ptr<ObjectEntity>& objec
     object->addComponent(object->sprite);
     object->addComponent(object->bounds);
     object->addComponent(object->collision);
+    object->addComponent(object->description);
 
     object->ID = 1;
     object->flag = OBJECT;

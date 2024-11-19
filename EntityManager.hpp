@@ -13,4 +13,6 @@ public:
                               int spriteX, int spriteY, int spriteWidth, int spriteHeight);
     void spawnObjectEntity(const std::shared_ptr<ObjectEntity>& object, const std::string& spritePath, float posX, float posY,
                            int spriteX, int spriteY, int spriteWidth, int spriteHeight);
+
+    sf::Texture descriptionTexture;
 };
