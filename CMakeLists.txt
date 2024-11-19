@@ -21,6 +21,8 @@ add_executable(project main.cpp
         Entities/PlayerEntity.cpp
         Entities/InventoryEntity.cpp
         Entities/ObjectEntity.cpp
+        Components/DescriptionComponent.cpp
+        Components/DescriptionComponent.hpp
 )
         
 

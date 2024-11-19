@@ -2,6 +2,8 @@
 #include "RenderSystem.hpp"
 #include "../Components/TransformComponent.hpp"
 #include "../Components/SpriteComponent.hpp"
+#include "../Components/CollisionComponent.hpp"
+#include "../Components/DescriptionComponent.hpp"
 
 void RenderSystem::setBackground(std::string fileName, sf::Vector2f position) {
     if (!backgroundTexture.loadFromFile(std::filesystem::current_path().string() + fileName)) {
@@ -11,6 +13,15 @@ void RenderSystem::setBackground(std::string fileName, sf::Vector2f position) {
     backgroundSprite.setTexture(backgroundTexture);
     backgroundSprite.setPosition(position);
 }
+
+void RenderSystem::setDescription(std::string fileName) {
+    if (!descriptionTexture.loadFromFile(std::filesystem::current_path().string() + fileName)) {
+        std::cerr << "Failed to load background image!" << std::endl;
+    }
+
+    descriptionSprite.setTexture(descriptionTexture);
+}
+
 
 void RenderSystem::render(EntityManager entityManager, sf::RenderWindow &window) {
     window.draw(backgroundSprite);
@@ -40,6 +51,12 @@ void RenderSystem::render(EntityManager entityManager, sf::RenderWindow &window)
                 spriteComponent->getSprite().setPosition(transformComponent->getPosition());
                 window.draw(spriteComponent->getSprite());
 
+            if (entity->flag == OBJECT && entity->getComponent<CollisionComponent>()->getCollision()) {
+                auto descriptionComponent = entity->getComponent<DescriptionComponent>();
+                descriptionSprite.setTextureRect(sf::IntRect(descriptionComponent->x, descriptionComponent->y,
+                                                             descriptionComponent->width, descriptionComponent->height));
+                descriptionSprite.setPosition(descriptionComponent->positionX, descriptionComponent->positionY);
+                window.draw(descriptionSprite);
             }
         }
     }
