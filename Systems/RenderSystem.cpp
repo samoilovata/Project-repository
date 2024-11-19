@@ -47,9 +47,9 @@ void RenderSystem::render(EntityManager entityManager, sf::RenderWindow &window)
                 }
 
             } else {
-
                 spriteComponent->getSprite().setPosition(transformComponent->getPosition());
                 window.draw(spriteComponent->getSprite());
+            }
 
             if (entity->flag == OBJECT && entity->getComponent<CollisionComponent>()->getCollision()) {
                 auto descriptionComponent = entity->getComponent<DescriptionComponent>();
