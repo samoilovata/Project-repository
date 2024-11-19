@@ -4,12 +4,9 @@
 
 class InventorySystem : public System {
 public:
-    void addObjectInInventory(std::shared_ptr<Entity> object);
-    void removeObjectsFromInventory(std::shared_ptr<Entity> object);
-    void swapObjectsInInventory(std::shared_ptr<Entity> object);
+    static void addObjectInInventory(EntityManager entityManager, std::shared_ptr<Entity> object);
+    void removeObjectsFromInventory(EntityManager entityManager, std::shared_ptr<Entity> object);
+    void swapObjectsInInventory(EntityManager entityManager, std::shared_ptr<Entity> object);
 
-    void update(std::vector<std::shared_ptr<Entity>>& entities, sf::Time &deltaTime) override;
-
-private:
-    std::vector<std::shared_ptr<Entity>> inventory;
+    void update(EntityManager entityManager, sf::Time &deltaTime) override;
 };

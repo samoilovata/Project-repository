@@ -5,7 +5,7 @@
 
 class InputSystem : public System {
 public:
-    void update(std::vector<std::shared_ptr<Entity>>& entities, sf::Time& deltaTime) override;
+    void update(EntityManager entityManager, sf::Time& deltaTime) override;
 
 private:
     int frame = 1;

@@ -22,17 +22,34 @@ void RenderSystem::setDescription(std::string fileName) {
     descriptionSprite.setTexture(descriptionTexture);
 }
 
-void RenderSystem::render(std::vector<std::shared_ptr<Entity>>& entities, sf::RenderWindow &window) {
+
+void RenderSystem::render(EntityManager entityManager, sf::RenderWindow &window) {
     window.draw(backgroundSprite);
 
-    for (auto &entity : entities) {
+    for (auto &entity : entityManager.entities) {
 
         auto spriteComponent = entity->getComponent<SpriteComponent>();
         auto transformComponent = entity->getComponent<TransformComponent>();
 
         if (spriteComponent && transformComponent && IDManager::getIsRender(entity->ID)) {
-            spriteComponent->getSprite().setPosition(transformComponent->getPosition());
-            window.draw(spriteComponent->getSprite());
+            if (entity->flag == INVENTORY) {
+
+                spriteComponent->getSprite().setPosition(transformComponent->getPosition());
+                window.draw(spriteComponent->getSprite());
+
+                for (auto &object : entityManager.objects) {
+
+                    auto spriteComponent1 = object->getComponent<SpriteComponent>();
+                    auto transformComponent1 = object->getComponent<TransformComponent>();
+
+                    spriteComponent1->getSprite().setPosition(transformComponent1->getPosition());
+                    window.draw(spriteComponent1->getSprite());
+                }
+
+            } else {
+
+                spriteComponent->getSprite().setPosition(transformComponent->getPosition());
+                window.draw(spriteComponent->getSprite());
 
             if (entity->flag == OBJECT && entity->getComponent<CollisionComponent>()->getCollision()) {
                 auto descriptionComponent = entity->getComponent<DescriptionComponent>();
@@ -45,6 +62,6 @@ void RenderSystem::render(std::vector<std::shared_ptr<Entity>>& entities, sf::Re
     }
 }
 
-void RenderSystem::update(std::vector<std::shared_ptr<Entity>>& entities, sf::Time& deltaTime) {
+void RenderSystem::update(EntityManager entityManager, sf::Time& deltaTime) {
 
 }

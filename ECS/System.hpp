@@ -3,9 +3,11 @@
 #include <memory>
 #include <SFML/Graphics.hpp>
 #include "Entity.hpp"
+#include "../EntityManager.hpp"
+
 
 class System {
 public:
     virtual ~System() = default;
-    virtual void update(std::vector<std::shared_ptr<Entity>>& entities, sf::Time& deltaTime) = 0;
+    virtual void update(EntityManager entityManager, sf::Time& deltaTime) = 0;
 };
