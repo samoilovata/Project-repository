@@ -25,13 +25,12 @@ private:
     std::shared_ptr<PlayerEntity> player;
     std::shared_ptr<InventoryEntity> inventory;
     std::shared_ptr<ObjectEntity> coin;
+    std::shared_ptr<InteractiveObjectEntity> pound;
 
     InventorySystem inventorySystem;
     RenderSystem renderSystem;
     InputSystem inputSystem;
     CollisionSystem collisionSystem;
-
-    std::map<int, std::shared_ptr<Entity>> entity_id;
 
     void event();
     void update(sf::Time deltaTime);

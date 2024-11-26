@@ -6,7 +6,8 @@
 enum typeEntity {
     OBJECT,
     PLAYER,
-    INVENTORY
+    INVENTORY,
+    INTERACTIVE_OBJECT
 };
 
 class Entity {

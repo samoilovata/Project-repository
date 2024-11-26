@@ -21,7 +21,9 @@ void InventorySystem::update(EntityManager& entityManager, sf::Time& deltaTime) 
 
             addObjectInInventory(entityManager, entity);
             entity->deleteComponent();
-            entityManager.updateActiveSlot();
         }
+    }
+    if (!entityManager.inventory.empty() && !IDManager::getInInventory(entityManager.inventory[0]->ID)) {
+        removeObjectsFromInventory(entityManager, entityManager.inventory[0]);
     }
 }
