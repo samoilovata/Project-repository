@@ -8,7 +8,10 @@
 class EntityManager {
 public:
     std::vector<std::shared_ptr<Entity>> entities;
-    std::vector<std::shared_ptr<Entity>> objects;
+    std::vector<std::shared_ptr<Entity>> inventory;
+
+    std::shared_ptr<Entity> activeSlot;
+    void updateActiveSlot();
 
     void spawnPlayerEntity(const std::shared_ptr<PlayerEntity>& player, const std::string &spritePath, float posX, float posY,
                            int spriteX, int spriteY, int spriteWidth, int spriteHeight);

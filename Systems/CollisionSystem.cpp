@@ -6,7 +6,7 @@
 #include "../Components/InputComponent.hpp"
 #include "../Entities/PlayerEntity.hpp"
 
-void CollisionSystem::update(EntityManager entityManager, sf::Time &deltaTime) {
+void CollisionSystem::update(EntityManager& entityManager, sf::Time &deltaTime) {
     for (size_t i = 0; i < entityManager.entities.size() - 1; i++) {
         auto entity1 = entityManager.entities[i];
         auto entity1TransformComponent = entity1->getComponent<TransformComponent>();

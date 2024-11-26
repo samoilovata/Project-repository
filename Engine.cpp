@@ -10,8 +10,8 @@ Engine::Engine() : window(sf::VideoMode(800, 640), "game") {
     coin = std::make_shared<ObjectEntity>();
 
     entityManager.spawnPlayerEntity(player, "/../Assets/spritePlayer.png", 100, 150, 200, 0, 190, 310);
-    entityManager.spawnInventoryEntity(inventory, "/../Assets/INVENTORY.png", 25, 75, 527, 1218, 7470, 5140);
-    entityManager.spawnObjectEntity(coin, "/../Assets/coin.png", 600, 500, 0, 0, 40, 40, 200, 200, 500, 300);
+    entityManager.spawnInventoryEntity(inventory, "/../Assets/INVENTORY.png", 25, 125, 527, 1218, 7470, 5140);
+    entityManager.spawnObjectEntity(coin, "/../Assets/coin.png", 600, 500, 129, 609, 40, 40, 200, 200, 500, 300);
 
     entity_id.insert({player->ID, player});
     entity_id.insert({inventory->ID, inventory});
@@ -20,8 +20,6 @@ Engine::Engine() : window(sf::VideoMode(800, 640), "game") {
     entityManager.entities.push_back(coin);
     entityManager.entities.push_back(player);
     entityManager.entities.push_back(inventory);
-
-
 }
 
 void Engine::run() {

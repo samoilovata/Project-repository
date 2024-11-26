@@ -11,8 +11,8 @@ class RenderSystem : public System {
 public:
     void setBackground(std::string fileName, sf::Vector2f position);
     void setDescription(std::string fileName);
-    void render(EntityManager entityManager, sf::RenderWindow &window);
-    void update(EntityManager entityManager, sf::Time& deltaTime) override;
+    void render(EntityManager& entityManager, sf::RenderWindow& window);
+    void update(EntityManager& entityManager, sf::Time& deltaTime) override;
 
 private:
     sf::Texture descriptionTexture;

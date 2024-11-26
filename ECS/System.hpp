@@ -9,5 +9,5 @@
 class System {
 public:
     virtual ~System() = default;
-    virtual void update(EntityManager entityManager, sf::Time& deltaTime) = 0;
+    virtual void update(EntityManager& entityManager, sf::Time& deltaTime) = 0;
 };
