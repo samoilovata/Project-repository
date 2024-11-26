@@ -56,6 +56,7 @@ void RenderSystem::render(EntityManager entityManager, sf::RenderWindow &window)
                 descriptionSprite.setTextureRect(sf::IntRect(descriptionComponent->x, descriptionComponent->y,
                                                              descriptionComponent->width, descriptionComponent->height));
                 descriptionSprite.setPosition(descriptionComponent->positionX, descriptionComponent->positionY);
+                descriptionSprite.setScale(0.256, 0.256);
                 window.draw(descriptionSprite);
             }
         }

@@ -65,7 +65,7 @@ void EntityManager::spawnObjectEntity(const std::shared_ptr<ObjectEntity>& objec
                                                        spriteX, spriteY, spriteWidth, spriteHeight);
     object->bounds = std::make_shared<BoundsComponent>();
     object->collision = std::make_shared<CollisionComponent>();
-    object->description = std::make_shared<DescriptionComponent>(posX, posY, descriptionHeight, descriptionWidth, descriptionX, descriptionY);
+    object->description = std::make_shared<DescriptionComponent>(posX, posY, descriptionWidth, descriptionHeight, descriptionX, descriptionY);
 
     object->transform->setPosition(posX, posY);
     object->bounds->setBounds(object->sprite->getSprite());
