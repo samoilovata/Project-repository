@@ -5,7 +5,7 @@
 #include "../Components/InputComponent.hpp"
 #include "../Components/CollisionComponent.hpp"
 
-void InputSystem::update(EntityManager entityManager, sf::Time& deltaTime) {
+void InputSystem::update(EntityManager& entityManager, sf::Time& deltaTime) {
     for (auto &entity : entityManager.entities) {
         auto transformComponent = entity->getComponent<TransformComponent>();
         auto spriteComponent = entity->getComponent<SpriteComponent>();
@@ -51,8 +51,11 @@ void InputSystem::update(EntityManager entityManager, sf::Time& deltaTime) {
                     if (objectEntity->flag == OBJECT && objectEntity->getComponent<CollisionComponent>()->getCollision()) {
                         IDManager::changeIsRender(objectEntity->ID);
                         IDManager::changeInInventory(objectEntity->ID);
-                        objectEntity->getComponent<TransformComponent>()->setPosition(265, 220);
-//                      objectEntity->getComponent<SpriteComponent>()->setPosition(что-то, что-то);
+
+                        auto sprite = objectEntity->getComponent<SpriteComponent>();
+                        objectEntity->getComponent<TransformComponent>()->setPosition(60, 395);
+                        sprite->setTexture(1189, 510, 1021, 1021);
+                        sprite->setScale(6000 * 1.25, 6000);
                     }
                 }
             }

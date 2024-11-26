@@ -23,7 +23,7 @@ void RenderSystem::setDescription(std::string fileName) {
 }
 
 
-void RenderSystem::render(EntityManager entityManager, sf::RenderWindow &window) {
+void RenderSystem::render(EntityManager& entityManager, sf::RenderWindow &window) {
     window.draw(backgroundSprite);
 
     for (auto &entity : entityManager.entities) {
@@ -37,7 +37,7 @@ void RenderSystem::render(EntityManager entityManager, sf::RenderWindow &window)
                 spriteComponent->getSprite().setPosition(transformComponent->getPosition());
                 window.draw(spriteComponent->getSprite());
 
-                for (auto &object : entityManager.objects) {
+                for (auto &object : entityManager.inventory) {
 
                     auto spriteComponent1 = object->getComponent<SpriteComponent>();
                     auto transformComponent1 = object->getComponent<TransformComponent>();
@@ -63,6 +63,6 @@ void RenderSystem::render(EntityManager entityManager, sf::RenderWindow &window)
     }
 }
 
-void RenderSystem::update(EntityManager entityManager, sf::Time& deltaTime) {
+void RenderSystem::update(EntityManager& entityManager, sf::Time& deltaTime) {
 
 }

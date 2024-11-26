@@ -5,7 +5,7 @@
 
 class InputSystem : public System {
 public:
-    void update(EntityManager entityManager, sf::Time& deltaTime) override;
+    void update(EntityManager& entityManager, sf::Time& deltaTime) override;
 
 private:
     int frame = 1;

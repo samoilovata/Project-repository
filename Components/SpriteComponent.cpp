@@ -19,3 +19,7 @@ void SpriteComponent::setScale(float x, float y) {
 sf::Sprite& SpriteComponent::getSprite() {
     return sprite;
 }
+
+void SpriteComponent::setTexture(int left, int top, int width, int height) {
+    sprite.setTextureRect(sf::IntRect(left, top, width, height));
+}

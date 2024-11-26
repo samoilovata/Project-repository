@@ -42,7 +42,7 @@ void EntityManager::spawnInventoryEntity(const std::shared_ptr<InventoryEntity>&
     inventory->transform = std::make_shared<TransformComponent>();
     inventory->sprite = std::make_shared<SpriteComponent>(std::filesystem::current_path().string() + spritePath,
                                                           spriteX, spriteY, spriteWidth, spriteHeight);
-    inventory->sprite->setScale(spriteWidth, spriteHeight);
+    inventory->sprite->setScale(spriteWidth, spriteHeight * 1.25);
     inventory->input = std::make_shared<InputComponent>();
 
     inventory->transform->setPosition(posX, posY);
@@ -72,10 +72,15 @@ void EntityManager::spawnObjectEntity(const std::shared_ptr<ObjectEntity>& objec
 
     object->addComponent(object->transform);
     object->addComponent(object->sprite);
-    object->addComponent(object->bounds);
     object->addComponent(object->collision);
     object->addComponent(object->description);
+    object->addComponent(object->bounds);
 
     object->ID = 1;
     object->flag = OBJECT;
+}
+
+void EntityManager::updateActiveSlot() {
+    if (inventory.empty()) activeSlot = nullptr;
+    else activeSlot = inventory[0];
 }
