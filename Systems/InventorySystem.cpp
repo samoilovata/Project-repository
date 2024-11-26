@@ -20,6 +20,7 @@ void InventorySystem::update(EntityManager& entityManager, sf::Time& deltaTime) 
             std::find(entityManager.inventory.begin(), entityManager.inventory.end(), entity) == entityManager.inventory.end()) {
 
             addObjectInInventory(entityManager, entity);
+            entity->deleteComponent();
             entityManager.updateActiveSlot();
         }
     }

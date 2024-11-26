@@ -72,9 +72,9 @@ void EntityManager::spawnObjectEntity(const std::shared_ptr<ObjectEntity>& objec
 
     object->addComponent(object->transform);
     object->addComponent(object->sprite);
-    object->addComponent(object->bounds);
     object->addComponent(object->collision);
     object->addComponent(object->description);
+    object->addComponent(object->bounds);
 
     object->ID = 1;
     object->flag = OBJECT;
