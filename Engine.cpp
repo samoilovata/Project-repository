@@ -11,7 +11,7 @@ Engine::Engine() : window(sf::VideoMode(800, 640), "game") {
 
     entityManager.spawnPlayerEntity(player, "/../Assets/spritePlayer.png", 100, 150, 200, 0, 190, 310);
     entityManager.spawnInventoryEntity(inventory, "/../Assets/INVENTORY.png", 25, 125, 527, 1218, 7470, 5140);
-    entityManager.spawnObjectEntity(coin, "/../Assets/coin.png", 600, 500, 0, 0, 40, 40, 450, 2210, 0, 0);
+    entityManager.spawnObjectEntity(coin, "/../Assets/coin.png", 600, 500, 129, 609, 40, 40, 450, 2210, 0, 0);
 
 
     entity_id.insert({player->ID, player});
