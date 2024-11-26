@@ -10,6 +10,10 @@ void Entity::addComponent(std::shared_ptr<Component> ptrComponent) {
     vectorComponent.push_back(ptrComponent);
 }
 
+void Entity::deleteComponent() {
+    vectorComponent.pop_back();
+}
+
 template<typename T>
 std::shared_ptr<T> Entity::getComponent() {
     for (auto& component : vectorComponent) {
