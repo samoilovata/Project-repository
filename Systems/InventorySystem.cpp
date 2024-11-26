@@ -2,23 +2,25 @@
 #include "InventorySystem.hpp"
 #include "../Entities/ObjectEntity.hpp"
 
-void InventorySystem::addObjectInInventory(EntityManager entityManager, std::shared_ptr<Entity> object) {
-    entityManager.objects.push_back(object);
+void InventorySystem::addObjectInInventory(EntityManager& entityManager, std::shared_ptr<Entity> object) {
+    entityManager.inventory.push_back(object);
 }
 
-void InventorySystem::removeObjectsFromInventory(EntityManager entityManager,  std::shared_ptr<Entity> object) {
-    entityManager.objects.erase(entityManager.objects.begin());
+void InventorySystem::removeObjectsFromInventory(EntityManager& entityManager,  std::shared_ptr<Entity> object) {
+    entityManager.inventory.erase(entityManager.inventory.begin());
 }
 
-void InventorySystem::swapObjectsInInventory(EntityManager entityManager, std::shared_ptr<Entity> object) {
-    std::swap(*entityManager.objects.begin(), *std::find(entityManager.objects.begin(), entityManager.objects.end(),object));
+void InventorySystem::swapObjectsInInventory(EntityManager& entityManager, std::shared_ptr<Entity> object) {
+    std::swap(*entityManager.inventory.begin(), *std::find(entityManager.inventory.begin(), entityManager.inventory.end(), object));
 }
 
-void InventorySystem::update(EntityManager entityManager, sf::Time& deltaTime) {
+void InventorySystem::update(EntityManager& entityManager, sf::Time& deltaTime) {
     for (auto &entity : entityManager.entities) {
         if (entity->flag == OBJECT && IDManager::getInInventory(entity->ID) &&
-        std::find(entityManager.objects.begin(), entityManager.objects.end(), entity) == entityManager.objects.end()) {
+            std::find(entityManager.inventory.begin(), entityManager.inventory.end(), entity) == entityManager.inventory.end()) {
+
             addObjectInInventory(entityManager, entity);
+            entityManager.updateActiveSlot();
         }
     }
 }
