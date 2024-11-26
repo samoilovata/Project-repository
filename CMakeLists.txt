@@ -14,6 +14,7 @@ add_executable(project main.cpp
         Components/InputComponent.cpp
         Components/TransformComponent.cpp
         Components/CollisionComponent.cpp
+        Components/DescriptionComponent.cpp
         Systems/CollisionSystem.cpp
         Systems/InputSystem.cpp
         Systems/RenderSystem.cpp
@@ -21,8 +22,7 @@ add_executable(project main.cpp
         Entities/PlayerEntity.cpp
         Entities/InventoryEntity.cpp
         Entities/ObjectEntity.cpp
-        Components/DescriptionComponent.cpp
-        Components/DescriptionComponent.hpp
+        Entities/InteractiveObjectEntity.cpp
 )
         
 

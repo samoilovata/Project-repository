@@ -80,7 +80,25 @@ void EntityManager::spawnObjectEntity(const std::shared_ptr<ObjectEntity>& objec
     object->flag = OBJECT;
 }
 
-void EntityManager::updateActiveSlot() {
-    if (inventory.empty()) activeSlot = nullptr;
-    else activeSlot = inventory[0];
+void EntityManager::spawnInteractiveObjectEntity(const std::shared_ptr<InteractiveObjectEntity>& interactiveObject, const std::string& spritePath,
+                                  float posX, float posY, int spriteX, int spriteY, int spriteWidth, int spriteHeight,
+                                  int descriptionHeight, int descriptionWidth, int descriptionX, int descriptionY) {
+    interactiveObject->transform = std::make_shared<TransformComponent>();
+    interactiveObject->sprite = std::make_shared<SpriteComponent>(std::filesystem::current_path().string() + spritePath,
+                                                       spriteX, spriteY, spriteWidth, spriteHeight);
+    interactiveObject->bounds = std::make_shared<BoundsComponent>();
+    interactiveObject->collision = std::make_shared<CollisionComponent>();
+    interactiveObject->description = std::make_shared<DescriptionComponent>(posX, posY, descriptionWidth, descriptionHeight, descriptionX, descriptionY);
+
+    interactiveObject->transform->setPosition(posX, posY);
+    interactiveObject->bounds->setBounds(interactiveObject->sprite->getSprite());
+
+    interactiveObject->addComponent(interactiveObject->transform);
+    interactiveObject->addComponent(interactiveObject->sprite);
+    interactiveObject->addComponent(interactiveObject->collision);
+    interactiveObject->addComponent(interactiveObject->description);
+    interactiveObject->addComponent(interactiveObject->bounds);
+
+    interactiveObject->ID = 1;
+    interactiveObject->flag = INTERACTIVE_OBJECT;
 }
