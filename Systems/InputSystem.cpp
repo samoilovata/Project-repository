@@ -53,7 +53,6 @@ void InputSystem::update(EntityManager& entityManager, sf::Time& deltaTime) {
                         IDManager::changeInInventory(objectEntity->ID);
 
                         auto sprite = objectEntity->getComponent<SpriteComponent>();
-                        objectEntity->getComponent<TransformComponent>()->setPosition(60, 395);
                         sprite->setTexture(1189, 510, 1021, 1021);
                         sprite->setScale(6000 * 1.25, 6000);
                     } else if (objectEntity->flag == INTERACTIVE_OBJECT && objectEntity->getComponent<CollisionComponent>()->getCollision() && !entityManager.inventory.empty()) {

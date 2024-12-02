@@ -1,5 +1,6 @@
 #include <filesystem>
 #include "RenderSystem.hpp"
+#include "../Entities/ObjectEntity.hpp"
 #include "../Components/TransformComponent.hpp"
 #include "../Components/SpriteComponent.hpp"
 #include "../Components/CollisionComponent.hpp"
@@ -32,6 +33,7 @@ void RenderSystem::render(EntityManager& entityManager, sf::RenderWindow &window
         auto transformComponent = entity->getComponent<TransformComponent>();
 
         if (spriteComponent && transformComponent && IDManager::getIsRender(entity->ID)) {
+            int iter = 0;
             if (entity->flag == INVENTORY) {
 
                 spriteComponent->getSprite().setPosition(transformComponent->getPosition());
@@ -42,10 +44,12 @@ void RenderSystem::render(EntityManager& entityManager, sf::RenderWindow &window
                     auto spriteComponent1 = object->getComponent<SpriteComponent>();
                     auto transformComponent1 = object->getComponent<TransformComponent>();
 
+                    setPositionObjects(transformComponent1, iter);
+
                     spriteComponent1->getSprite().setPosition(transformComponent1->getPosition());
                     window.draw(spriteComponent1->getSprite());
                 }
-
+                iter++;
             } else {
                 spriteComponent->getSprite().setPosition(transformComponent->getPosition());
                 window.draw(spriteComponent->getSprite());
@@ -65,4 +69,13 @@ void RenderSystem::render(EntityManager& entityManager, sf::RenderWindow &window
 
 void RenderSystem::update(EntityManager& entityManager, sf::Time& deltaTime) {
 
+}
+
+void RenderSystem::setPositionObjects(std::shared_ptr<TransformComponent> transformComponent, int n) {
+    if (n == 0) {
+       transformComponent->setPosition(60, 395);
+    }
+    else {
+        transformComponent->setPosition(300 + 100 * ((n - 1) % 4), 300 + 100 * (n % 2));
+    }
 }
