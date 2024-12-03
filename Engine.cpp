@@ -20,7 +20,6 @@ Engine::Engine() : window(sf::VideoMode(800, 640), "game") {
     entityManager.spawnObjectEntity(coin2, "/../Assets/coin.png", 500, 200, 129, 609, 40, 40, "1234", font);
     entityManager.spawnInteractiveObjectEntity(pound, "/../Assets/pound.png", 100, 450, 0, 0, 160, 160, "5678", font);
 
-
     IDManager::changeIsCoin(coin->ID);
     IDManager::changeIsCoin(pound->ID);
 
