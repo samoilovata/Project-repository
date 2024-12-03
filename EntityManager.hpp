@@ -16,9 +16,8 @@ public:
     void spawnInventoryEntity(const std::shared_ptr<InventoryEntity>& inventory, const std::string& spritePath, float posX, float posY,
                               int spriteX, int spriteY, int spriteWidth, int spriteHeight);
     void spawnObjectEntity(const std::shared_ptr<ObjectEntity>& object, const std::string& spritePath, float posX,
-                           float posY, int spriteX, int spriteY, int spriteWidth, int spriteHeight,
-                           int descriptionHeight, int descriptionWidth, int descriptionX, int descriptionY);
+                           float posY, int spriteX, int spriteY, int spriteWidth, int spriteHeight, std::string script, sf::Font& font);
     void spawnInteractiveObjectEntity(const std::shared_ptr<InteractiveObjectEntity>& interactiveObject, const std::string& spritePath,
                                       float posX, float posY, int spriteX, int spriteY, int spriteWidth, int spriteHeight,
-                                      int descriptionHeight, int descriptionWidth, int descriptionX, int descriptionY);
+                                      std::string script, sf::Font& font);
 };

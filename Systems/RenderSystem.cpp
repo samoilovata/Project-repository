@@ -53,11 +53,7 @@ void RenderSystem::render(EntityManager& entityManager, sf::RenderWindow &window
 
             if (entity->flag == OBJECT && entity->getComponent<CollisionComponent>()->getCollision()) {
                 auto descriptionComponent = entity->getComponent<DescriptionComponent>();
-                descriptionSprite.setTextureRect(sf::IntRect(descriptionComponent->x, descriptionComponent->y,
-                                                             descriptionComponent->width, descriptionComponent->height));
-                descriptionSprite.setPosition(descriptionComponent->positionX, descriptionComponent->positionY);
-                descriptionSprite.setScale(0.256, 0.256);
-                window.draw(descriptionSprite);
+                window.draw(descriptionComponent->description);
             }
         }
     }

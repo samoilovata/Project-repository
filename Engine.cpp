@@ -4,6 +4,7 @@
 Engine::Engine() : window(sf::VideoMode(800, 640), "game") {
     renderSystem.setBackground("/../Assets/backgroundGrass.jpg", sf::Vector2f(-100, -100));
     renderSystem.setDescription("/../Assets/CoinScript.png");
+    font.loadFromFile(std::filesystem::current_path().string() + "/../Assets/Font.ttf");
 
     player = std::make_shared<PlayerEntity>();
     inventory = std::make_shared<InventoryEntity>();
@@ -12,8 +13,8 @@ Engine::Engine() : window(sf::VideoMode(800, 640), "game") {
 
     entityManager.spawnPlayerEntity(player, "/../Assets/spritePlayer.png", 100, 100, 200, 0, 190, 310);
     entityManager.spawnInventoryEntity(inventory, "/../Assets/INVENTORY.png", 25, 125, 527, 1218, 7470, 5140);
-    entityManager.spawnObjectEntity(coin, "/../Assets/coin.png", 600, 500, 129, 609, 40, 40, 450, 2210, 0, 0);
-    entityManager.spawnInteractiveObjectEntity(pound, "/../Assets/pound.png", 100, 450, 0, 0, 160, 160, 0, 0, 0, 0);
+    entityManager.spawnObjectEntity(coin, "/../Assets/coin.png", 600, 500, 129, 609, 40, 40, "1234", font);
+    entityManager.spawnInteractiveObjectEntity(pound, "/../Assets/pound.png", 100, 450, 0, 0, 160, 160, "5678", font);
 
     IDManager::changeIsCoin(coin->ID);
     IDManager::changeIsCoin(pound->ID);
