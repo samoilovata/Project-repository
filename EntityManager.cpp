@@ -59,13 +59,13 @@ void EntityManager::spawnInventoryEntity(const std::shared_ptr<InventoryEntity>&
 
 void EntityManager::spawnObjectEntity(const std::shared_ptr<ObjectEntity>& object, const std::string &spritePath, float posX,
                                       float posY, int spriteX, int spriteY, int spriteWidth, int spriteHeight,
-                                      int descriptionHeight, int descriptionWidth, int descriptionX, int descriptionY) {
+                                      std::string script, sf::Font& font) {
     object->transform = std::make_shared<TransformComponent>();
     object->sprite = std::make_shared<SpriteComponent>(std::filesystem::current_path().string() + spritePath,
                                                        spriteX, spriteY, spriteWidth, spriteHeight);
     object->bounds = std::make_shared<BoundsComponent>();
     object->collision = std::make_shared<CollisionComponent>();
-    object->description = std::make_shared<DescriptionComponent>(posX, posY, descriptionWidth, descriptionHeight, descriptionX, descriptionY);
+    object->description = std::make_shared<DescriptionComponent>(posX, posY, script, font);
 
     object->transform->setPosition(posX, posY);
     object->bounds->setBounds(object->sprite->getSprite());
@@ -82,13 +82,13 @@ void EntityManager::spawnObjectEntity(const std::shared_ptr<ObjectEntity>& objec
 
 void EntityManager::spawnInteractiveObjectEntity(const std::shared_ptr<InteractiveObjectEntity>& interactiveObject, const std::string& spritePath,
                                   float posX, float posY, int spriteX, int spriteY, int spriteWidth, int spriteHeight,
-                                  int descriptionHeight, int descriptionWidth, int descriptionX, int descriptionY) {
+                                  std::string script, sf::Font& font) {
     interactiveObject->transform = std::make_shared<TransformComponent>();
     interactiveObject->sprite = std::make_shared<SpriteComponent>(std::filesystem::current_path().string() + spritePath,
                                                        spriteX, spriteY, spriteWidth, spriteHeight);
     interactiveObject->bounds = std::make_shared<BoundsComponent>();
     interactiveObject->collision = std::make_shared<CollisionComponent>();
-    interactiveObject->description = std::make_shared<DescriptionComponent>(posX, posY, descriptionWidth, descriptionHeight, descriptionX, descriptionY);
+    interactiveObject->description = std::make_shared<DescriptionComponent>(posX, posY, script, font);
 
     interactiveObject->transform->setPosition(posX, posY);
     interactiveObject->bounds->setBounds(interactiveObject->sprite->getSprite());
