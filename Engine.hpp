@@ -25,6 +25,8 @@ private:
     std::shared_ptr<PlayerEntity> player;
     std::shared_ptr<InventoryEntity> inventory;
     std::shared_ptr<ObjectEntity> coin;
+    std::shared_ptr<ObjectEntity> coin1;
+    std::shared_ptr<ObjectEntity> coin2;
     std::shared_ptr<InteractiveObjectEntity> pound;
 
     InventorySystem inventorySystem;

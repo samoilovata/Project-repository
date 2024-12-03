@@ -48,8 +48,9 @@ void RenderSystem::render(EntityManager& entityManager, sf::RenderWindow &window
 
                     spriteComponent1->getSprite().setPosition(transformComponent1->getPosition());
                     window.draw(spriteComponent1->getSprite());
+                    iter++;
                 }
-                iter++;
+
             } else {
                 spriteComponent->getSprite().setPosition(transformComponent->getPosition());
                 window.draw(spriteComponent->getSprite());
@@ -72,10 +73,6 @@ void RenderSystem::update(EntityManager& entityManager, sf::Time& deltaTime) {
 }
 
 void RenderSystem::setPositionObjects(std::shared_ptr<TransformComponent> transformComponent, int n) {
-    if (n == 0) {
-       transformComponent->setPosition(60, 395);
-    }
-    else {
-        transformComponent->setPosition(300 + 100 * ((n - 1) % 4), 300 + 100 * (n % 2));
-    }
+    if (n == 0) transformComponent->setPosition(60, 395);
+    else transformComponent->setPosition(230 + 136 * ((n - 1) % 4), 192 + 150 * ((int) (n - 1) / 4));
 }
