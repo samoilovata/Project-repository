@@ -1,8 +1,8 @@
 #include "DescriptionComponent.hpp"
 
-void DescriptionComponent::setPosition(int y, int x) {
-    positionY = y - 200;
-    positionX = x + 100 / 2;
+void DescriptionComponent::setPosition(int x, int y) {
+    positionX = x - 80 / 2;
+    positionY = y - 100;
 }
 
 DescriptionComponent::DescriptionComponent(int posX, int posY, std::string string, sf::Font& font) {
