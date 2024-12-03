@@ -21,6 +21,7 @@ void InventorySystem::update(EntityManager& entityManager, sf::Time& deltaTime) 
 
             addObjectInInventory(entityManager, entity);
             entity->deleteComponent();
+            entity->getComponent<CollisionComponent>()->collisionFalse();
         }
     }
     if (!entityManager.inventory.empty() && !IDManager::getInInventory(entityManager.inventory[0]->ID)) {
