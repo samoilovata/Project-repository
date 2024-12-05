@@ -5,7 +5,7 @@ void DescriptionComponent::setPosition(int x, int y) {
     positionY = y - 100;
 }
 
-DescriptionComponent::DescriptionComponent(int posX, int posY, std::string string, sf::Font& font) {
+DescriptionComponent::DescriptionComponent(int posX, int posY, sf::String string, sf::Font& font) {
     setPosition(posX, posY);
     description.setFont(font);
     description.setOutlineThickness(3);

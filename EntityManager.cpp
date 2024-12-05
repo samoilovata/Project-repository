@@ -59,7 +59,7 @@ void EntityManager::spawnInventoryEntity(const std::shared_ptr<InventoryEntity>&
 
 void EntityManager::spawnObjectEntity(const std::shared_ptr<ObjectEntity>& object, const std::string &spritePath, float posX,
                                       float posY, int spriteX, int spriteY, int spriteWidth, int spriteHeight,
-                                      std::string script, sf::Font& font) {
+                                      sf::String script, sf::Font& font) {
     object->transform = std::make_shared<TransformComponent>();
     object->sprite = std::make_shared<SpriteComponent>(std::filesystem::current_path().string() + spritePath,
                                                        spriteX, spriteY, spriteWidth, spriteHeight);
@@ -82,7 +82,7 @@ void EntityManager::spawnObjectEntity(const std::shared_ptr<ObjectEntity>& objec
 
 void EntityManager::spawnInteractiveObjectEntity(const std::shared_ptr<InteractiveObjectEntity>& interactiveObject, const std::string& spritePath,
                                   float posX, float posY, int spriteX, int spriteY, int spriteWidth, int spriteHeight,
-                                  std::string script, sf::Font& font) {
+                                  sf::String script, sf::Font& font) {
     interactiveObject->transform = std::make_shared<TransformComponent>();
     interactiveObject->sprite = std::make_shared<SpriteComponent>(std::filesystem::current_path().string() + spritePath,
                                                        spriteX, spriteY, spriteWidth, spriteHeight);

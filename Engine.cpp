@@ -15,7 +15,7 @@ Engine::Engine() : window(sf::VideoMode(800, 640), "game") {
 
     entityManager.spawnPlayerEntity(player, "/../Assets/spritePlayer.png", 100, 100, 200, 0, 190, 310);
     entityManager.spawnInventoryEntity(inventory, "/../Assets/INVENTORY.png", 25, 125, 527, 1218, 7470, 5140);
-    entityManager.spawnObjectEntity(coin, "/../Assets/coin.png", 600, 500, 129, 609, 40, 40, "1234", font);
+    entityManager.spawnObjectEntity(coin, "/../Assets/coin.png", 600, 500, 129, 609, 40, 40, L"1234", font);
     entityManager.spawnObjectEntity(coin1, "/../Assets/coin.png", 600, 200, 129, 609, 40, 40, "1234", font);
     entityManager.spawnObjectEntity(coin2, "/../Assets/coin.png", 500, 200, 129, 609, 40, 40, "1234", font);
     entityManager.spawnInteractiveObjectEntity(pound, "/../Assets/pound.png", 100, 450, 0, 0, 160, 160, "5678", font);
