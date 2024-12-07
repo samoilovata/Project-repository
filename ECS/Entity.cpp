@@ -1,6 +1,5 @@
 #include "Entity.hpp"
 #include "../Components/BoundsComponent.hpp"
-#include "../Components/InputComponent.hpp"
 #include "../Components/SpriteComponent.hpp"
 #include "../Components/TransformComponent.hpp"
 #include "../Components/CollisionComponent.hpp"
@@ -23,7 +22,6 @@ std::shared_ptr<T> Entity::getComponent() {
 }
 
 template std::shared_ptr<BoundsComponent> Entity::getComponent<BoundsComponent>();
-template std::shared_ptr<InputComponent> Entity::getComponent<InputComponent>();
 template std::shared_ptr<SpriteComponent> Entity::getComponent<SpriteComponent>();
 template std::shared_ptr<TransformComponent> Entity::getComponent<TransformComponent>();
 template std::shared_ptr<CollisionComponent> Entity::getComponent<CollisionComponent>();

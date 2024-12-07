@@ -1,12 +1,9 @@
 #pragma once
-#include <SFML/Graphics.hpp>
-#include "../IDManager.hpp"
 #include "../ECS/System.hpp"
 
-class InputSystem : public System {
+class MoveSystem : public System {
 public:
     void update(EntityManager& entityManager, sf::Time& deltaTime) override;
-    void update(sf::Window& window);
 private:
     int frame = 1;
     float currentFrame = 0;
