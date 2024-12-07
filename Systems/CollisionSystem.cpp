@@ -1,10 +1,4 @@
-#include <iostream>
 #include "CollisionSystem.hpp"
-#include "InventorySystem.hpp"
-#include "../Components/BoundsComponent.hpp"
-#include "../Components/TransformComponent.hpp"
-#include "../Components/InputComponent.hpp"
-#include "../Entities/PlayerEntity.hpp"
 
 void CollisionSystem::update(EntityManager& entityManager, sf::Time &deltaTime) {
     for (size_t i = 0; i < entityManager.entities.size() - 1; i++) {
@@ -37,36 +31,6 @@ void CollisionSystem::update(EntityManager& entityManager, sf::Time &deltaTime) 
                         }
                     }
                 }
-            }
-        }
-    }
-}
-
-
-
-void CollisionSystem::handleCollision(std::shared_ptr<Entity> entity1, std::shared_ptr<Entity> entity2) {
-    std::shared_ptr<PlayerEntity> en1 = std::dynamic_pointer_cast<PlayerEntity>(entity1);
-    std::shared_ptr<PlayerEntity> en2 = std::dynamic_pointer_cast<PlayerEntity>(entity2);
-    std::shared_ptr<ObjectEntity> en3;
-
-    if (en1 != nullptr) {
-        en3 = std::dynamic_pointer_cast<ObjectEntity>(entity2);
-
-        if (entity1->getComponent<InputComponent>()->keyPressed(sf::Keyboard::F) && IDManager::getIsRender(entity2->ID)) {
-            if (en3 != nullptr) {
-                IDManager::changeIsRender(en3->ID);
-                IDManager::changeInInventory(en3->ID);
-                en3->getComponent<TransformComponent>()->setPosition(265, 220);
-            }
-        }
-    } else if (en2 != nullptr) {
-        en3 = std::dynamic_pointer_cast<ObjectEntity>(entity1);
-
-        if (entity2->getComponent<InputComponent>()->keyPressed(sf::Keyboard::F) && IDManager::getIsRender(entity1->ID)) {
-            if (en3 != nullptr) {
-                IDManager::changeIsRender(en3->ID);
-                IDManager::changeInInventory(en3->ID);
-                en3->getComponent<TransformComponent>()->setPosition(265, 220);
             }
         }
     }

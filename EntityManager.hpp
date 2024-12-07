@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <memory>
+#include <unordered_map>
 #include "Entities/PlayerEntity.hpp"
 #include "Entities/InventoryEntity.hpp"
 #include "Entities/ObjectEntity.hpp"
@@ -8,6 +9,7 @@
 
 class EntityManager {
 public:
+    static inline std::unordered_map<sf::Keyboard::Key, bool> keyStatus;
     std::vector<std::shared_ptr<Entity>> entities;
     std::vector<std::shared_ptr<Entity>> inventory;
 

@@ -15,7 +15,7 @@ Engine::Engine() : window(sf::VideoMode(800, 640), "game") {
 
     entityManager.spawnPlayerEntity(player, "/../Assets/spritePlayer.png", 100, 100, 200, 0, 190, 310);
     entityManager.spawnInventoryEntity(inventory, "/../Assets/INVENTORY.png", 25, 125, 527, 1218, 7470, 5140);
-    entityManager.spawnObjectEntity(coin, "/../Assets/coin.png", 600, 500, 129, 609, 40, 40, L"1234", font);
+    entityManager.spawnObjectEntity(coin, "/../Assets/coin.png", 600, 500, 129, 609, 40, 40, L"???????", font);
     entityManager.spawnObjectEntity(coin1, "/../Assets/coin.png", 600, 200, 129, 609, 40, 40, "1234", font);
     entityManager.spawnObjectEntity(coin2, "/../Assets/coin.png", 500, 200, 129, 609, 40, 40, "1234", font);
     entityManager.spawnInteractiveObjectEntity(pound, "/../Assets/pound.png", 100, 450, 0, 0, 160, 160, "5678", font);
@@ -41,8 +41,6 @@ void Engine::run() {
         sf::Time deltaTime = clock.restart();
         timeUpdate += deltaTime;
 
-        event();
-
         while (timeUpdate.asSeconds() > timePerFrame) {
             timeUpdate -= sf::seconds(timePerFrame);
             update(sf::seconds(timePerFrame));
@@ -52,33 +50,13 @@ void Engine::run() {
     }
 }
 
-void Engine::event() {
-    sf::Event event;
-    while (window.pollEvent(event)) {
-        if (event.type == sf::Event::Closed) {
-            window.close();
-        }
-        else if (event.type == sf::Event::KeyPressed) {
-            keyEvent(event.key.code, true);
-        }
-        else if (event.type == sf::Event::KeyReleased) {
-            keyEvent(event.key.code, false);
-        }
-    }
-}
-
 void Engine::update(sf::Time deltaTime) {
-    inputSystem.update(entityManager, deltaTime);
+    inputSystem.update(window);
+    interactionSystem.update(entityManager, deltaTime);
+    moveSystem.update(entityManager, deltaTime);
     renderSystem.update(entityManager, deltaTime);
     collisionSystem.update(entityManager, deltaTime);
     inventorySystem.update(entityManager, deltaTime);
-}
-
-void Engine::keyEvent(sf::Keyboard::Key key, bool isPressed) {
-    auto inputComponentPlayer = player->getComponent<InputComponent>();
-    auto inputComponentInventory = inventory->getComponent<InputComponent>();
-    if (inputComponentPlayer) inputComponentPlayer->updateKey(key, isPressed);
-    if (inputComponentInventory) inputComponentInventory->updateKey(key, isPressed);
 }
 
 void Engine::render() {

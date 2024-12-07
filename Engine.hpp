@@ -9,6 +9,8 @@
 #include "Systems/RenderSystem.hpp"
 #include "Systems/InputSystem.hpp"
 #include "Systems/CollisionSystem.hpp"
+#include "Systems/InteractionSystem.hpp"
+#include "Systems/MoveSystem.hpp"
 #include "Components/SpriteComponent.hpp"
 #include "Components/TransformComponent.hpp"
 
@@ -34,6 +36,8 @@ private:
     RenderSystem renderSystem;
     InputSystem inputSystem;
     CollisionSystem collisionSystem;
+    MoveSystem moveSystem;
+    InteractionSystem interactionSystem;
 
     void event();
     void update(sf::Time deltaTime);

@@ -11,7 +11,6 @@ add_executable(project main.cpp
         ECS/Entity.cpp
         Components/BoundsComponent.cpp
         Components/SpriteComponent.cpp
-        Components/InputComponent.cpp
         Components/TransformComponent.cpp
         Components/CollisionComponent.cpp
         Components/DescriptionComponent.cpp
@@ -19,6 +18,8 @@ add_executable(project main.cpp
         Systems/InputSystem.cpp
         Systems/RenderSystem.cpp
         Systems/InventorySystem.cpp
+        Systems/MoveSystem.cpp
+        Systems/InteractionSystem.cpp
         Entities/PlayerEntity.cpp
         Entities/InventoryEntity.cpp
         Entities/ObjectEntity.cpp

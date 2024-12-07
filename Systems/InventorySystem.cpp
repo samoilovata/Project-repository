@@ -16,7 +16,16 @@ void InventorySystem::swapObjectsInInventory(EntityManager& entityManager, std::
 
 void InventorySystem::update(EntityManager& entityManager, sf::Time& deltaTime) {
     for (auto &entity : entityManager.entities) {
-        if (entity->flag == OBJECT && IDManager::getInInventory(entity->ID) &&
+        if (entity->flag == INVENTORY) {
+            if (EntityManager::keyStatus[sf::Keyboard::E] && !IDManager::getIsRender(entity->ID)) {
+                IDManager::changeIsRender(entity->ID);
+                EntityManager::keyStatus[sf::Keyboard::E] = false;
+            } else if (EntityManager::keyStatus[sf::Keyboard::E] && IDManager::getIsRender(entity->ID)) {
+                IDManager::changeIsRender(entity->ID);
+                EntityManager::keyStatus[sf::Keyboard::E] = false;
+            }
+        }
+        else if (entity->flag == OBJECT && IDManager::getInInventory(entity->ID) &&
             std::find(entityManager.inventory.begin(), entityManager.inventory.end(), entity) == entityManager.inventory.end()) {
 
             addObjectInInventory(entityManager, entity);

@@ -1,7 +1,6 @@
 #include <filesystem>
 #include "EntityManager.hpp"
 #include "Components/BoundsComponent.hpp"
-#include "Components/InputComponent.hpp"
 #include "Components/SpriteComponent.hpp"
 #include "Components/TransformComponent.hpp"
 #include "Components/CollisionComponent.hpp"
@@ -14,22 +13,14 @@ void EntityManager::spawnPlayerEntity(const std::shared_ptr<PlayerEntity>& playe
     player->sprite = std::make_shared<SpriteComponent>(std::filesystem::current_path().string() + spritePath,
                                                        spriteX, spriteY, spriteWidth, spriteHeight);
     player->bounds = std::make_shared<BoundsComponent>();
-    player->input = std::make_shared<InputComponent>();
     player->collision = std::make_shared<CollisionComponent>();
 
     player->transform->setPosition(posX, posY);
     player->bounds->setBounds(player->sprite->getSprite());
 
-    player->input->setKey(sf::Keyboard::W, false);
-    player->input->setKey(sf::Keyboard::S, false);
-    player->input->setKey(sf::Keyboard::A, false);
-    player->input->setKey(sf::Keyboard::D, false);
-    player->input->setKey(sf::Keyboard::F, false);
-
     player->addComponent(player->transform);
     player->addComponent(player->sprite);
     player->addComponent(player->bounds);
-    player->addComponent(player->input);
     player->addComponent(player->collision);
 
     player->ID = 1;
@@ -43,15 +34,11 @@ void EntityManager::spawnInventoryEntity(const std::shared_ptr<InventoryEntity>&
     inventory->sprite = std::make_shared<SpriteComponent>(std::filesystem::current_path().string() + spritePath,
                                                           spriteX, spriteY, spriteWidth, spriteHeight);
     inventory->sprite->setScale(spriteWidth, spriteHeight * 1.25);
-    inventory->input = std::make_shared<InputComponent>();
 
     inventory->transform->setPosition(posX, posY);
 
-    inventory->input->setKey(sf::Keyboard::E, false);
-
     inventory->addComponent(inventory->transform);
     inventory->addComponent(inventory->sprite);
-    inventory->addComponent(inventory->input);
 
     inventory->ID = 0;
     inventory->flag = INVENTORY;
