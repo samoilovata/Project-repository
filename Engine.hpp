@@ -5,6 +5,7 @@
 #include "Entities/PlayerEntity.hpp"
 #include "Entities/InventoryEntity.hpp"
 #include "Entities/ObjectEntity.hpp"
+#include "Entities/LocationObject.hpp"
 #include "Systems/InventorySystem.hpp"
 #include "Systems/RenderSystem.hpp"
 #include "Systems/InputSystem.hpp"
@@ -29,7 +30,7 @@ private:
     std::shared_ptr<InventoryEntity> inventory;
     std::shared_ptr<ObjectEntity> coin;
     std::shared_ptr<ObjectEntity> coin1;
-    std::shared_ptr<ObjectEntity> coin2;
+    std::shared_ptr<LocationObject> coin2;
     std::shared_ptr<InteractiveObjectEntity> pound;
 
     InventorySystem inventorySystem;
