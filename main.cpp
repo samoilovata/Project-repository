@@ -1,6 +1,8 @@
-#include <iostream>
+#include "Engine.hpp"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    Engine game;
+    game.run();
+
     return 0;
 }
