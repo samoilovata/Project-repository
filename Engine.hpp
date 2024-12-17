@@ -28,8 +28,13 @@ private:
     std::shared_ptr<PlayerEntity> player;
     std::shared_ptr<InventoryEntity> inventory;
     std::shared_ptr<ObjectEntity> coin;
-    std::shared_ptr<ObjectEntity> coin1;
-    std::shared_ptr<ObjectEntity> coin2;
+    std::shared_ptr<ObjectEntity> berry1;
+    std::shared_ptr<ObjectEntity> berry2;
+    std::shared_ptr<ObjectEntity> fish1;
+    std::shared_ptr<ObjectEntity> fish2;
+    std::shared_ptr<ObjectEntity> flower1;
+    std::shared_ptr<ObjectEntity> flower2;
+    std::shared_ptr<ObjectEntity> seeds;
     std::shared_ptr<InteractiveObjectEntity> pound;
 
     InventorySystem inventorySystem;
