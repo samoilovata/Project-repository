@@ -24,8 +24,7 @@ add_executable(project main.cpp
         Entities/InventoryEntity.cpp
         Entities/ObjectEntity.cpp
         Entities/InteractiveObjectEntity.cpp
-        Entities/LocationObject.cpp
-        Entities/LocationObject.hpp
+        Entities/LocationObjectEntity.cpp
 )
         
 

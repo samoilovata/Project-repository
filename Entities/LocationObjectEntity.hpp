@@ -7,7 +7,7 @@
 #include "../Components/CollisionComponent.hpp"
 #include "../Components/DescriptionComponent.hpp"
 
-class LocationObject : public Entity {
+class LocationObjectEntity : public Entity {
 public:
     std::shared_ptr<BoundsComponent> bounds;
     std::shared_ptr<SpriteComponent> sprite;

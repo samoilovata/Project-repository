@@ -64,6 +64,7 @@ void RenderSystem::render(EntityManager& entityManager, sf::RenderWindow &window
             }
         }
     } else if (entityManager.currentLocation == 2) {
+        window.clear(sf::Color::White);
         for (auto &entity : entityManager.entities) {
             if (entity->location == 0 || entity->location == entityManager.currentLocation) {
                 auto spriteComponent = entity->getComponent<SpriteComponent>();

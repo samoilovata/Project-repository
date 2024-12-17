@@ -18,6 +18,7 @@ void InteractionSystem::update(EntityManager& entityManager, sf::Time& deltaTime
                 }
             } else if (objectEntity->flag == LOCATION_OBJECT && objectEntity->getComponent<CollisionComponent>()->getCollision()) {
                 entityManager.currentLocation = 3 - entityManager.currentLocation;
+                EntityManager::keyStatus[sf::Keyboard::F] = false;
             }
         }
     }

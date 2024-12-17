@@ -6,7 +6,7 @@
 #include "Entities/InventoryEntity.hpp"
 #include "Entities/ObjectEntity.hpp"
 #include "Entities/InteractiveObjectEntity.hpp"
-#include "Entities/LocationObject.hpp"
+#include "Entities/LocationObjectEntity.hpp"
 
 class EntityManager {
 public:
@@ -25,7 +25,7 @@ public:
     void spawnInteractiveObjectEntity(const std::shared_ptr<InteractiveObjectEntity>& interactiveObject, const std::string& spritePath,
                                       float posX, float posY, int spriteX, int spriteY, int spriteWidth, int spriteHeight,
                                       sf::String script, sf::Font& font, int loc);
-    void spawnLocationObjectEntity(const std::shared_ptr<LocationObject>& locationObject, const std::string& spritePath,
-                                      float posX, float posY, int spriteX, int spriteY, int spriteWidth, int spriteHeight,
-                                      sf::String script, sf::Font& font, int loc);
+    void spawnLocationObjectEntity(const std::shared_ptr<LocationObjectEntity>& locationObject, const std::string& spritePath,
+                                   float posX, float posY, int spriteX, int spriteY, int spriteWidth, int spriteHeight,
+                                   sf::String script, sf::Font& font, int loc);
 };

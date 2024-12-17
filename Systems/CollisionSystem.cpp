@@ -21,7 +21,7 @@ void CollisionSystem::update(EntityManager& entityManager, sf::Time &deltaTime) 
                 if (entity2TransformComponent && entity2BoundsComponent) {
                     entity2BoundsComponent->setBounds(entity2Position);
 
-                    if (entity1CollisionComponent && entity2CollisionComponent) {
+                    if (entity1CollisionComponent && entity2CollisionComponent && (entity1->location == 0 || entity1->location == entityManager.currentLocation)) {
                         if (entity1BoundsComponent->getBounds().intersects(entity2BoundsComponent->getBounds())) {
                             entity1CollisionComponent->collisionTrue();
                             entity2CollisionComponent->collisionTrue();

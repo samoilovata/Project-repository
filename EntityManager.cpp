@@ -94,7 +94,7 @@ void EntityManager::spawnInteractiveObjectEntity(const std::shared_ptr<Interacti
     interactiveObject->flag = INTERACTIVE_OBJECT;
 }
 
-void EntityManager::spawnLocationObjectEntity(const std::shared_ptr<LocationObject> &locationObject,
+void EntityManager::spawnLocationObjectEntity(const std::shared_ptr<LocationObjectEntity> &locationObject,
                                               const std::string &spritePath, float posX, float posY, int spriteX,
                                               int spriteY, int spriteWidth, int spriteHeight, sf::String script,
                                               sf::Font &font, int loc) {
