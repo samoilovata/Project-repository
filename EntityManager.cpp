@@ -34,8 +34,6 @@ void EntityManager::spawnInventoryEntity(const std::shared_ptr<InventoryEntity>&
     inventory->transform = std::make_shared<TransformComponent>();
     inventory->sprite = std::make_shared<SpriteComponent>(std::filesystem::current_path().string() + spritePath,
                                                           spriteX, spriteY, spriteWidth, spriteHeight);
-    inventory->sprite->setScale(spriteWidth, spriteHeight * 1.25);
-
     inventory->transform->setPosition(posX, posY);
 
     inventory->addComponent(inventory->transform);
@@ -52,6 +50,7 @@ void EntityManager::spawnObjectEntity(const std::shared_ptr<ObjectEntity>& objec
     object->transform = std::make_shared<TransformComponent>();
     object->sprite = std::make_shared<SpriteComponent>(std::filesystem::current_path().string() + spritePath,
                                                        spriteX, spriteY, spriteWidth, spriteHeight);
+    object->sprite->sprite.setScale(10, 10);
     object->bounds = std::make_shared<BoundsComponent>();
     object->collision = std::make_shared<CollisionComponent>();
     object->description = std::make_shared<DescriptionComponent>(posX, posY, script, font);
@@ -101,6 +100,7 @@ void EntityManager::spawnLocationObjectEntity(const std::shared_ptr<LocationObje
     locationObject->transform = std::make_shared<TransformComponent>();
     locationObject->sprite = std::make_shared<SpriteComponent>(std::filesystem::current_path().string() + spritePath,
                                                                   spriteX, spriteY, spriteWidth, spriteHeight);
+    locationObject->sprite->sprite.setScale(10, 10);
     locationObject->bounds = std::make_shared<BoundsComponent>();
     locationObject->collision = std::make_shared<CollisionComponent>();
     locationObject->description = std::make_shared<DescriptionComponent>(posX, posY, script, font);

@@ -1,4 +1,3 @@
-#include <SFML/Window/Keyboard.hpp>
 #include "InputSystem.hpp"
 
 void InputSystem::update(sf::Window& window) {

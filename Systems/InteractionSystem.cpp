@@ -10,8 +10,8 @@ void InteractionSystem::update(EntityManager& entityManager, sf::Time& deltaTime
 
                 auto sprite = objectEntity->getComponent<SpriteComponent>();
                 objectEntity->getComponent<TransformComponent>()->setPosition(60, 395);
-                sprite->setTexture(1189, 510, 1021, 1021);
-                sprite->setScale(6000 * 1.25, 6000);
+                sprite->setTexture(0, 0, 127, 127);
+                sprite->sprite.setScale(1, 1);
             } else if (objectEntity->flag == INTERACTIVE_OBJECT && objectEntity->getComponent<CollisionComponent>()->getCollision() && !entityManager.inventory.empty()) {
                 if (IDManager::getIsCoin(entityManager.inventory[0]->ID) == IDManager::getIsCoin(objectEntity->ID)) {
                     IDManager::changeInInventory(entityManager.inventory[0]->ID);
