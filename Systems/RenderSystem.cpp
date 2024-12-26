@@ -26,39 +26,79 @@ void RenderSystem::setDescription(std::string fileName) {
 
 void RenderSystem::render(EntityManager& entityManager, sf::RenderWindow &window) {
     window.draw(backgroundSprite);
+    if (entityManager.currentLocation == 1) {
+        for (auto &entity : entityManager.entities) {
+            if (entity->location == 0 || entity->location == entityManager.currentLocation) {
+                auto spriteComponent = entity->getComponent<SpriteComponent>();
+                auto transformComponent = entity->getComponent<TransformComponent>();
 
-    for (auto &entity : entityManager.entities) {
+                if (spriteComponent && transformComponent && IDManager::getIsRender(entity->ID)) {
+                    int iter = 0;
+                    if (entity->flag == INVENTORY) {
 
-        auto spriteComponent = entity->getComponent<SpriteComponent>();
-        auto transformComponent = entity->getComponent<TransformComponent>();
+                        spriteComponent->getSprite().setPosition(transformComponent->getPosition());
+                        window.draw(spriteComponent->getSprite());
 
-        if (spriteComponent && transformComponent && IDManager::getIsRender(entity->ID)) {
-            int iter = 0;
-            if (entity->flag == INVENTORY) {
+                        for (auto &object : entityManager.inventory) {
 
-                spriteComponent->getSprite().setPosition(transformComponent->getPosition());
-                window.draw(spriteComponent->getSprite());
+                            auto spriteComponent1 = object->getComponent<SpriteComponent>();
+                            auto transformComponent1 = object->getComponent<TransformComponent>();
 
-                for (auto &object : entityManager.inventory) {
+                            setPositionObjects(transformComponent1, iter);
 
-                    auto spriteComponent1 = object->getComponent<SpriteComponent>();
-                    auto transformComponent1 = object->getComponent<TransformComponent>();
+                            spriteComponent1->getSprite().setPosition(transformComponent1->getPosition());
+                            window.draw(spriteComponent1->getSprite());
+                            iter++;
+                        }
 
-                    setPositionObjects(transformComponent1, iter);
+                    } else {
+                        spriteComponent->getSprite().setPosition(transformComponent->getPosition());
+                        window.draw(spriteComponent->getSprite());
+                    }
 
-                    spriteComponent1->getSprite().setPosition(transformComponent1->getPosition());
-                    window.draw(spriteComponent1->getSprite());
-                    iter++;
+                    if (entity->flag == OBJECT && entity->getComponent<CollisionComponent>()->getCollision()) {
+                        auto descriptionComponent = entity->getComponent<DescriptionComponent>();
+                        window.draw(descriptionComponent->description);
+                    }
                 }
-
-            } else {
-                spriteComponent->getSprite().setPosition(transformComponent->getPosition());
-                window.draw(spriteComponent->getSprite());
             }
+        }
+    } else if (entityManager.currentLocation == 2) {
+        window.clear(sf::Color::White);
+        for (auto &entity : entityManager.entities) {
+            if (entity->location == 0 || entity->location == entityManager.currentLocation) {
+                auto spriteComponent = entity->getComponent<SpriteComponent>();
+                auto transformComponent = entity->getComponent<TransformComponent>();
 
-            if (entity->flag == OBJECT && entity->getComponent<CollisionComponent>()->getCollision()) {
-                auto descriptionComponent = entity->getComponent<DescriptionComponent>();
-                window.draw(descriptionComponent->description);
+                if (spriteComponent && transformComponent && IDManager::getIsRender(entity->ID)) {
+                    int iter = 0;
+                    if (entity->flag == INVENTORY) {
+
+                        spriteComponent->getSprite().setPosition(transformComponent->getPosition());
+                        window.draw(spriteComponent->getSprite());
+
+                        for (auto &object : entityManager.inventory) {
+
+                            auto spriteComponent1 = object->getComponent<SpriteComponent>();
+                            auto transformComponent1 = object->getComponent<TransformComponent>();
+
+                            setPositionObjects(transformComponent1, iter);
+
+                            spriteComponent1->getSprite().setPosition(transformComponent1->getPosition());
+                            window.draw(spriteComponent1->getSprite());
+                            iter++;
+                        }
+
+                    } else {
+                        spriteComponent->getSprite().setPosition(transformComponent->getPosition());
+                        window.draw(spriteComponent->getSprite());
+                    }
+
+                    if (entity->flag == OBJECT && entity->getComponent<CollisionComponent>()->getCollision()) {
+                        auto descriptionComponent = entity->getComponent<DescriptionComponent>();
+                        window.draw(descriptionComponent->description);
+                    }
+                }
             }
         }
     }

@@ -7,7 +7,8 @@ enum typeEntity {
     OBJECT,
     PLAYER,
     INVENTORY,
-    INTERACTIVE_OBJECT
+    INTERACTIVE_OBJECT,
+    LOCATION_OBJECT
 };
 
 class Entity {
@@ -22,6 +23,7 @@ public:
 
     typeEntity flag;
     int ID;
+    int location;
 
 protected:
     std::vector<std::shared_ptr<Component>> vectorComponent;

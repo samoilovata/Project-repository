@@ -16,6 +16,9 @@ void InteractionSystem::update(EntityManager& entityManager, sf::Time& deltaTime
                 if (IDManager::getIsCoin(entityManager.inventory[0]->ID) == IDManager::getIsCoin(objectEntity->ID)) {
                     IDManager::changeInInventory(entityManager.inventory[0]->ID);
                 }
+            } else if (objectEntity->flag == LOCATION_OBJECT && objectEntity->getComponent<CollisionComponent>()->getCollision()) {
+                entityManager.currentLocation = 3 - entityManager.currentLocation;
+                EntityManager::keyStatus[sf::Keyboard::F] = false;
             }
         }
     }

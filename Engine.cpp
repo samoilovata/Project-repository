@@ -9,6 +9,7 @@ Engine::Engine() : window(sf::VideoMode(800, 640), "game") {
     player = std::make_shared<PlayerEntity>();
     inventory = std::make_shared<InventoryEntity>();
     coin = std::make_shared<ObjectEntity>();
+    coin2 = std::make_shared<LocationObjectEntity>();
     berry1 = std::make_shared<ObjectEntity>();
     berry2 = std::make_shared<ObjectEntity>();
     fish1 = std::make_shared<ObjectEntity>();
@@ -20,15 +21,17 @@ Engine::Engine() : window(sf::VideoMode(800, 640), "game") {
 
     entityManager.spawnPlayerEntity(player, "/../Assets/spritePlayer.png", 100, 100, 200, 0, 190, 310);
     entityManager.spawnInventoryEntity(inventory, "/../Assets/INVENTORY.png", 25, 125, 527, 1218, 7470, 5140);
-    entityManager.spawnObjectEntity(coin, "/../Assets/coin.png", 600, 500, 129, 609, 40, 40, L"???????", font);
-    entityManager.spawnObjectEntity(berry1, "/../Assets/sprite-berry1.png", 600, 200, 129, 1, 40, 40, "1234", font);
-    entityManager.spawnObjectEntity(berry2, "/../Assets/sprite-berry2.png", 500, 200, 129, 1, 40, 40, "1234", font);
-    entityManager.spawnObjectEntity(fish1, "/../Assets/sprite-fish1.png", 700, 500, 129, 0, 5, 100, "1234", font);
-    entityManager.spawnObjectEntity(fish2, "/../Assets/sprite-fish2.png", 450, 150, 129, 1, 5, 100, "1234", font);
-    entityManager.spawnObjectEntity(flower1, "/../Assets/sprite-flower1.png", 250, 200, 126, 0, 40, 40, "1234", font);
-    entityManager.spawnObjectEntity(flower2, "/../Assets/sprite-flower2.png", 300, 150, 126, 0, 40, 40, "1234", font);
-    entityManager.spawnObjectEntity(seeds, "/../Assets/sprite-seeds.png", 50, 150, 126, 0, 40, 40, "1234", font);
-    entityManager.spawnInteractiveObjectEntity(pound, "/../Assets/pound.png", 100, 450, 0, 0, 160, 160, "5678", font);
+
+    entityManager.spawnObjectEntity(coin, "/../Assets/coin.png", 600, 500, 129, 609, 40, 40, L"???????", font, 1);
+    entityManager.spawnLocationObjectEntity(coin2, "/../Assets/coin.png", 300, 200, 129, 609, 40, 40, "1234", font, 0);
+    entityManager.spawnObjectEntity(berry1, "/../Assets/sprite-berry1.png", 600, 200, 129, 1, 40, 40, "1234", font, 1);
+    entityManager.spawnObjectEntity(berry2, "/../Assets/sprite-berry2.png", 500, 200, 129, 1, 40, 40, "1234", font, 1);
+    entityManager.spawnObjectEntity(fish1, "/../Assets/sprite-fish1.png", 700, 500, 129, 0, 5, 100, "1234", font, 1);
+    entityManager.spawnObjectEntity(fish2, "/../Assets/sprite-fish2.png", 450, 150, 129, 1, 5, 100, "1234", font, 1);
+    entityManager.spawnObjectEntity(flower1, "/../Assets/sprite-flower1.png", 250, 200, 126, 0, 40, 40, "1234", font, 1);
+    entityManager.spawnObjectEntity(flower2, "/../Assets/sprite-flower2.png", 300, 150, 126, 0, 40, 40, "1234", font, 1);
+    entityManager.spawnObjectEntity(seeds, "/../Assets/sprite-seeds.png", 50, 150, 126, 0, 40, 40, "1234", font, 1);
+    entityManager.spawnInteractiveObjectEntity(pound, "/../Assets/pound.png", 100, 450, 0, 0, 160, 160, "5678", font, 1);
 
 
     IDManager::changeIsCoin(coin->ID);
