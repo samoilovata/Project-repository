@@ -8,9 +8,4 @@ public:
     DescriptionComponent(int posX, int posY, sf::String string, sf::Font& font);
 
     sf::Text description;
-
-    int positionX;
-    int positionY;
-
-    void setPosition(int y, int x);
 };
