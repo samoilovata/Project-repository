@@ -20,19 +20,19 @@ Engine::Engine() : window(sf::VideoMode(800, 640), "game") {
     seeds = std::make_shared<ObjectEntity>();
     pound = std::make_shared<InteractiveObjectEntity>();
 
-    entityManager.spawnPlayerEntity(player, "/../Assets/sprite-player.png", 100, 100, 200, 0, 190, 310);
+    entityManager.spawnPlayerEntity(player, "/../Assets/sprite-player.png", 500, 300, 200, 10, 190, 300);
     entityManager.spawnInventoryEntity(inventory, "/../Assets/sprite-inventory.png", 0, 0, 0, 0, 800, 640);
 
-    entityManager.spawnObjectEntity(coin, "/../Assets/sprite-coin.png", 600, 500, 128, 0, 7, 9, L"Монетка", font, 2);
-    entityManager.spawnObjectEntity(berry1, "/../Assets/sprite-berry1.png", 600, 200, 128, 0, 7, 9, L"Ягода", font, 1);
-    entityManager.spawnObjectEntity(berry2, "/../Assets/sprite-berry2.png", 500, 200, 128, 0, 7, 9, L"Немного гнилая\nягода", font, 1);
-    entityManager.spawnObjectEntity(fish1, "/../Assets/sprite-fish1.png", 700, 500, 128, 0, 7, 9, L"Золотая рыбка", font, 1);
-    entityManager.spawnObjectEntity(fish2, "/../Assets/sprite-fish2.png", 450, 150, 128, 0, 7, 9, L"Селедка", font, 1);
-    entityManager.spawnObjectEntity(flower1, "/../Assets/sprite-flower1.png", 250, 200, 128, 0, 7, 9, L"Тюльпан", font, 1);
-    entityManager.spawnObjectEntity(flower2, "/../Assets/sprite-flower2.png", 300, 150, 128, 0, 7, 9, L"Оч красиви\nцветочек", font, 1);
-    entityManager.spawnObjectEntity(seeds, "/../Assets/sprite-seeds.png", 50, 150, 128, 0, 7, 9, L"Семена", font, 1);
-    entityManager.spawnLocationObjectEntity(coin2, "/../Assets/sprite-coin.png", 300, 200, 128, 0, 7, 9, L"Телепорт", font, 0);
-    entityManager.spawnInteractiveObjectEntity(pound, "/../Assets/pound.png", 100, 450, 0, 0, 160, 160, L"Пруд", font, 1);
+    entityManager.spawnObjectEntity(coin, "/../Assets/sprite-coin.png", 700, 500, 128, 0, 4, 4, L"Монетка", font, 2);
+    entityManager.spawnObjectEntity(berry1, "/../Assets/sprite-berry1.png", 650, 150, 128, 0, 3, 5, L"Ягода", font, 1);
+    entityManager.spawnObjectEntity(berry2, "/../Assets/sprite-berry2.png", 550, 150, 128, 0, 3, 4, L"Немного гнилая\nягода", font, 1);
+    entityManager.spawnObjectEntity(fish1, "/../Assets/sprite-fish1.png", 450, 150, 128, 0, 7, 7, L"Золотая рыбка", font, 1);
+    entityManager.spawnObjectEntity(fish2, "/../Assets/sprite-fish2.png", 350, 150, 128, 0, 7, 5, L"Селедка", font, 1);
+    entityManager.spawnObjectEntity(flower1, "/../Assets/sprite-flower1.png", 250, 150, 128, 0, 6, 9, L"Тюльпан", font, 1);
+    entityManager.spawnObjectEntity(flower2, "/../Assets/sprite-flower2.png", 150, 150, 128, 0, 5, 10, L"Оч красиви\nцветочек", font, 1);
+    entityManager.spawnObjectEntity(seeds, "/../Assets/sprite-seeds.png", 50, 150, 128, 0, 4, 6, L"Семена", font, 1);
+    entityManager.spawnLocationObjectEntity(coin2, "/../Assets/sprite-coin.png", 300, 300, 128, 0, 4, 4, L"Телепорт", font, 0);
+    entityManager.spawnInteractiveObjectEntity(pound, "/../Assets/pond.png", 100, 450, 0, 0, 160, 160, L"Пруд", font, 1);
 
 
     IDManager::changeIsCoin(coin->ID);
@@ -74,10 +74,9 @@ void Engine::run() {
 
 void Engine::update(sf::Time deltaTime) {
     inputSystem.update(window);
+    collisionSystem.update(entityManager, deltaTime);
     interactionSystem.update(entityManager, deltaTime);
     moveSystem.update(entityManager, deltaTime);
-    collisionSystem.update(entityManager, deltaTime);
-    renderSystem.update(entityManager, deltaTime);
     inventorySystem.update(entityManager, deltaTime);
 }
 
