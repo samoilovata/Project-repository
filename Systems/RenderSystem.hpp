@@ -9,7 +9,7 @@
 
 class RenderSystem : public System {
 public:
-    void setPositionObjects(std::shared_ptr<TransformComponent> transformComponent, int n);
+    void setPositionObjects(const std::shared_ptr<TransformComponent>& transformComponent, int n);
     void render(EntityManager& entityManager, sf::RenderWindow& window);
     void update(EntityManager& entityManager, sf::Time& deltaTime) override;
 };

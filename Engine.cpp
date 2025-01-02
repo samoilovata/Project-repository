@@ -76,8 +76,8 @@ void Engine::update(sf::Time deltaTime) {
     inputSystem.update(window);
     interactionSystem.update(entityManager, deltaTime);
     moveSystem.update(entityManager, deltaTime);
-    renderSystem.update(entityManager, deltaTime);
     collisionSystem.update(entityManager, deltaTime);
+    renderSystem.update(entityManager, deltaTime);
     inventorySystem.update(entityManager, deltaTime);
 }
 

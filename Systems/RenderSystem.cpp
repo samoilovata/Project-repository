@@ -7,7 +7,7 @@
 #include "../Components/DescriptionComponent.hpp"
 
 void RenderSystem::render(EntityManager& entityManager, sf::RenderWindow &window) {
-    window.draw(entityManager.locationStatus[entityManager.currentLocation]->backgroundSprite);
+    window.draw(EntityManager::locationStatus[entityManager.currentLocation]->backgroundSprite);
     for (auto &entity : entityManager.entities) {
         if (entity->location == 0 || entity->location == entityManager.currentLocation) {
             auto spriteComponent = entity->getComponent<SpriteComponent>();
@@ -46,7 +46,7 @@ void RenderSystem::render(EntityManager& entityManager, sf::RenderWindow &window
     }
 }
 
-void RenderSystem::setPositionObjects(std::shared_ptr<TransformComponent> transformComponent, int n) {
+void RenderSystem::setPositionObjects(const std::shared_ptr<TransformComponent>& transformComponent, int n) {
     if (n == 0) transformComponent->setPosition(70, 382);
     else transformComponent->setPosition(230 + 127 * ((n - 1) % 4), 185 + 142 * ((int) (n - 1) / 4));
 }
