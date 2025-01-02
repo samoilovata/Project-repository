@@ -6,18 +6,8 @@
 #include "../Components/CollisionComponent.hpp"
 #include "../Components/DescriptionComponent.hpp"
 
-void RenderSystem::setBackground(std::string fileName, sf::Vector2f position) {
-    backgroundTexture = std::make_shared<sf::Texture>();
-    if (!backgroundTexture->loadFromFile(std::filesystem::current_path().string() + fileName)) {
-        std::cerr << "Failed to load background image!" << std::endl;
-    }
-
-    backgroundSprite.setTexture(*backgroundTexture);
-    backgroundSprite.setPosition(position);
-}
-
 void RenderSystem::render(EntityManager& entityManager, sf::RenderWindow &window) {
-    window.draw(backgroundSprite);
+    window.draw(entityManager.locationStatus[entityManager.currentLocation]->backgroundSprite);
     for (auto &entity : entityManager.entities) {
         if (entity->location == 0 || entity->location == entityManager.currentLocation) {
             auto spriteComponent = entity->getComponent<SpriteComponent>();
@@ -47,8 +37,8 @@ void RenderSystem::render(EntityManager& entityManager, sf::RenderWindow &window
                     window.draw(spriteComponent->getSprite());
                 }
 
-                if (entity->flag == OBJECT && entity->getComponent<CollisionComponent>()->getCollision()) {
-                    auto descriptionComponent = entity->getComponent<DescriptionComponent>();
+                auto descriptionComponent = entity->getComponent<DescriptionComponent>();
+                if (descriptionComponent && entity->getComponent<CollisionComponent>()->getCollision()) {
                     window.draw(descriptionComponent->description);
                 }
             }

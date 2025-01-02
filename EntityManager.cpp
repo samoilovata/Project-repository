@@ -6,7 +6,23 @@
 #include "Components/CollisionComponent.hpp"
 #include "Components/DescriptionComponent.hpp"
 
-void EntityManager::spawnPlayerEntity(const std::shared_ptr<PlayerEntity>& player, const std::string &spritePath,
+void EntityManager::spawnLocation(const std::string& fileName, sf::Vector2f position, sf::Vector2f playerPosition, int ID) {
+    auto loc = std::make_shared<Location>();
+    loc->backgroundTexture = std::make_shared<sf::Texture>();
+
+    if (!loc->backgroundTexture->loadFromFile(std::filesystem::current_path().string() + fileName)) {
+        std::cerr << "Failed to load background image!" << std::endl;
+    }
+
+    loc->backgroundSprite.setTexture(*loc->backgroundTexture);
+    loc->backgroundSprite.setPosition(position);
+
+    loc->playerDefaultPosition = playerPosition;
+
+    locationStatus[ID] = loc;
+}
+
+void EntityManager::spawnPlayerEntity(const std::shared_ptr<PlayerEntity>& player, const std::string& spritePath,
                                       float posX, float posY, int spriteX, int spriteY, int spriteWidth,
                                       int spriteHeight) {
     player->transform = std::make_shared<TransformComponent>();

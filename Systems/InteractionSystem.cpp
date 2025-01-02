@@ -12,14 +12,19 @@ void InteractionSystem::update(EntityManager& entityManager, sf::Time& deltaTime
                 objectEntity->getComponent<TransformComponent>()->setPosition(60, 395);
                 sprite->setTexture(0, 0, 127, 127);
                 sprite->sprite.setScale(1, 1);
+                break;
             } else if (objectEntity->flag == INTERACTIVE_OBJECT && objectEntity->getComponent<CollisionComponent>()->getCollision() && !entityManager.inventory.empty()) {
                 if (IDManager::getIsCoin(entityManager.inventory[0]->ID) == IDManager::getIsCoin(objectEntity->ID)) {
                     IDManager::changeInInventory(entityManager.inventory[0]->ID);
+                    break;
                 }
             } else if (objectEntity->flag == LOCATION_OBJECT && objectEntity->getComponent<CollisionComponent>()->getCollision()) {
                 entityManager.currentLocation = 3 - entityManager.currentLocation;
-                EntityManager::keyStatus[sf::Keyboard::F] = false;
+
+                entityManager.playerPtr->getComponent<TransformComponent>()->setPosition(EntityManager::locationStatus[entityManager.currentLocation]->playerDefaultPosition);
+                break;
             }
         }
+        EntityManager::keyStatus[sf::Keyboard::F] = false;
     }
 }
