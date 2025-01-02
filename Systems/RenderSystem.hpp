@@ -1,11 +1,8 @@
 #pragma once
-#include <string>
-#include <SFML/Graphics.hpp>
 #include "../IDManager.hpp"
 #include "../ECS/System.hpp"
 #include "InventorySystem.hpp"
 #include "../EntityManager.hpp"
-
 
 class RenderSystem : public System {
 public:

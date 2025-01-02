@@ -1,5 +1,4 @@
 #pragma once
-#include <memory>
 #include "../ECS/Entity.hpp"
 #include "../Components/BoundsComponent.hpp"
 #include "../Components/SpriteComponent.hpp"

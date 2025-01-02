@@ -1,10 +1,5 @@
 #include <filesystem>
 #include "RenderSystem.hpp"
-#include "../Entities/ObjectEntity.hpp"
-#include "../Components/TransformComponent.hpp"
-#include "../Components/SpriteComponent.hpp"
-#include "../Components/CollisionComponent.hpp"
-#include "../Components/DescriptionComponent.hpp"
 
 void RenderSystem::render(EntityManager& entityManager, sf::RenderWindow &window) {
     window.draw(EntityManager::locationStatus[entityManager.currentLocation]->backgroundSprite);

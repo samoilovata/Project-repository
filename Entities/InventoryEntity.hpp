@@ -1,9 +1,5 @@
 #pragma once
-#include <memory>
-#include <vector>
-#include "ObjectEntity.hpp"
 #include "../ECS/Entity.hpp"
-#include "../Components/BoundsComponent.hpp"
 #include "../Components/SpriteComponent.hpp"
 #include "../Components/TransformComponent.hpp"
 
