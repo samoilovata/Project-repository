@@ -5,7 +5,7 @@
 
 class DescriptionComponent : public Component {
 public:
-    DescriptionComponent(int posX, int posY, sf::String string, sf::Font& font);
+    DescriptionComponent(int posX, int posY, int width, sf::String string, sf::Font& font);
 
     sf::Text description;
 };

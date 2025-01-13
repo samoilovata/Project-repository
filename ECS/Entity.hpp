@@ -8,7 +8,8 @@ enum typeEntity {
     PLAYER,
     INVENTORY,
     INTERACTIVE_OBJECT,
-    LOCATION_OBJECT
+    LOCATION_OBJECT,
+    STATIC_OBJECT
 };
 
 class Entity {

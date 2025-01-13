@@ -20,6 +20,7 @@ void InteractionSystem::update(EntityManager& entityManager, sf::Time& deltaTime
                 }
             } else if (objectEntity->flag == LOCATION_OBJECT && objectEntity->getComponent<CollisionComponent>()->getCollision()) {
                 entityManager.currentLocation = 3 - entityManager.currentLocation;
+                objectEntity->getComponent<CollisionComponent>()->collisionFalse();
 
                 entityManager.playerPtr->getComponent<TransformComponent>()->setPosition(EntityManager::locationStatus[entityManager.currentLocation]->playerDefaultPosition);
                 break;

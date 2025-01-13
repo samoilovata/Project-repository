@@ -16,7 +16,7 @@ void EntityManager::spawnLocation(const std::string& fileName, sf::Vector2f posi
 
     loc->backgroundSprite.setTexture(*loc->backgroundTexture);
     loc->backgroundSprite.setPosition(position);
-    loc->backgroundSprite.setScale(10, 10);
+    loc->backgroundSprite.setScale(5, 5);
 
     loc->playerDefaultPosition = playerPosition;
 
@@ -70,7 +70,7 @@ void EntityManager::spawnObjectEntity(const std::shared_ptr<ObjectEntity>& objec
                                                        spriteX, spriteY, spriteWidth, spriteHeight);
     object->bounds = std::make_shared<BoundsComponent>();
     object->collision = std::make_shared<CollisionComponent>();
-    object->description = std::make_shared<DescriptionComponent>(posX, posY, script, font);
+    object->description = std::make_shared<DescriptionComponent>(posX, posY, spriteWidth, script, font);
 
     object->transform->setPosition(posX, posY);
     object->bounds->setBounds(object->sprite->getSprite());
@@ -94,7 +94,7 @@ void EntityManager::spawnInteractiveObjectEntity(const std::shared_ptr<Interacti
                                                        spriteX, spriteY, spriteWidth, spriteHeight);
     interactiveObject->bounds = std::make_shared<BoundsComponent>();
     interactiveObject->collision = std::make_shared<CollisionComponent>();
-    interactiveObject->description = std::make_shared<DescriptionComponent>(posX, posY, script, font);
+    interactiveObject->description = std::make_shared<DescriptionComponent>(posX, posY, spriteWidth, script, font);
 
     interactiveObject->transform->setPosition(posX, posY);
     interactiveObject->bounds->setBounds(interactiveObject->sprite->getSprite());
@@ -110,22 +110,17 @@ void EntityManager::spawnInteractiveObjectEntity(const std::shared_ptr<Interacti
     interactiveObject->flag = INTERACTIVE_OBJECT;
 }
 
-void EntityManager::spawnLocationObjectEntity(const std::shared_ptr<LocationObjectEntity> &locationObject,
-                                              const std::string &spritePath, float posX, float posY, int spriteX,
-                                              int spriteY, int spriteWidth, int spriteHeight, sf::String script,
-                                              sf::Font &font, int loc) {
+void EntityManager:: spawnLocationObjectEntity(const std::shared_ptr<LocationObjectEntity>& locationObject, float posX, float posY,
+                                               int boundsWidth, int boundsHeight, sf::String script, sf::Font& font, int loc) {
     locationObject->transform = std::make_shared<TransformComponent>();
-    locationObject->sprite = std::make_shared<SpriteComponent>(std::filesystem::current_path().string() + spritePath,
-                                                                  spriteX, spriteY, spriteWidth, spriteHeight);
     locationObject->bounds = std::make_shared<BoundsComponent>();
     locationObject->collision = std::make_shared<CollisionComponent>();
-    locationObject->description = std::make_shared<DescriptionComponent>(posX, posY, script, font);
+    locationObject->description = std::make_shared<DescriptionComponent>(posX, posY, boundsWidth / 5, script, font);
 
     locationObject->transform->setPosition(posX, posY);
-    locationObject->bounds->setBounds(locationObject->sprite->getSprite());
+    locationObject->bounds->setBounds(sf::Vector2f (posX, posY), sf::Vector2f (boundsWidth, boundsHeight));
 
     locationObject->addComponent(locationObject->transform);
-    locationObject->addComponent(locationObject->sprite);
     locationObject->addComponent(locationObject->collision);
     locationObject->addComponent(locationObject->description);
     locationObject->addComponent(locationObject->bounds);
@@ -133,4 +128,26 @@ void EntityManager::spawnLocationObjectEntity(const std::shared_ptr<LocationObje
     locationObject->ID = 1;
     locationObject->location = loc;
     locationObject->flag = LOCATION_OBJECT;
+}
+
+void EntityManager::spawnStaticObjectEntity(const std::shared_ptr<StaticObjectEntity> &staticObject, const std::string &spritePath,
+                                       float posX, float posY, int spriteX, int spriteY, int spriteWidth,
+                                       int spriteHeight, int loc) {
+    staticObject->transform = std::make_shared<TransformComponent>();
+    staticObject->sprite = std::make_shared<SpriteComponent>(std::filesystem::current_path().string() + spritePath,
+                                                       spriteX, spriteY, spriteWidth, spriteHeight);
+    staticObject->bounds = std::make_shared<BoundsComponent>();
+    staticObject->collision = std::make_shared<CollisionComponent>();
+
+    staticObject->transform->setPosition(posX, posY);
+    staticObject->bounds->setBounds(staticObject->sprite->getSprite());
+
+    staticObject->addComponent(staticObject->transform);
+    staticObject->addComponent(staticObject->sprite);
+    staticObject->addComponent(staticObject->collision);
+    staticObject->addComponent(staticObject->bounds);
+
+    staticObject->ID = 1;
+    staticObject->location = loc;
+    staticObject->flag = STATIC_OBJECT;
 }

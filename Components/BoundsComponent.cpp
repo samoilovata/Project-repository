@@ -12,3 +12,7 @@ void BoundsComponent::setBounds(sf::Vector2f &position) {
 sf::FloatRect BoundsComponent::getBounds() {
     return bounds;
 }
+
+void BoundsComponent::setBounds(sf::Vector2f position, sf::Vector2f size) {
+    bounds = sf::FloatRect {position, size};
+}

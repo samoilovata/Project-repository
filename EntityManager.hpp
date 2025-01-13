@@ -7,6 +7,7 @@
 #include "Entities/ObjectEntity.hpp"
 #include "Entities/InteractiveObjectEntity.hpp"
 #include "Entities/LocationObjectEntity.hpp"
+#include "Entities/StaticObjectEntity.hpp"
 
 struct Location {
     sf::Vector2f playerDefaultPosition;
@@ -37,7 +38,8 @@ public:
     void spawnInteractiveObjectEntity(const std::shared_ptr<InteractiveObjectEntity>& interactiveObject, const std::string& spritePath,
                                       float posX, float posY, int spriteX, int spriteY, int spriteWidth, int spriteHeight,
                                       sf::String script, sf::Font& font, int loc);
-    void spawnLocationObjectEntity(const std::shared_ptr<LocationObjectEntity>& locationObject, const std::string& spritePath,
-                                   float posX, float posY, int spriteX, int spriteY, int spriteWidth, int spriteHeight,
-                                   sf::String script, sf::Font& font, int loc);
+    void spawnLocationObjectEntity(const std::shared_ptr<LocationObjectEntity>& locationObject, float posX, float posY,
+                                   int boundsWidth, int boundsHeight, sf::String script, sf::Font& font, int loc);
+    void spawnStaticObjectEntity(const std::shared_ptr<StaticObjectEntity>& object, const std::string& spritePath, float posX,
+                           float posY, int spriteX, int spriteY, int spriteWidth, int spriteHeight, int loc);
 };

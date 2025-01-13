@@ -5,29 +5,31 @@ void MoveSystem::update(EntityManager& entityManager, sf::Time& deltaTime) {
     auto spriteComponent = entityManager.playerPtr->getComponent<SpriteComponent>();
     auto boundsComponent = entityManager.playerPtr->getComponent<BoundsComponent>();
 
-    sf::RectangleShape tempRect {sf::Vector2f (boundsComponent->getBounds().width - 80, boundsComponent->getBounds().height - 240)};
-    tempRect.setPosition(sf::Vector2f (transformComponent->getPosition().x + 40, transformComponent->getPosition().y + 235));
+    sf::RectangleShape tempRect {sf::Vector2f (boundsComponent->getBounds().width - 30, boundsComponent->getBounds().height - 120)};
+    tempRect.setPosition(sf::Vector2f (transformComponent->getPosition().x + 15, transformComponent->getPosition().y + 110));
 
     for (const auto& entity : entityManager.entities) {
         if (entity == entityManager.playerPtr) continue;
 
         auto entityBoundsComponent = entity->getComponent<BoundsComponent>();
 
-        tempRect.setPosition(tempRect.getPosition() + sf::Vector2f (0, -4));
+        tempRect.move(sf::Vector2f (0, -3));
         if (entityBoundsComponent && (entity->location == entityManager.currentLocation || entity->location == 0))
             if (tempRect.getGlobalBounds().intersects(entityBoundsComponent->getBounds())) up = true;
 
-        tempRect.setPosition(tempRect.getPosition() + sf::Vector2f (0, 8));
+        tempRect.move(sf::Vector2f (0, 6));
         if (entityBoundsComponent && (entity->location == entityManager.currentLocation || entity->location == 0))
             if (tempRect.getGlobalBounds().intersects(entityBoundsComponent->getBounds())) down = true;
 
-        tempRect.setPosition(tempRect.getPosition() + sf::Vector2f (-4, -4));
+        tempRect.move(sf::Vector2f (-3, -3));
         if (entityBoundsComponent && (entity->location == entityManager.currentLocation || entity->location == 0))
             if (tempRect.getGlobalBounds().intersects(entityBoundsComponent->getBounds())) left = true;
 
-        tempRect.setPosition(tempRect.getPosition() + sf::Vector2f (8, 0));
+        tempRect.move(sf::Vector2f (6, 0));
         if (entityBoundsComponent && (entity->location == entityManager.currentLocation || entity->location == 0))
             if (tempRect.getGlobalBounds().intersects(entityBoundsComponent->getBounds())) right = true;
+
+        tempRect.move(sf::Vector2f (-3, 0));
     }
 
     if (transformComponent && spriteComponent) {
@@ -37,25 +39,25 @@ void MoveSystem::update(EntityManager& entityManager, sf::Time& deltaTime) {
         if (EntityManager::keyStatus[sf::Keyboard::W]) {
             spriteComponent->getSprite().setTextureRect(sf::IntRect(int(currentFrame) * 20, 35, 20, 28));
             if (up) up = false;
-            else transformComponent->translate(sf::Vector2f(0, -4));
+            else transformComponent->translate(sf::Vector2f(0, -3));
         }
 
         if (EntityManager::keyStatus[sf::Keyboard::S]) {
             spriteComponent->getSprite().setTextureRect(sf::IntRect(int(currentFrame) * 20, 3, 20, 28));
             if (down) down = false;
-            else transformComponent->translate(sf::Vector2f(0, 4));
+            else transformComponent->translate(sf::Vector2f(0, 3));
         }
 
         if (EntityManager::keyStatus[sf::Keyboard::A]) {
             spriteComponent->getSprite().setTextureRect(sf::IntRect(int(currentFrame) * 20, 99, 20, 29));
             if (left) left = false;
-            else transformComponent->translate(sf::Vector2f(-4, 0));
+            else transformComponent->translate(sf::Vector2f(-3, 0));
         }
 
         if (EntityManager::keyStatus[sf::Keyboard::D]) {
             spriteComponent->getSprite().setTextureRect(sf::IntRect(int(currentFrame) * 20, 67, 20, 29));
             if (right) right = false;
-            else transformComponent->translate(sf::Vector2f(4, 0));
+            else transformComponent->translate(sf::Vector2f(3, 0));
         }
 
         frame++;
