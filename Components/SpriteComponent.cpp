@@ -7,6 +7,7 @@ SpriteComponent::SpriteComponent(const std::string& texturePath, int left, int t
     }
     sprite.setTexture(*texture);
     sprite.setTextureRect(sf::IntRect(left, top, width, height));
+    sprite.setScale(10, 10);
 }
 
 void SpriteComponent::setPosition(float x, float y) {

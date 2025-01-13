@@ -37,7 +37,7 @@ private:
     std::shared_ptr<ObjectEntity> flower1;
     std::shared_ptr<ObjectEntity> flower2;
     std::shared_ptr<ObjectEntity> seeds;
-    std::shared_ptr<InteractiveObjectEntity> pound;
+    std::shared_ptr<InteractiveObjectEntity> pond;
 
     InventorySystem inventorySystem;
     RenderSystem renderSystem;

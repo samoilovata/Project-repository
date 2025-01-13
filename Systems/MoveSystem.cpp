@@ -35,25 +35,25 @@ void MoveSystem::update(EntityManager& entityManager, sf::Time& deltaTime) {
         if (currentFrame == 4) currentFrame -= 4;
 
         if (EntityManager::keyStatus[sf::Keyboard::W]) {
-            spriteComponent->getSprite().setTextureRect(sf::IntRect(int(currentFrame) * 200, 350, 200, 280));
+            spriteComponent->getSprite().setTextureRect(sf::IntRect(int(currentFrame) * 20, 35, 20, 28));
             if (up) up = false;
             else transformComponent->translate(sf::Vector2f(0, -4));
         }
 
         if (EntityManager::keyStatus[sf::Keyboard::S]) {
-            spriteComponent->getSprite().setTextureRect(sf::IntRect(int(currentFrame) * 200, 30, 200, 280));
+            spriteComponent->getSprite().setTextureRect(sf::IntRect(int(currentFrame) * 20, 3, 20, 28));
             if (down) down = false;
             else transformComponent->translate(sf::Vector2f(0, 4));
         }
 
         if (EntityManager::keyStatus[sf::Keyboard::A]) {
-            spriteComponent->getSprite().setTextureRect(sf::IntRect(int(currentFrame) * 200, 990, 200, 290));
+            spriteComponent->getSprite().setTextureRect(sf::IntRect(int(currentFrame) * 20, 99, 20, 29));
             if (left) left = false;
             else transformComponent->translate(sf::Vector2f(-4, 0));
         }
 
         if (EntityManager::keyStatus[sf::Keyboard::D]) {
-            spriteComponent->getSprite().setTextureRect(sf::IntRect(int(currentFrame) * 200, 670, 200, 290));
+            spriteComponent->getSprite().setTextureRect(sf::IntRect(int(currentFrame) * 20, 67, 20, 29));
             if (right) right = false;
             else transformComponent->translate(sf::Vector2f(4, 0));
         }
