@@ -8,6 +8,6 @@ void CollisionComponent::collisionFalse() {
     collision = false;
 }
 
-bool CollisionComponent::getCollision() {
+bool CollisionComponent::getCollision() const {
     return collision;
 }

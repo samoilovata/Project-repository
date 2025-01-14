@@ -1,74 +1,77 @@
 #include <filesystem>
 #include "RenderSystem.hpp"
-#include "../Entities/ObjectEntity.hpp"
-#include "../Components/TransformComponent.hpp"
-#include "../Components/SpriteComponent.hpp"
-#include "../Components/CollisionComponent.hpp"
-#include "../Components/DescriptionComponent.hpp"
-
-void RenderSystem::setBackground(std::string fileName, sf::Vector2f position) {
-    if (!backgroundTexture.loadFromFile(std::filesystem::current_path().string() + fileName)) {
-        std::cerr << "Failed to load background image!" << std::endl;
-    }
-
-    backgroundSprite.setTexture(backgroundTexture);
-    backgroundSprite.setPosition(position);
-}
-
-void RenderSystem::setDescription(std::string fileName) {
-    if (!descriptionTexture.loadFromFile(std::filesystem::current_path().string() + fileName)) {
-        std::cerr << "Failed to load background image!" << std::endl;
-    }
-
-    descriptionSprite.setTexture(descriptionTexture);
-}
-
 
 void RenderSystem::render(EntityManager& entityManager, sf::RenderWindow &window) {
-    window.draw(backgroundSprite);
+    if (entityManager.endingState == 0) {
+        window.draw(EntityManager::locationStatus[entityManager.currentLocation]->backgroundSprite);
+        for (auto &entity: entityManager.entities) {
+            if (entity->location == 0 || entity->location == entityManager.currentLocation) {
+                auto spriteComponent = entity->getComponent<SpriteComponent>();
+                auto transformComponent = entity->getComponent<TransformComponent>();
 
-    for (auto &entity : entityManager.entities) {
+                if (transformComponent && IDManager::getIsRender(entity->ID)) {
+                    if (spriteComponent) {
+                        if (entity->flag == INVENTORY) {
+                            int iter = 0;
 
-        auto spriteComponent = entity->getComponent<SpriteComponent>();
-        auto transformComponent = entity->getComponent<TransformComponent>();
+                            spriteComponent->getSprite().setPosition(transformComponent->getPosition());
+                            window.draw(spriteComponent->getSprite());
 
-        if (spriteComponent && transformComponent && IDManager::getIsRender(entity->ID)) {
-            int iter = 0;
-            if (entity->flag == INVENTORY) {
+                            for (auto &object: entityManager.inventory) {
 
-                spriteComponent->getSprite().setPosition(transformComponent->getPosition());
-                window.draw(spriteComponent->getSprite());
+                                auto spriteComponent1 = object->getComponent<SpriteComponent>();
+                                auto transformComponent1 = object->getComponent<TransformComponent>();
 
-                for (auto &object : entityManager.inventory) {
+                                setPositionObjects(transformComponent1, iter);
 
-                    auto spriteComponent1 = object->getComponent<SpriteComponent>();
-                    auto transformComponent1 = object->getComponent<TransformComponent>();
+                                spriteComponent1->getSprite().setPosition(transformComponent1->getPosition());
+                                window.draw(spriteComponent1->getSprite());
+                                iter++;
+                            }
 
-                    setPositionObjects(transformComponent1, iter);
+                        } else {
+                            spriteComponent->getSprite().setPosition(transformComponent->getPosition());
+                            window.draw(spriteComponent->getSprite());
+                        }
+                    }
 
-                    spriteComponent1->getSprite().setPosition(transformComponent1->getPosition());
-                    window.draw(spriteComponent1->getSprite());
-                    iter++;
+                    auto descriptionComponent = entity->getComponent<DescriptionComponent>();
+                    if (descriptionComponent && entity->getComponent<CollisionComponent>()->getCollision()) {
+                        window.draw(descriptionComponent->description);
+                    }
                 }
-
-            } else {
-                spriteComponent->getSprite().setPosition(transformComponent->getPosition());
-                window.draw(spriteComponent->getSprite());
-            }
-
-            if (entity->flag == OBJECT && entity->getComponent<CollisionComponent>()->getCollision()) {
-                auto descriptionComponent = entity->getComponent<DescriptionComponent>();
-                window.draw(descriptionComponent->description);
             }
         }
+    } else {
+        std::string fileName;
+
+        if ((entityManager.endingState & ~42) == entityManager.endingState) fileName = "/../Assets/the_end1.png";
+        else if ((entityManager.endingState & ~41) == entityManager.endingState) fileName = "/../Assets/the_end2.png";
+        else if ((entityManager.endingState & ~26) == entityManager.endingState) fileName = "/../Assets/the_end3.png";
+        else if ((entityManager.endingState & ~25) == entityManager.endingState) fileName = "/../Assets/the_end4.png";
+        else if ((entityManager.endingState & ~38) == entityManager.endingState) fileName = "/../Assets/the_end5.png";
+        else if ((entityManager.endingState & ~37) == entityManager.endingState) fileName = "/../Assets/the_end6.png";
+        else if ((entityManager.endingState & ~22) == entityManager.endingState) fileName = "/../Assets/the_end7.png";
+        else if ((entityManager.endingState & ~21) == entityManager.endingState) fileName = "/../Assets/the_end8.png";
+
+        backgroundTextureEnding = std::make_shared<sf::Texture>();
+        if (!backgroundTextureEnding->loadFromFile(std::filesystem::current_path().string() + fileName)) {
+            std::cerr << "Failed to load background image!" << std::endl;
+        }
+
+        backgroundSpriteEnding.setTexture(*backgroundTextureEnding);
+        backgroundSpriteEnding.setPosition(10, 10);
+        backgroundSpriteEnding.setScale(5, 5);
+
+        window.draw(backgroundSpriteEnding);
     }
+}
+
+void RenderSystem::setPositionObjects(const std::shared_ptr<TransformComponent>& transformComponent, int n) {
+    if (n == 0) transformComponent->setPosition(70, 382);
+    else transformComponent->setPosition(230 + 127 * ((n - 1) % 4), 180 + 142 * ((int) (n - 1) / 4));
 }
 
 void RenderSystem::update(EntityManager& entityManager, sf::Time& deltaTime) {
 
-}
-
-void RenderSystem::setPositionObjects(std::shared_ptr<TransformComponent> transformComponent, int n) {
-    if (n == 0) transformComponent->setPosition(60, 395);
-    else transformComponent->setPosition(230 + 136 * ((n - 1) % 4), 192 + 150 * ((int) (n - 1) / 4));
 }

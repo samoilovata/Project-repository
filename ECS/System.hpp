@@ -5,7 +5,6 @@
 #include "Entity.hpp"
 #include "../EntityManager.hpp"
 
-
 class System {
 public:
     virtual ~System() = default;

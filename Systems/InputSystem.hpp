@@ -6,8 +6,5 @@
 class InputSystem : public System {
 public:
     void update(EntityManager& entityManager, sf::Time& deltaTime) override;
-
-private:
-    int frame = 1;
-    float currentFrame = 0;
+    void update(sf::Window& window);
 };

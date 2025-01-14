@@ -4,6 +4,7 @@ project(project)
 set(CMAKE_CXX_STANDARD 23)
 
 add_executable(project main.cpp
+        GameMenu.cpp
         Engine.cpp
         EntityManager.cpp
         IDManager.cpp
@@ -11,7 +12,6 @@ add_executable(project main.cpp
         ECS/Entity.cpp
         Components/BoundsComponent.cpp
         Components/SpriteComponent.cpp
-        Components/InputComponent.cpp
         Components/TransformComponent.cpp
         Components/CollisionComponent.cpp
         Components/DescriptionComponent.cpp
@@ -19,10 +19,16 @@ add_executable(project main.cpp
         Systems/InputSystem.cpp
         Systems/RenderSystem.cpp
         Systems/InventorySystem.cpp
+        Systems/MoveSystem.cpp
+        Systems/InteractionSystem.cpp
+        Systems/ScriptSystem.cpp
         Entities/PlayerEntity.cpp
         Entities/InventoryEntity.cpp
         Entities/ObjectEntity.cpp
         Entities/InteractiveObjectEntity.cpp
+        Entities/LocationObjectEntity.cpp
+        Entities/StaticObjectEntity.cpp
+        Entities/EmptyObjectEntity.cpp
 )
         
 

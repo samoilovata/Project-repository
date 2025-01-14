@@ -5,7 +5,8 @@ class CollisionComponent : public Component {
 public:
     void collisionTrue();
     void collisionFalse();
-    bool getCollision();
+    bool getCollision() const;
+
 private:
     bool collision = false;
 };
