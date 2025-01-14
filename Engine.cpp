@@ -1,7 +1,7 @@
 #include <filesystem>
 #include "Engine.hpp"
 
-Engine::Engine() : window(sf::VideoMode(800, 640), "game") {
+Engine::Engine() : window(sf::VideoMode(800, 640), "Tiny story") {
     font.loadFromFile(std::filesystem::current_path().string() + "/../Assets/Font.ttf");
 
     entityManager.spawnLocation("/../Assets/background-grass.png", sf::Vector2f(-100, -100), sf::Vector2f(480, 230), 1);
@@ -119,7 +119,7 @@ Engine::Engine() : window(sf::VideoMode(800, 640), "game") {
     entityManager.playerPtr = player;
 }
 
-void Engine::run() {
+void Engine::play() {
     const float timePerFrame = 1.0f / 60.0f;
     sf::Clock clock;
     sf::Time timeUpdate = sf::Time::Zero;
@@ -150,4 +150,40 @@ void Engine::render() {
     window.clear();
     renderSystem.render(entityManager, window);
     window.display();
+}
+
+void Engine::run() {
+    sf::Sprite backgroundSprite;
+    auto backgroundTexture = std::make_shared<sf::Texture>();
+
+    if (!backgroundTexture->loadFromFile(std::filesystem::current_path().string() + "/../Assets/menu.png")) {
+        std::cerr << "Failed to load background image!" << std::endl;
+    }
+
+    backgroundSprite.setTexture(*backgroundTexture);
+
+    GameMenu gameMenu;
+
+    while (window.isOpen()) {
+        sf::Event event;
+        while (window.pollEvent(event)) {
+            if (event.type == sf::Event::Closed) {
+                window.close();
+            } else if (event.type == sf::Event::KeyReleased) {
+                if (event.key.code == sf::Keyboard::Up) gameMenu.MoveUp();
+                if (event.key.code == sf::Keyboard::Down) gameMenu.MoveDown();
+                if (event.key.code == sf::Keyboard::Return) {
+                    switch (gameMenu.getSelectedMenuNumber()) {
+                        case 0:play();   break;
+                        case 1:window.close(); break;
+                    }
+                }
+            }
+        }
+
+        window.clear();
+        window.draw(backgroundSprite);
+        gameMenu.draw(window);
+        window.display();
+    }
 }

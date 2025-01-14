@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "GameMenu.hpp"
 #include "EntityManager.hpp"
 #include "ECS/Entity.hpp"
 #include "Entities/PlayerEntity.hpp"
@@ -21,6 +22,7 @@ class Engine {
 public:
     Engine();
     void run();
+    void play();
 
 private:
     sf::RenderWindow window;

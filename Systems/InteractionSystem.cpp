@@ -4,7 +4,7 @@
 void InteractionSystem::update(EntityManager& entityManager, sf::Time& deltaTime) {
     if (EntityManager::keyStatus[sf::Keyboard::F]) {
         for (auto &objectEntity : entityManager.entities) {
-            if (objectEntity->flag == OBJECT && objectEntity->getComponent<CollisionComponent>()->getCollision()) {
+            if (objectEntity->flag == OBJECT && objectEntity->getComponent<CollisionComponent>()->getCollision() && IDManager::getIsRender(objectEntity->ID)) {
                 IDManager::changeIsRender(objectEntity->ID);
                 IDManager::changeInInventory(objectEntity->ID);
 

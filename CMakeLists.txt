@@ -4,6 +4,7 @@ project(project)
 set(CMAKE_CXX_STANDARD 23)
 
 add_executable(project main.cpp
+        GameMenu.cpp
         Engine.cpp
         EntityManager.cpp
         IDManager.cpp

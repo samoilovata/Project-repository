@@ -3,10 +3,10 @@
 #include "../IDManager.hpp"
 
 void ScriptSystem::update(EntityManager &entityManager, sf::Time &deltaTime) {
-    if (entityManager.scriptStatus & 1) scriptFish(entityManager, deltaTime, false);
-    if (entityManager.scriptStatus & (1 << 1)) scriptFish(entityManager, deltaTime, true);
     if (entityManager.scriptStatus & (1 << 2)) scriptFlower(entityManager, deltaTime);
-    if (entityManager.scriptStatus & (1 << 3)) scriptPot(entityManager, deltaTime);
+    else if (entityManager.scriptStatus & 1) scriptFish(entityManager, deltaTime, false);
+    else if (entityManager.scriptStatus & (1 << 1)) scriptFish(entityManager, deltaTime, true);
+    else if (entityManager.scriptStatus & (1 << 3)) scriptPot(entityManager, deltaTime);
 }
 
 void ScriptSystem::scriptFish(EntityManager &entityManager, sf::Time &deltaTime, bool fishType) {
@@ -104,5 +104,8 @@ void ScriptSystem::scriptPot(EntityManager &entityManager, sf::Time &deltaTime) 
     } else if (time.asSeconds() < 10) {
         pot->getComponent<DescriptionComponent>()->setText(L"Ого!");
         pot->getComponent<SpriteComponent>()->getSprite().setTextureRect(sf::IntRect(45, 1, 21, 28));
+    } else {
+        time = sf::Time::Zero;
+//        entityManager.scriptStatus = entityManager.scriptStatus & ~8;
     }
 }
