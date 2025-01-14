@@ -20,6 +20,7 @@ add_executable(project main.cpp
         Systems/InventorySystem.cpp
         Systems/MoveSystem.cpp
         Systems/InteractionSystem.cpp
+        Systems/ScriptSystem.cpp
         Entities/PlayerEntity.cpp
         Entities/InventoryEntity.cpp
         Entities/ObjectEntity.cpp

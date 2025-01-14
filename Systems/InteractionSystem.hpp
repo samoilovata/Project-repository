@@ -4,4 +4,6 @@
 class InteractionSystem : public System {
 public:
     void update(EntityManager& entityManager, sf::Time& deltaTime) override;
+
+    int endingCounter = 0;
 };

@@ -13,6 +13,7 @@
 #include "Systems/CollisionSystem.hpp"
 #include "Systems/InteractionSystem.hpp"
 #include "Systems/MoveSystem.hpp"
+#include "Systems/ScriptSystem.hpp"
 #include "Components/SpriteComponent.hpp"
 #include "Components/TransformComponent.hpp"
 
@@ -47,12 +48,12 @@ private:
     std::shared_ptr<StaticObjectEntity> closet;
     std::shared_ptr<StaticObjectEntity> table;
     std::shared_ptr<StaticObjectEntity> tree;
+    std::shared_ptr<StaticObjectEntity> flowerbed;
 
     std::shared_ptr<LocationObjectEntity> doorInside;
     std::shared_ptr<LocationObjectEntity> doorOutside;
 
     std::shared_ptr<InteractiveObjectEntity> pond;
-    std::shared_ptr<InteractiveObjectEntity> flowerbed;
     std::shared_ptr<InteractiveObjectEntity> gardenbed;
     std::shared_ptr<InteractiveObjectEntity> pot;
 
@@ -62,6 +63,7 @@ private:
     CollisionSystem collisionSystem;
     MoveSystem moveSystem;
     InteractionSystem interactionSystem;
+    ScriptSystem scriptSystem;
 
     void update(sf::Time deltaTime);
     void render();

@@ -26,6 +26,7 @@ public:
     std::vector<std::shared_ptr<Entity>> inventory;
 
     int currentLocation = 1;
+    int scriptStatus = 0;
 
     void spawnLocation(const std::string& fileName, sf::Vector2f position, sf::Vector2f playerPosition, int ID);
 

@@ -10,3 +10,11 @@ DescriptionComponent::DescriptionComponent(int posX, int posY, int width, sf::St
 
     description.setPosition(posX - (description.getGlobalBounds().width - width * 5) / 2, posY - description.getGlobalBounds().height - 30);
 }
+
+void DescriptionComponent::setPosition(sf::Vector2f position, int width) {
+    description.setPosition(position.x - (description.getGlobalBounds().width - width * 5) / 2, position.y - description.getGlobalBounds().height - 30);
+}
+
+void DescriptionComponent::setText(sf::String string) {
+    description.setString(string);
+}
