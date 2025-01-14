@@ -13,6 +13,13 @@ void InteractionSystem::update(EntityManager& entityManager, sf::Time& deltaTime
                 sprite->setTexture(0, 0, 127, 127);
                 sprite->sprite.setScale(1, 1);
                 break;
+            } else if (objectEntity->flag == INTERACTIVE_OBJECT && objectEntity->getComponent<CollisionComponent>()->getCollision() && entityManager.inventory.empty()) {
+                if (IDManager::getIsCoin(objectEntity->ID)) {
+                    entityManager.scriptStatus = entityManager.scriptStatus | (1 << 1);
+                    objectEntity->getComponent<DescriptionComponent>()->setText("");
+                    IDManager::changeIsCoin(objectEntity->ID);
+                    break;
+                }
             } else if (objectEntity->flag == INTERACTIVE_OBJECT && objectEntity->getComponent<CollisionComponent>()->getCollision() && !entityManager.inventory.empty()) {
                 if (IDManager::getIsCoin(entityManager.inventory[0]->ID) == IDManager::getIsCoin(objectEntity->ID) &&
                     IDManager::getIsCoin(objectEntity->ID)) {
@@ -88,13 +95,6 @@ void InteractionSystem::update(EntityManager& entityManager, sf::Time& deltaTime
 
                 if (endingCounter == 3) entityManager.scriptStatus = entityManager.scriptStatus | (1 << 3);
 
-            } else if (objectEntity->flag == INTERACTIVE_OBJECT && objectEntity->getComponent<CollisionComponent>()->getCollision()) {
-                if (IDManager::getIsCoin(objectEntity->ID)) {
-                    entityManager.scriptStatus = entityManager.scriptStatus | (1 << 1);
-                    objectEntity->getComponent<DescriptionComponent>()->setText("");
-                    IDManager::changeIsCoin(objectEntity->ID);
-                    break;
-                }
             } else if (objectEntity->flag == LOCATION_OBJECT && objectEntity->getComponent<CollisionComponent>()->getCollision()) {
                 entityManager.currentLocation = 3 - entityManager.currentLocation;
                 objectEntity->getComponent<CollisionComponent>()->collisionFalse();

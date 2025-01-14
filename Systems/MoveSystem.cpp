@@ -15,19 +15,19 @@ void MoveSystem::update(EntityManager& entityManager, sf::Time& deltaTime) {
 
         tempRect.move(sf::Vector2f (0, -3));
         if (entityBoundsComponent && (entity->location == entityManager.currentLocation || entity->location == 0))
-            if (tempRect.getGlobalBounds().intersects(entityBoundsComponent->getBounds())) up = true;
+            if (tempRect.getGlobalBounds().intersects(entityBoundsComponent->getBounds()) || tempRect.getGlobalBounds().top < 0) up = true;
 
         tempRect.move(sf::Vector2f (0, 6));
         if (entityBoundsComponent && (entity->location == entityManager.currentLocation || entity->location == 0))
-            if (tempRect.getGlobalBounds().intersects(entityBoundsComponent->getBounds())) down = true;
+            if (tempRect.getGlobalBounds().intersects(entityBoundsComponent->getBounds()) || tempRect.getGlobalBounds().top > 610) down = true;
 
         tempRect.move(sf::Vector2f (-3, -3));
         if (entityBoundsComponent && (entity->location == entityManager.currentLocation || entity->location == 0))
-            if (tempRect.getGlobalBounds().intersects(entityBoundsComponent->getBounds())) left = true;
+            if (tempRect.getGlobalBounds().intersects(entityBoundsComponent->getBounds()) || tempRect.getGlobalBounds().left < 0) left = true;
 
         tempRect.move(sf::Vector2f (6, 0));
         if (entityBoundsComponent && (entity->location == entityManager.currentLocation || entity->location == 0))
-            if (tempRect.getGlobalBounds().intersects(entityBoundsComponent->getBounds())) right = true;
+            if (tempRect.getGlobalBounds().intersects(entityBoundsComponent->getBounds()) || tempRect.getGlobalBounds().left > 730) right = true;
 
         tempRect.move(sf::Vector2f (-3, 0));
     }

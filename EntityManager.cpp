@@ -151,3 +151,21 @@ void EntityManager::spawnStaticObjectEntity(const std::shared_ptr<StaticObjectEn
     staticObject->location = loc;
     staticObject->flag = STATIC_OBJECT;
 }
+
+void EntityManager::spawnEmptyObjectEntity(const std::shared_ptr<EmptyObjectEntity> &emptyObject, float posX, float posY,
+                                      int boundsWidth, int boundsHeight, int loc) {
+    emptyObject->transform = std::make_shared<TransformComponent>();
+    emptyObject->bounds = std::make_shared<BoundsComponent>();
+    emptyObject->collision = std::make_shared<CollisionComponent>();
+
+    emptyObject->transform->setPosition(posX, posY);
+    emptyObject->bounds->setBounds(sf::Vector2f (posX, posY), sf::Vector2f (boundsWidth, boundsHeight));
+
+    emptyObject->addComponent(emptyObject->transform);
+    emptyObject->addComponent(emptyObject->collision);
+    emptyObject->addComponent(emptyObject->bounds);
+
+    emptyObject->ID = 1;
+    emptyObject->location = loc;
+    emptyObject->flag = EMPTY_OBJECT;
+}

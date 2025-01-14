@@ -8,6 +8,7 @@
 #include "Entities/InteractiveObjectEntity.hpp"
 #include "Entities/LocationObjectEntity.hpp"
 #include "Entities/StaticObjectEntity.hpp"
+#include "Entities/EmptyObjectEntity.hpp"
 
 struct Location {
     sf::Vector2f playerDefaultPosition;
@@ -27,6 +28,7 @@ public:
 
     int currentLocation = 1;
     int scriptStatus = 0;
+    int endingState = 0;
 
     void spawnLocation(const std::string& fileName, sf::Vector2f position, sf::Vector2f playerPosition, int ID);
 
@@ -43,4 +45,6 @@ public:
                                    int boundsWidth, int boundsHeight, sf::String script, sf::Font& font, int loc);
     void spawnStaticObjectEntity(const std::shared_ptr<StaticObjectEntity>& object, const std::string& spritePath, float posX,
                            float posY, int spriteX, int spriteY, int spriteWidth, int spriteHeight, int loc);
+    void spawnEmptyObjectEntity(const std::shared_ptr<EmptyObjectEntity>& emptyObject, float posX, float posY, int boundsWidth,
+                                int boundsHeight, int loc);
 };
