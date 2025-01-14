@@ -88,7 +88,7 @@ void ScriptSystem::scriptFlower(EntityManager &entityManager, sf::Time &deltaTim
 void ScriptSystem::scriptPot(EntityManager &entityManager, sf::Time &deltaTime) {
     std::shared_ptr<Entity> pot;
 
-    for (auto const& entity : entityManager.entities) {
+    for (auto const &entity: entityManager.entities) {
         if (entity->flag != INTERACTIVE_OBJECT) continue;
 
         if (IDManager::getIsPot(entity->ID)) {
@@ -99,13 +99,14 @@ void ScriptSystem::scriptPot(EntityManager &entityManager, sf::Time &deltaTime) 
 
     time += deltaTime;
 
-    if (time.asSeconds() < 5) {
+    if (time.asSeconds() < 3) {
         pot->getComponent<DescriptionComponent>()->setText(L"Кажется, вот-вот\n что-то произойдет");
-    } else if (time.asSeconds() < 10) {
+    } else if (time.asSeconds() < 6) {
         pot->getComponent<DescriptionComponent>()->setText(L"Ого!");
         pot->getComponent<SpriteComponent>()->getSprite().setTextureRect(sf::IntRect(45, 1, 21, 28));
     } else {
         time = sf::Time::Zero;
-//        entityManager.scriptStatus = entityManager.scriptStatus & ~8;
+        entityManager.scriptStatus = entityManager.scriptStatus & ~8;
+        entityManager.endingState = (pot->ID & (63 << 3)) >> 3;
     }
 }

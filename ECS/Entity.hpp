@@ -9,7 +9,8 @@ enum typeEntity {
     INVENTORY,
     INTERACTIVE_OBJECT,
     LOCATION_OBJECT,
-    STATIC_OBJECT
+    STATIC_OBJECT,
+    EMPTY_OBJECT
 };
 
 class Entity {

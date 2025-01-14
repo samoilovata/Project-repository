@@ -59,6 +59,10 @@ private:
     std::shared_ptr<InteractiveObjectEntity> gardenbed;
     std::shared_ptr<InteractiveObjectEntity> pot;
 
+    std::shared_ptr<EmptyObjectEntity> wall1;
+    std::shared_ptr<EmptyObjectEntity> wall2;
+    std::shared_ptr<EmptyObjectEntity> wall3;
+
     InventorySystem inventorySystem;
     RenderSystem renderSystem;
     InputSystem inputSystem;

@@ -20,7 +20,7 @@ GameMenu::GameMenu() {
     menu.push_back(buttonPlay);
     menu.push_back(buttonExit);
 
-    selectedButton = 0;
+    selectedButton = 1;
 }
 
 void GameMenu::MoveUp() {

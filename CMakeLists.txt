@@ -28,6 +28,7 @@ add_executable(project main.cpp
         Entities/InteractiveObjectEntity.cpp
         Entities/LocationObjectEntity.cpp
         Entities/StaticObjectEntity.cpp
+        Entities/EmptyObjectEntity.cpp
 )
         
 
