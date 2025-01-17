@@ -50,4 +50,6 @@ find_package(SFML COMPONENTS system window graphics audio network REQUIRED)
 include_directories(${SFML_DIR}/include)
 target_link_libraries(tinystory sfml-system sfml-window sfml-graphics sfml-audio)
 
+file(COPY Assets DESTINATION .)
+
 unset(IS_RELEASE CACHE)

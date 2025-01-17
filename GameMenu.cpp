@@ -5,13 +5,13 @@ GameMenu::GameMenu() {
     buttonPlay = std::make_shared<Button>();
     buttonExit = std::make_shared<Button>();
 
-    buttonPlay->sprite = std::make_shared<SpriteComponent>(std::filesystem::current_path().string() + "/../Assets/play.png",
+    buttonPlay->sprite = std::make_shared<SpriteComponent>("./Assets/play.png",
                                                            0, 0, 532, 258);
     buttonPlay->sprite->getSprite().setScale(1, 1);
     buttonPlay->transform = std::make_shared<TransformComponent>();
     buttonPlay->transform->setPosition(135, 20);
 
-    buttonExit->sprite = std::make_shared<SpriteComponent>(std::filesystem::current_path().string() + "/../Assets/exit.png",
+    buttonExit->sprite = std::make_shared<SpriteComponent>("./Assets/exit.png",
                                                            0, 0, 532, 258);
     buttonExit->sprite->getSprite().setScale(1, 1);
     buttonExit->transform = std::make_shared<TransformComponent>();
