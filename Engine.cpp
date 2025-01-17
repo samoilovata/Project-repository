@@ -2,10 +2,10 @@
 #include "Engine.hpp"
 
 Engine::Engine() : window(sf::VideoMode(800, 640), "Tiny story") {
-    font.loadFromFile(std::filesystem::current_path().string() + "/../Assets/Font.ttf");
+    font.loadFromFile("./Assets/Font.ttf");
 
-    entityManager.spawnLocation("/../Assets/background-grass.png", sf::Vector2f(-100, -100), sf::Vector2f(480, 230), 1);
-    entityManager.spawnLocation("/../Assets/background-room.png", sf::Vector2f(10, 10), sf::Vector2f(350, 490), 2);
+    entityManager.spawnLocation("./Assets/background-grass.png", sf::Vector2f(-100, -100), sf::Vector2f(480, 230), 1);
+    entityManager.spawnLocation("./Assets/background-room.png", sf::Vector2f(10, 10), sf::Vector2f(350, 490), 2);
 
     player = std::make_shared<PlayerEntity>();
     inventory = std::make_shared<InventoryEntity>();
@@ -40,34 +40,34 @@ Engine::Engine() : window(sf::VideoMode(800, 640), "Tiny story") {
     wall2 = std::make_shared<EmptyObjectEntity>();
     wall3 = std::make_shared<EmptyObjectEntity>();
 
-    entityManager.spawnPlayerEntity(player, "/../Assets/sprite-player.png", 500, 300, 20, 1, 19, 30);
-    entityManager.spawnInventoryEntity(inventory, "/../Assets/sprite-inventory.png", 0, 0, 0, 0, 800, 640);
+    entityManager.spawnPlayerEntity(player, "./Assets/sprite-player.png", 500, 300, 20, 1, 19, 30);
+    entityManager.spawnInventoryEntity(inventory, "./Assets/sprite-inventory.png", 0, 0, 0, 0, 800, 640);
 
-    entityManager.spawnObjectEntity(coin, "/../Assets/sprite-coin.png", 195, 245, 128, 0, 4, 5, L"Монетка. Такие кидают\nв пруд на удачу.\nСтоит ли её оставить себе?", font, 2);
-    entityManager.spawnObjectEntity(berry1, "/../Assets/sprite-berry1.png", 130, 160, 128, 0, 4, 6, L"Спелая ягода.\nВыглядит вкусно", font, 1);
-    entityManager.spawnObjectEntity(berry2, "/../Assets/sprite-berry2.png", 570, 540, 128, 0, 4, 5, L"Немного гнилая\nягода", font, 2);
-    entityManager.spawnObjectEntity(fish1, "/../Assets/sprite-fish1.png", 250, 600, 128, 0, 7, 7, L"Золотая рыбка", font, 1);
-    entityManager.spawnObjectEntity(fish2, "/../Assets/sprite-fish2.png", 250, 600, 128, 0, 7, 5, L"Селедка", font, 1);
-    entityManager.spawnObjectEntity(flower1, "/../Assets/sprite-flower1.png", 690, 240, 128, 0, 6, 9, L"Кто-то\nпосадил\nего здесь.\nВы точно\nхотите его\nсорвать?", font, 1);
-    entityManager.spawnObjectEntity(flower2, "/../Assets/sprite-flower2.png", 625, 505, 128, 0, 5, 10, L"Красивый цветочек", font, 1);
-    entityManager.spawnObjectEntity(seeds, "/../Assets/sprite-seeds.png", 405, 255, 128, 0, 7, 7, L"Семена цветов.\nИнтересно, каких?", font, 2);
+    entityManager.spawnObjectEntity(coin, "./Assets/sprite-coin.png", 195, 245, 128, 0, 4, 5, L"Монетка. Такие кидают\nв пруд на удачу.\nСтоит ли её оставить себе?", font, 2);
+    entityManager.spawnObjectEntity(berry1, "./Assets/sprite-berry1.png", 130, 160, 128, 0, 4, 6, L"Спелая ягода.\nВыглядит вкусно", font, 1);
+    entityManager.spawnObjectEntity(berry2, "./Assets/sprite-berry2.png", 570, 540, 128, 0, 4, 5, L"Немного гнилая\nягода", font, 2);
+    entityManager.spawnObjectEntity(fish1, "./Assets/sprite-fish1.png", 250, 600, 128, 0, 7, 7, L"Золотая рыбка", font, 1);
+    entityManager.spawnObjectEntity(fish2, "./Assets/sprite-fish2.png", 250, 600, 128, 0, 7, 5, L"Селедка", font, 1);
+    entityManager.spawnObjectEntity(flower1, "./Assets/sprite-flower1.png", 690, 240, 128, 0, 6, 9, L"Кто-то\nпосадил\nего здесь.\nВы точно\nхотите его\nсорвать?", font, 1);
+    entityManager.spawnObjectEntity(flower2, "./Assets/sprite-flower2.png", 625, 505, 128, 0, 5, 10, L"Красивый цветочек", font, 1);
+    entityManager.spawnObjectEntity(seeds, "./Assets/sprite-seeds.png", 405, 255, 128, 0, 7, 7, L"Семена цветов.\nИнтересно, каких?", font, 2);
 
-    entityManager.spawnStaticObjectEntity(bush, "/../Assets/sprite-bush.png", -100, 0, 0, 0, 105, 53, 1);
-    entityManager.spawnStaticObjectEntity(house, "/../Assets/house.png", 160, -400, 13, 0, 215, 145, 1);
-    entityManager.spawnStaticObjectEntity(staticPond, "/../Assets/pond.png", 275, 525, 185, 15, 15, 35, 1);
-    entityManager.spawnStaticObjectEntity(armchair, "/../Assets/armchair.png", 595, 175, 0, 0, 32, 30, 2);
-    entityManager.spawnStaticObjectEntity(bed, "/../Assets/bed.png", 625, 350, 0, 0, 29, 46, 2);
-    entityManager.spawnStaticObjectEntity(closet, "/../Assets/closet.png", 295, 40, 0, 0, 58, 54, 2);
-    entityManager.spawnStaticObjectEntity(table, "/../Assets/table.png", 35, 180, 0, 0, 53, 33, 2);
-    entityManager.spawnStaticObjectEntity(tree, "/../Assets/tree.png", 55, 395, 0, 0, 23, 33, 2);
-    entityManager.spawnStaticObjectEntity(flowerbed, "/../Assets/flowerbed.png", 610, 260, 0, 0, 38, 18, 1);
+    entityManager.spawnStaticObjectEntity(bush, "./Assets/sprite-bush.png", -100, 0, 0, 0, 105, 53, 1);
+    entityManager.spawnStaticObjectEntity(house, "./Assets/house.png", 160, -400, 13, 0, 215, 145, 1);
+    entityManager.spawnStaticObjectEntity(staticPond, "./Assets/pond.png", 275, 525, 185, 15, 15, 35, 1);
+    entityManager.spawnStaticObjectEntity(armchair, "./Assets/armchair.png", 595, 175, 0, 0, 32, 30, 2);
+    entityManager.spawnStaticObjectEntity(bed, "./Assets/bed.png", 625, 350, 0, 0, 29, 46, 2);
+    entityManager.spawnStaticObjectEntity(closet, "./Assets/closet.png", 295, 40, 0, 0, 58, 54, 2);
+    entityManager.spawnStaticObjectEntity(table, "./Assets/table.png", 35, 180, 0, 0, 53, 33, 2);
+    entityManager.spawnStaticObjectEntity(tree, "./Assets/tree.png", 55, 395, 0, 0, 23, 33, 2);
+    entityManager.spawnStaticObjectEntity(flowerbed, "./Assets/flowerbed.png", 610, 260, 0, 0, 38, 18, 1);
 
     entityManager.spawnLocationObjectEntity(doorInside, 475, 190, 100, 50, L"Войти", font, 1);
     entityManager.spawnLocationObjectEntity(doorOutside, 350, 630, 100, 50, L"Выйти", font, 2);
 
-    entityManager.spawnInteractiveObjectEntity(pond, "/../Assets/pond.png", 0, 450, 130, 0, 55, 50, L"В пруду плавает\nрыбка. Вы можете\nеё поймать!", font, 1);
-    entityManager.spawnInteractiveObjectEntity(gardenbed, "/../Assets/gardenbed.png", 500, 500, 0, 1, 57, 28, L"Кажется, здесь можно\nчто-то вырастить", font, 1);
-    entityManager.spawnInteractiveObjectEntity(pot, "/../Assets/pot.png", 165, 420, 0, 1, 21, 28, L"Нужно собрать\nвсе ингредиенты", font, 2);
+    entityManager.spawnInteractiveObjectEntity(pond, "./Assets/pond.png", 0, 450, 130, 0, 55, 50, L"В пруду плавает\nрыбка. Вы можете\nеё поймать!", font, 1);
+    entityManager.spawnInteractiveObjectEntity(gardenbed, "./Assets/gardenbed.png", 500, 500, 0, 1, 57, 28, L"Кажется, здесь можно\nчто-то вырастить", font, 1);
+    entityManager.spawnInteractiveObjectEntity(pot, "./Assets/pot.png", 165, 420, 0, 1, 21, 28, L"Нужно собрать\nвсе ингредиенты", font, 2);
 
     entityManager.spawnEmptyObjectEntity(wall1, 125, 570, 200, 50, 2);
     entityManager.spawnEmptyObjectEntity(wall2, 470, 570, 200, 50, 2);
@@ -167,7 +167,7 @@ void Engine::run() {
     sf::Sprite backgroundSprite;
     auto backgroundTexture = std::make_shared<sf::Texture>();
 
-    if (!backgroundTexture->loadFromFile(std::filesystem::current_path().string() + "/../Assets/menu.png")) {
+    if (!backgroundTexture->loadFromFile("./Assets/menu.png")) {
         std::cerr << "Failed to load background image!" << std::endl;
     }
 

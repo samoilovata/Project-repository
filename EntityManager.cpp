@@ -10,7 +10,7 @@ void EntityManager::spawnLocation(const std::string& fileName, sf::Vector2f posi
     auto loc = std::make_shared<Location>();
     loc->backgroundTexture = std::make_shared<sf::Texture>();
 
-    if (!loc->backgroundTexture->loadFromFile(std::filesystem::current_path().string() + fileName)) {
+    if (!loc->backgroundTexture->loadFromFile(fileName)) {
         std::cerr << "Failed to load background image!" << std::endl;
     }
 
@@ -27,7 +27,7 @@ void EntityManager::spawnPlayerEntity(const std::shared_ptr<PlayerEntity>& playe
                                       float posX, float posY, int spriteX, int spriteY, int spriteWidth,
                                       int spriteHeight) {
     player->transform = std::make_shared<TransformComponent>();
-    player->sprite = std::make_shared<SpriteComponent>(std::filesystem::current_path().string() + spritePath,
+    player->sprite = std::make_shared<SpriteComponent>(spritePath,
                                                        spriteX, spriteY, spriteWidth, spriteHeight);
     player->bounds = std::make_shared<BoundsComponent>();
     player->collision = std::make_shared<CollisionComponent>();
@@ -49,7 +49,7 @@ void EntityManager::spawnInventoryEntity(const std::shared_ptr<InventoryEntity>&
                                          float posX, float posY, int spriteX, int spriteY, int spriteWidth,
                                          int spriteHeight) {
     inventory->transform = std::make_shared<TransformComponent>();
-    inventory->sprite = std::make_shared<SpriteComponent>(std::filesystem::current_path().string() + spritePath,
+    inventory->sprite = std::make_shared<SpriteComponent>(spritePath,
                                                           spriteX, spriteY, spriteWidth, spriteHeight);
     inventory->sprite->sprite.setScale(1, 1);
     inventory->transform->setPosition(posX, posY);
@@ -66,7 +66,7 @@ void EntityManager::spawnObjectEntity(const std::shared_ptr<ObjectEntity>& objec
                                       float posY, int spriteX, int spriteY, int spriteWidth, int spriteHeight,
                                       sf::String script, sf::Font& font, int loc) {
     object->transform = std::make_shared<TransformComponent>();
-    object->sprite = std::make_shared<SpriteComponent>(std::filesystem::current_path().string() + spritePath,
+    object->sprite = std::make_shared<SpriteComponent>(spritePath,
                                                        spriteX, spriteY, spriteWidth, spriteHeight);
     object->bounds = std::make_shared<BoundsComponent>();
     object->collision = std::make_shared<CollisionComponent>();
@@ -90,7 +90,7 @@ void EntityManager::spawnInteractiveObjectEntity(const std::shared_ptr<Interacti
                                   float posX, float posY, int spriteX, int spriteY, int spriteWidth, int spriteHeight,
                                   sf::String script, sf::Font& font, int loc) {
     interactiveObject->transform = std::make_shared<TransformComponent>();
-    interactiveObject->sprite = std::make_shared<SpriteComponent>(std::filesystem::current_path().string() + spritePath,
+    interactiveObject->sprite = std::make_shared<SpriteComponent>(spritePath,
                                                        spriteX, spriteY, spriteWidth, spriteHeight);
     interactiveObject->bounds = std::make_shared<BoundsComponent>();
     interactiveObject->collision = std::make_shared<CollisionComponent>();
@@ -134,7 +134,7 @@ void EntityManager::spawnStaticObjectEntity(const std::shared_ptr<StaticObjectEn
                                        float posX, float posY, int spriteX, int spriteY, int spriteWidth,
                                        int spriteHeight, int loc) {
     staticObject->transform = std::make_shared<TransformComponent>();
-    staticObject->sprite = std::make_shared<SpriteComponent>(std::filesystem::current_path().string() + spritePath,
+    staticObject->sprite = std::make_shared<SpriteComponent>(spritePath,
                                                        spriteX, spriteY, spriteWidth, spriteHeight);
     staticObject->bounds = std::make_shared<BoundsComponent>();
     staticObject->collision = std::make_shared<CollisionComponent>();

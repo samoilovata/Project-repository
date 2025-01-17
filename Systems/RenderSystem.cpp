@@ -45,17 +45,17 @@ void RenderSystem::render(EntityManager& entityManager, sf::RenderWindow &window
     } else {
         std::string fileName;
 
-        if ((entityManager.endingState & ~42) == entityManager.endingState) fileName = "/../Assets/the_end1.png";
-        else if ((entityManager.endingState & ~41) == entityManager.endingState) fileName = "/../Assets/the_end2.png";
-        else if ((entityManager.endingState & ~26) == entityManager.endingState) fileName = "/../Assets/the_end3.png";
-        else if ((entityManager.endingState & ~25) == entityManager.endingState) fileName = "/../Assets/the_end4.png";
-        else if ((entityManager.endingState & ~38) == entityManager.endingState) fileName = "/../Assets/the_end5.png";
-        else if ((entityManager.endingState & ~37) == entityManager.endingState) fileName = "/../Assets/the_end6.png";
-        else if ((entityManager.endingState & ~22) == entityManager.endingState) fileName = "/../Assets/the_end7.png";
-        else if ((entityManager.endingState & ~21) == entityManager.endingState) fileName = "/../Assets/the_end8.png";
+        if ((entityManager.endingState & ~42) == entityManager.endingState) fileName = "./Assets/the_end1.png";
+        else if ((entityManager.endingState & ~41) == entityManager.endingState) fileName = "./Assets/the_end2.png";
+        else if ((entityManager.endingState & ~26) == entityManager.endingState) fileName = "./Assets/the_end3.png";
+        else if ((entityManager.endingState & ~25) == entityManager.endingState) fileName = "./Assets/the_end4.png";
+        else if ((entityManager.endingState & ~38) == entityManager.endingState) fileName = "./Assets/the_end5.png";
+        else if ((entityManager.endingState & ~37) == entityManager.endingState) fileName = "./Assets/the_end6.png";
+        else if ((entityManager.endingState & ~22) == entityManager.endingState) fileName = "./Assets/the_end7.png";
+        else if ((entityManager.endingState & ~21) == entityManager.endingState) fileName = "./Assets/the_end8.png";
 
         backgroundTextureEnding = std::make_shared<sf::Texture>();
-        if (!backgroundTextureEnding->loadFromFile(std::filesystem::current_path().string() + fileName)) {
+        if (!backgroundTextureEnding->loadFromFile(fileName)) {
             std::cerr << "Failed to load background image!" << std::endl;
         }
 
