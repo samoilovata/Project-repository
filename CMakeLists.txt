@@ -44,7 +44,7 @@ if(IS_RELEASE)
     set(CMAKE_EXE_LINKER_FLAGS "-static-libgcc -static-libstdc++ -static -mwindows")
 endif(IS_RELEASE)
 
-set(SFML_DIR C:/dev/cpp/SFML-2.6.2/lib/cmake/SFML)
+set(SFML_DIR C:/Program Files/SFML/lib/cmake/SFML)
 find_package(SFML COMPONENTS system window graphics audio network REQUIRED)
 
 include_directories(${SFML_DIR}/include)
